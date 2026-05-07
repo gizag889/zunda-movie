@@ -65,7 +65,8 @@ const MainComposition: React.FC = () => {
               justifyContent: 'space-between', 
               width: '100%', 
               padding: '0 10px',
-              marginBottom: -50, // 字幕に近づけるための調整
+
+              marginBottom: -250, // 字幕に近づけるための調整
               zIndex: 1
             }}>
                <LipSyncCharacter 
@@ -73,7 +74,9 @@ const MainComposition: React.FC = () => {
                  audioFile={segment.character === 'zundamon' ? segment.audioFile : undefined} 
                  style={{ 
                    opacity: segment.character === 'zundamon' ? 1 : 0.6,
-                   transform: 'scale(1.1)' 
+                   marginLeft: -50,
+                   //拡大するにはここをいじる
+                   transform: 'scale(1.3)' 
                  }}
                />
                <LipSyncCharacter 
@@ -81,6 +84,8 @@ const MainComposition: React.FC = () => {
                  audioFile={segment.character === 'metan' ? segment.audioFile : undefined} 
                  style={{ 
                    opacity: segment.character === 'metan' ? 1 : 0.6,
+                   marginRight: -50,
+                   transform: 'scale(1.2)' 
                  }}
                />
             </div>
