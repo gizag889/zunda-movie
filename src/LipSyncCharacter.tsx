@@ -4,38 +4,19 @@ import { useAudioData, getWaveformPortion } from '@remotion/media-utils';
 
 interface LipSyncCharacterProps {
   character: string;
-  audioFile: string;
+  audioFile?: string;
+  style?: React.CSSProperties;
 }
 
-export const LipSyncCharacter: React.FC<LipSyncCharacterProps> = ({ character, audioFile }) => {
+export const LipSyncCharacter: React.FC<LipSyncCharacterProps> = ({ character, audioFile, style }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   
   // 1. useAudioData で音声ファイルをデコード
-  const audioData = useAudioData(staticFile(audioFile));
+  // audioFile が提供されている場合のみデータを取得（フックのルールに従い、パス自体は常に文字列にする）
+  const audioData = useAudioData(staticFile(audioFile || "voice_1.wav"));
+  const isSpeaking = !!audioFile;
   
-  // デフォルト画像（口閉じ）と開口画像の設定
-  // ユーザーの指示に合わせてずんだもんの画像をマッピング、それ以外も一応設定
-  const isZundamon = character.toLowerCase() === 'zundamon';
-  const closedImg = isZundamon ? 'zundamon.png' : `${character}.png`;
-  const openImg = isZundamon ? 'zunda_mouse_open.png' : `${character}_mouse_open.png`;
-  const closedEyeImg = isZundamon ? 'zunda_eyes_closed.png' : `${character}_eyes_closed.png`;
-  
-  // オーディオデータがまだロードされていない場合は閉じた口の画像を表示
-  if (!audioData) {
-    return (
-      <Img 
-        src={staticFile(closedImg)} 
-        style={{ 
-          width: 500, 
-          opacity: 1,
-          transform: 'scale(1.1)',
-          transition: 'all 0.1s ease'
-        }} 
-      />
-    );
-  }
-
   // 現在のフレームの秒数を計算
   const currentTimeInSeconds = frame / fps;
   
@@ -45,9 +26,9 @@ export const LipSyncCharacter: React.FC<LipSyncCharacterProps> = ({ character, a
   const periodIndex = Math.floor(frame / blinkPeriod);
   
   // シード値の計算（セグメントごとに同じタイミングにならないよう、audioFile を活用）
-  const seedBase = String(periodIndex) + audioFile;
+  const seedBase = String(periodIndex) + (audioFile || character);
   
-  // 周期のインデックスと固有文字列をシードにしてランダムな値を生成
+  // 周期의 インデックスと固有文字列をシードにしてランダムな値を生成
   const randomValue = random(seedBase);
   
   // まばたきの長さ（3〜5フレーム）
@@ -60,6 +41,37 @@ export const LipSyncCharacter: React.FC<LipSyncCharacterProps> = ({ character, a
   // 現在のフレームがまばたき中かどうか
   const isBlinking = frame >= currentBlinkStart && frame < currentBlinkStart + blinkDuration;
   // -----------------------------------
+
+  // デフォルト画像（口閉じ）と開口画像の設定
+  // ユーザーの指示に合わせてずんだもんの画像をマッピング、それ以外も一応設定
+  const isZundamon = character.toLowerCase() === 'zundamon';
+  const folder = isZundamon ? 'zunda' : 'metan';
+  const closedImg = isZundamon ? `images/${folder}/zundamon.png` : `images/${folder}/${character}.png`;
+  const openImg = isZundamon ? `images/${folder}/zunda_mouse_open.png` : `images/${folder}/${character}_mouse_open.png`;
+  const closedEyeImg = isZundamon ? `images/${folder}/zunda_eyes_closed.png` : `images/${folder}/${character}_eyes_closed.png`;
+  
+  // オーディオデータが無い、または発話中でない場合は静止画像を表示（まばたきは継続）
+  if (!audioData || !isSpeaking) {
+    let currentImgSrc = closedImg;
+    if (isBlinking) {
+      currentImgSrc = closedEyeImg;
+    }
+
+    return (
+      <Img 
+        src={staticFile(currentImgSrc)} 
+        style={{ 
+          width: 500, 
+          opacity: 1,
+          transform: 'scale(1.1)',
+          transition: 'all 0.1s ease',
+          ...style
+        }} 
+      />
+    );
+  }
+
+
   
   // 現在のフレーム周辺（約1.5フレーム分）の音量を取得してちらつきを抑える
   const waveform = getWaveformPortion({
@@ -101,6 +113,7 @@ export const LipSyncCharacter: React.FC<LipSyncCharacterProps> = ({ character, a
         transform: 'scale(1.1)',
         // 音声に合わせた切り替えのため、画像のフェード等のtransitionは短くするか消す
         // 口のパクパクが自然に見えるよう transition を最適化
+        ...style
       }} 
     />
   );

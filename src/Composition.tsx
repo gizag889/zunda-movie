@@ -36,7 +36,7 @@ const MainComposition: React.FC = () => {
     <AbsoluteFill style={{ backgroundColor: 'black' }}>
       {/* 背景画像 */}
       <Img 
-        src={staticFile("background.png")} 
+        src={staticFile("images/background.png")} 
         style={{
           position: 'absolute',
           width: '100%',
@@ -58,9 +58,31 @@ const MainComposition: React.FC = () => {
           from={segment.startFrame + fps * 10} 
           durationInFrames={segment.durationInFrames}
         >
-          <AbsoluteFill style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <div style={{ display: 'flex', justifyContent: 'center', width: '100%', padding: '100px 0 30px 0', marginBottom: 50 }}>
-               <LipSyncCharacter character={segment.character} audioFile={segment.audioFile} />
+          <AbsoluteFill style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 50 }}>
+            {/* キャラクター配置エリア */}
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              width: '100%', 
+              padding: '0 10px',
+              marginBottom: -50, // 字幕に近づけるための調整
+              zIndex: 1
+            }}>
+               <LipSyncCharacter 
+                 character="zundamon" 
+                 audioFile={segment.character === 'zundamon' ? segment.audioFile : undefined} 
+                 style={{ 
+                   opacity: segment.character === 'zundamon' ? 1 : 0.6,
+                   transform: 'scale(1.1)' 
+                 }}
+               />
+               <LipSyncCharacter 
+                 character="metan" 
+                 audioFile={segment.character === 'metan' ? segment.audioFile : undefined} 
+                 style={{ 
+                   opacity: segment.character === 'metan' ? 1 : 0.6,
+                 }}
+               />
             </div>
             
             <div style={{ 
@@ -74,9 +96,10 @@ const MainComposition: React.FC = () => {
               boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
               border: '2px solid #555',
               lineHeight: 1.4,
-              wordBreak: 'break-word'
+              wordBreak: 'break-word',
+              zIndex: 2
             }}>
-              {segment.text}
+               {segment.text}
             </div>
             <Audio src={staticFile(segment.audioFile)} />
           </AbsoluteFill>

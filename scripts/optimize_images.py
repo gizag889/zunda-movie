@@ -1,5 +1,6 @@
 from PIL import Image
 import os
+from pathlib import Path
 
 def resize_image(path, max_height=2000):
     if not os.path.exists(path):
@@ -21,7 +22,13 @@ def resize_image(path, max_height=2000):
         print(f"Optimized {path}")
 
 if __name__ == "__main__":
-    resize_image("public/metan.png")
-    resize_image("public/zundamon.png")
-    resize_image("public/zunda_mouse_open.png")
+    public_dir = Path("public")
+    # publicディレクトリ以下のすべてのPNGファイルを検索
+    png_files = list(public_dir.rglob("*.png"))
+    
+    if not png_files:
+        print("No PNG images found in public directory.")
+        
+    for img_path in png_files:
+        resize_image(str(img_path))
 

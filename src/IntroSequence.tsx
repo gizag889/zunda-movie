@@ -13,7 +13,7 @@ export const IntroSequence: React.FC = () => {
     <AbsoluteFill style={{ backgroundColor: 'black', transform: `translate(${shake}px, ${shake}px)` }}>
       <Sequence from={0} durationInFrames={fps * 5}>
         <div style={{ transform: `translateY(${yPos}px)`, width: '100%', height: '100%' }}>
-          <Img src={staticFile("zundamon.png")} style={{ position: 'absolute', left: '50%', marginLeft: -300, bottom: 0, width: 600 }} />
+          <Img src={staticFile("images/zunda/zundamon.png")} style={{ position: 'absolute', left: '50%', marginLeft: -300, bottom: 0, width: 600 }} />
           <h1 style={{ color: 'white', textAlign: 'center', marginTop: 300, fontSize: 80, fontFamily: 'sans-serif', textShadow: '0 0 10px rgba(0,0,0,0.5)' }}>
             PROJECT AG-YUKKURI
           </h1>
