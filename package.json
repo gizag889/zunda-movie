@@ -1,0 +1,21 @@
+{
+  "name": "project-ag-yukkuri",
+  "version": "1.0.0",
+  "description": "Autonomous Yukkuri Video Generation with Remotion and VOICEVOX",
+  "main": "index.js",
+  "scripts": {
+    "start": "remotion preview src/index.ts",
+    "build": "remotion render src/index.ts Main output/video.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "@remotion/media-utils": "^4.0.457",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3"
+  }
+}
