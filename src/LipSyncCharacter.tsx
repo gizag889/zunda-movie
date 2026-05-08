@@ -84,16 +84,17 @@ export const LipSyncCharacter: React.FC<LipSyncCharacterProps> = ({ character, a
   // 振幅（0〜1）を取得
   const volume = waveform[0]?.amplitude || 0;
   
-  // 2. interpolate 関数を使って、音量を「口の開き具合（3段階）」に変換
-  // VOICEVOXはダイナミックレンジが広いため、しきい値を設定
-  const openLevel = interpolate(volume, [0, 0.05, 0.15], [0, 1, 2], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
+  // 2. 音量が一定以上（喋っている状態）の時に口をパクパクさせるアニメーションを実装
+  // VOICEVOXの音声波形は持続的であるため、音量だけで判定すると口が開きっぱなしになりがちです。
+  // そのため、喋っている間は一定のフレーム間隔で強制的に口を開閉させます。
+  const isLoudEnough = volume > 0.05; // 喋っているかどうかのしきい値
   
-  // 3. その値に応じて、「口を閉じた画像」と「口を開いた画像」を出し分ける
-  // stage が 0 なら閉じる、1以上なら開く（もし将来的に中間画像が追加されたら stage === 1 で分岐可能）
-  const stage = Math.round(openLevel);
+  // 12フレーム周期（6フレーム開、6フレーム閉）でパクパクさせる
+  const flapCycle = 12; 
+  const isMouthOpenInCycle = (frame % flapCycle) < (flapCycle / 2);
+  
+  // 3. 喋っていて、かつサイクル的に「開」のタイミングなら口を開く
+  const stage = (isLoudEnough && isMouthOpenInCycle) ? 1 : 0;
   
   // まばたきを優先する。口開け中の閉じ目画像がないため、まばたき中は一時的に口が閉じますが、
   // 3〜5フレームの一瞬なので違和感は少ないです。
