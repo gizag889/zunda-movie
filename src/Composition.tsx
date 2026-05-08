@@ -72,6 +72,7 @@ const MainComposition: React.FC = () => {
                <LipSyncCharacter 
                  character="zundamon" 
                  audioFile={segment.character === 'zundamon' ? segment.audioFile : undefined} 
+                 expression={segment.character === 'zundamon' ? segment.expression : undefined}
                  style={{ 
                    opacity: segment.character === 'zundamon' ? 1 : 0.6,
                    marginLeft: -50,
@@ -82,6 +83,7 @@ const MainComposition: React.FC = () => {
                <LipSyncCharacter 
                  character="metan" 
                  audioFile={segment.character === 'metan' ? segment.audioFile : undefined} 
+                 expression={segment.character === 'metan' ? segment.expression : undefined}
                  style={{ 
                    opacity: segment.character === 'metan' ? 1 : 0.6,
                    marginRight: -50,

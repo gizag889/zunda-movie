@@ -5,10 +5,11 @@ import { useAudioData, getWaveformPortion } from '@remotion/media-utils';
 interface LipSyncCharacterProps {
   character: string;
   audioFile?: string;
+  expression?: string;
   style?: React.CSSProperties;
 }
 
-export const LipSyncCharacter: React.FC<LipSyncCharacterProps> = ({ character, audioFile, style }) => {
+export const LipSyncCharacter: React.FC<LipSyncCharacterProps> = ({ character, audioFile, expression, style }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   
@@ -46,9 +47,18 @@ export const LipSyncCharacter: React.FC<LipSyncCharacterProps> = ({ character, a
   // ユーザーの指示に合わせてずんだもんの画像をマッピング、それ以外も一応設定
   const isZundamon = character.toLowerCase() === 'zundamon';
   const folder = isZundamon ? 'zunda' : 'metan';
-  const closedImg = isZundamon ? `images/${folder}/zundamon.png` : `images/${folder}/${character}.png`;
-  const openImg = isZundamon ? `images/${folder}/zunda_mouse_open.png` : `images/${folder}/${character}_mouse_open.png`;
-  const closedEyeImg = isZundamon ? `images/${folder}/zunda_eyes_closed.png` : `images/${folder}/${character}_eyes_closed.png`;
+  let closedImg = isZundamon ? `images/${folder}/zundamon.png` : `images/${folder}/${character}.png`;
+  let openImg = isZundamon ? `images/${folder}/zunda_mouse_open.png` : `images/${folder}/${character}_mouse_open.png`;
+  let closedEyeImg = isZundamon ? `images/${folder}/zunda_eyes_closed.png` : `images/${folder}/${character}_eyes_closed.png`;
+
+  // 表情が指定されている場合（normal以外）は表情専用の画像をすべての状態に適用する
+  // ※表情差分は口パクやまばたきの差分がないため、固定の画像を使用します
+  if (expression && expression !== 'normal') {
+    const exprImg = isZundamon ? `images/${folder}/zunda_ex_${expression}.png` : `images/${folder}/${character}_ex_${expression}.png`;
+    closedImg = exprImg;
+    openImg = exprImg;
+    closedEyeImg = exprImg;
+  }
   
   // オーディオデータが無い、または発話中でない場合は静止画像を表示（まばたきは継続）
   if (!audioData || !isSpeaking) {

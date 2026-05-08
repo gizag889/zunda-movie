@@ -68,6 +68,7 @@ def main():
                 "character": char,
                 "text": display_text, # 表示用テキスト
                 "audioFile": output_filename,
+                "expression": entry.get("expression", "normal"),
                 "startFrame": current_frame,
                 "durationInFrames": duration_in_frames
             })

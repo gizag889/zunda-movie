@@ -3,7 +3,7 @@
     "id": 1,
     "character": "zundamon",
     "text": "大変なのだー！僕の全財産が、貯金額が、どこかの誰かに丸見えになっちゃったかもしれないのだぁー！！",
-    "expression": "surprised",
+    "expression": "anxiety",
     "energy": "high",
     "audioText": "大変なのだー！僕の全財産が、貯金額が、どこかの誰かに丸見えになっちゃったかもしれないのだぁー！！"
   },
@@ -18,14 +18,14 @@
     "id": 3,
     "character": "zundamon",
     "text": "落ち着いてられないのだ！お金を管理するアプリが情報を漏らすなんて、もうおしまいなのだ！解約なのだ！",
-    "expression": "sad",
+    "expression": "anxiety",
     "energy": "high"
   },
   {
     "id": 4,
     "character": "metan",
     "text": "感情的になる前に、今回の事件についてAIがXの反応を分析したデータを見てみましょう。興味深い深層心理が見えてくるわよ。",
-    "expression": "smile",
+    "expression": "normal",
     "audioText": "感情的になる前に、今回の事件についてエーアイがエックスの反応を分析したデータを見てみましょう。興味深い深層心理が見えてくるわよ。"
   },
   {
@@ -87,13 +87,13 @@
     "id": 14,
     "character": "zundamon",
     "text": "人間なんだからミスはある、って言いたい気持ちもわかるけど、お金のこととなるとそうはいかないのだ。",
-    "expression": "sad"
+    "expression": "normal"
   },
   {
     "id": 15,
     "character": "metan",
     "text": "ここでの解決策として示唆されているのは、停止時間に応じた自動返金などの「誠意のルール化」ね。感情論をシステムで解決するアプローチよ。",
-    "expression": "smile"
+    "expression": "normal"
   },
   {
     "id": 16,
@@ -111,7 +111,7 @@
     "id": 18,
     "character": "zundamon",
     "text": "うっ……過去5年分のデータがたまっているし、銀行やクレカの連携をやり直すのを考えると、めまいがするのだ……。",
-    "expression": "sad"
+    "expression": "thinking"
   },
   {
     "id": 19,
@@ -142,7 +142,7 @@
     "id": 23,
     "character": "metan",
     "text": "その通り。トラブルを企業の成長の糧と見るか、それとも決別するか。私たちも賢いユーザーでいる必要があるわね。",
-    "expression": "smile"
+    "expression": "normal"
   },
   {
     "id": 24,
