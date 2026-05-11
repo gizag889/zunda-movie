@@ -1,4 +1,4 @@
-import { Composition, Sequence, Audio, AbsoluteFill, useVideoConfig, staticFile, Img } from 'remotion';
+import { Composition, Sequence, Audio, AbsoluteFill, useVideoConfig, staticFile, Img, Loop } from 'remotion';
 import { IntroSequence } from './IntroSequence';
 import { LipSyncCharacter } from './LipSyncCharacter';
 import timingData from './timing.json';
@@ -46,6 +46,12 @@ const MainComposition: React.FC = () => {
         }}
       />
 
+      {/* BGM: リピートさせるためにLoopコンポーネントを使用 */}
+      {/* durationInFramesには音源の正確なフレーム数（秒数 × fps）を指定してください。以下は仮で120秒(2分)としています */}
+      <Loop durationInFrames={fps * 215}>
+        <Audio src={staticFile("Woozy 1.mp3")} volume={0.005} />
+      </Loop>
+
       {/* イントロ (最初の5秒 + 5秒) */}
       <Sequence from={0} durationInFrames={fps * 10}>
         <IntroSequence />
@@ -59,6 +65,30 @@ const MainComposition: React.FC = () => {
           durationInFrames={segment.durationInFrames}
         >
           <AbsoluteFill style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 50 }}>
+            {/* 画像・動画埋め込み用フレーム */}
+            <div style={{
+              position: 'absolute',
+              top: 60,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: 1024,
+              height: 576,
+              backgroundColor: 'rgba(0, 0, 0, 0.4)',
+              border: '6px dashed rgba(255, 255, 255, 0.6)',
+              borderRadius: 24,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              color: 'white',
+              fontSize: 40,
+              fontWeight: 'bold',
+              zIndex: 0,
+              boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+              overflow: 'hidden'
+            }}>
+              ここに画像や動画を配置
+            </div>
+
             {/* キャラクター配置エリア */}
             <div style={{ 
               display: 'flex', 
@@ -93,15 +123,16 @@ const MainComposition: React.FC = () => {
             </div>
             
             <div style={{ 
-              backgroundColor: 'rgba(0,0,0,0.8)', 
-              color: 'white', 
+              backgroundColor: 'white', 
+              color: '#333', 
               padding: '30px 60px', 
               borderRadius: 30, 
               fontSize: Math.max(30, Math.min(50, 50 * (60 / Math.max(60, segment.text.length)))), 
+              fontWeight: 'bold',
               maxWidth: '85%',
               textAlign: 'center',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
-              border: '2px solid #555',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+              border: `8px solid ${segment.character === 'zundamon' ? '#4CAF50' : segment.character === 'metan' ? '#FF69B4' : '#555'}`,
               lineHeight: 1.4,
               wordBreak: 'break-word',
               zIndex: 2
