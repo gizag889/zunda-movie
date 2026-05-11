@@ -49,5 +49,5 @@ next-env.d.ts
 # 生成されるタイミングファイルも無視する場合
 /src/timing.json
 
-scripts/script.json
+/scripts/script.json
 /sctipts/pastscripts/script.json

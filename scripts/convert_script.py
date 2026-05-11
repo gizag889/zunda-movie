@@ -81,8 +81,8 @@ def main():
             print(f"Error parsing result for ID {entry['id']}: {e}")
 
     # timing.json の保存
-    # イントロの10秒（300フレーム）を加算し、最後に5秒（150フレーム）の余裕を持たせる
-    intro_offset = fps * 10
+    # イントロの5秒（150フレーム）を加算し、最後に5秒（150フレーム）の余裕を持たせる
+    intro_offset = fps * 5
     end_buffer = fps * 5 
 
     with open(TIMING_FILE, "w", encoding="utf-8") as f:

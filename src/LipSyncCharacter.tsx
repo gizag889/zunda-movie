@@ -15,7 +15,7 @@ export const LipSyncCharacter: React.FC<LipSyncCharacterProps> = ({ character, a
   
   // 1. useAudioData で音声ファイルをデコード
   // audioFile が提供されている場合のみデータを取得（フックのルールに従い、パス自体は常に文字列にする）
-  const audioData = useAudioData(staticFile(audioFile || "voice_1.wav"));
+  const audioData = useAudioData(staticFile(audioFile || "voices/voice_1.wav"));
   const isSpeaking = !!audioFile;
   
   // 現在のフレームの秒数を計算
@@ -51,10 +51,26 @@ export const LipSyncCharacter: React.FC<LipSyncCharacterProps> = ({ character, a
   let openImg = isZundamon ? `images/${folder}/zunda_mouse_open.png` : `images/${folder}/${character}_mouse_open.png`;
   let closedEyeImg = isZundamon ? `images/${folder}/zunda_eyes_closed.png` : `images/${folder}/${character}_eyes_closed.png`;
 
+  // サポートされていない表情が指定された場合のフォールバック処理
+  let safeExpression = expression;
+  if (isZundamon) {
+    const validZundaEx = ['angry', 'anxiety', 'happy', 'thinking'];
+    if (expression === 'surprised' || expression === 'sad') {
+      safeExpression = 'anxiety'; // 驚きや悲しみは「焦り(anxiety)」で代用
+    } else if (expression && !validZundaEx.includes(expression)) {
+      safeExpression = 'normal';
+    }
+  } else {
+    // metan は現在 thinking のみ
+    if (expression && expression !== 'thinking') {
+      safeExpression = 'normal';
+    }
+  }
+
   // 表情が指定されている場合（normal以外）は表情専用の画像をすべての状態に適用する
   // ※表情差分は口パクやまばたきの差分がないため、固定の画像を使用します
-  if (expression && expression !== 'normal') {
-    const exprImg = isZundamon ? `images/${folder}/zunda_ex_${expression}.png` : `images/${folder}/${character}_ex_${expression}.png`;
+  if (safeExpression && safeExpression !== 'normal') {
+    const exprImg = isZundamon ? `images/${folder}/zunda_ex_${safeExpression}.png` : `images/${folder}/${character}_ex_${safeExpression}.png`;
     closedImg = exprImg;
     openImg = exprImg;
     closedEyeImg = exprImg;

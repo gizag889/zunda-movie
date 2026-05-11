@@ -52,8 +52,8 @@ const MainComposition: React.FC = () => {
         <Audio src={staticFile("Woozy 1.mp3")} volume={0.005} />
       </Loop>
 
-      {/* イントロ (最初の5秒 + 5秒) */}
-      <Sequence from={0} durationInFrames={fps * 10}>
+      {/* イントロ (最初の5秒) */}
+      <Sequence from={0} durationInFrames={fps * 5}>
         <IntroSequence />
       </Sequence>
 
@@ -61,7 +61,7 @@ const MainComposition: React.FC = () => {
       {timing.segments.map((segment: any) => (
         <Sequence 
           key={segment.id} 
-          from={segment.startFrame + fps * 10} 
+          from={segment.startFrame + fps * 5} 
           durationInFrames={segment.durationInFrames}
         >
           <AbsoluteFill style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 50 }}>
@@ -160,19 +160,21 @@ const MainComposition: React.FC = () => {
         </AbsoluteFill>
       </Sequence>
 
-      {/* 左上固定ロゴ */}
-      <Img 
-        src={staticFile("images/logo.png")} 
-        style={{
-          position: 'absolute',
-          top: 40,
-          left: 40,
-          maxWidth: 350,  // 中央の枠（X:448から開始）に被らないように制限
-          maxHeight: 150,
-          objectFit: 'contain',
-          zIndex: 10
-        }}
-      />
+      {/* 左上固定ロゴ (本編中のみ表示) */}
+      <Sequence from={fps * 5} durationInFrames={timing.totalDurationInFrames - fps * 10}>
+        <Img 
+          src={staticFile("images/logo.png")} 
+          style={{
+            position: 'absolute',
+            top: 40,
+            left: 40,
+            maxWidth: 350,  // 中央の枠（X:448から開始）に被らないように制限
+            maxHeight: 150,
+            objectFit: 'contain',
+            zIndex: 10
+          }}
+        />
+      </Sequence>
     </AbsoluteFill>
   );
 };
