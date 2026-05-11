@@ -8,6 +8,7 @@ import sys
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 PUBLIC_DIR = os.path.join(PROJECT_ROOT, "public")
+VOICES_DIR = os.path.join(PUBLIC_DIR, "voices")
 SCRIPT_FILE = os.path.join(SCRIPT_DIR, "script.json")
 GENERATE_VOICE_SCRIPT = os.path.join(SCRIPT_DIR, "generate_voice.py")
 TIMING_FILE = os.path.join(PROJECT_ROOT, "src", "timing.json")
@@ -28,6 +29,8 @@ def main():
     
     if not os.path.exists(PUBLIC_DIR):
         os.makedirs(PUBLIC_DIR)
+    if not os.path.exists(VOICES_DIR):
+        os.makedirs(VOICES_DIR)
 
     with open(script_path, "r", encoding="utf-8") as f:
         script_data = json.load(f)
@@ -41,8 +44,8 @@ def main():
         # audioText があればそれを使用、なければ text を使用
         audio_text = entry.get("audioText", display_text)
         char = entry["character"]
-        output_filename = f"voice_{entry['id']}.wav"
-        output_path = os.path.join(PUBLIC_DIR, output_filename)
+        relative_audio_path = f"voices/voice_{entry['id']}.wav"
+        output_path = os.path.join(VOICES_DIR, f"voice_{entry['id']}.wav")
 
         print(f"Generating voice for: {audio_text[:20]}...")
         
@@ -67,7 +70,7 @@ def main():
                 "id": entry["id"],
                 "character": char,
                 "text": display_text, # 表示用テキスト
-                "audioFile": output_filename,
+                "audioFile": relative_audio_path,
                 "expression": entry.get("expression", "normal"),
                 "startFrame": current_frame,
                 "durationInFrames": duration_in_frames
