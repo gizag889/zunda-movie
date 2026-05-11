@@ -74,19 +74,19 @@ const MainComposition: React.FC = () => {
               width: 1024,
               height: 576,
               backgroundColor: 'rgba(0, 0, 0, 0.4)',
-              border: '6px dashed rgba(255, 255, 255, 0.6)',
+              // border: '6px dashed rgba(255, 255, 255, 0.6)',
               borderRadius: 24,
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              color: 'white',
-              fontSize: 40,
-              fontWeight: 'bold',
               zIndex: 0,
               boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
               overflow: 'hidden'
             }}>
-              ここに画像や動画を配置
+              <Img 
+                src={staticFile("images/Frame 1.png")} 
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+              />
             </div>
 
             {/* キャラクター配置エリア */}
@@ -155,26 +155,24 @@ const MainComposition: React.FC = () => {
         }}>
           <div style={{ textAlign: 'center' }}>
             <h1 style={{ fontSize: 80, marginBottom: 20 }}>ご視聴ありがとうございました！</h1>
-            <p style={{ fontSize: 40 }}>チャンネル登録 ・ 高評価 ・ スキをお待ちしていますなのだ！</p>
+            {/* <p style={{ fontSize: 40 }}>チャンネル登録お願いします！</p> */}
           </div>
         </AbsoluteFill>
       </Sequence>
 
-      {/* 固定クレジット表記 */}
-      <div style={{
-        position: 'absolute',
-        top: 40,
-        left: 40,
-        color: 'white',
-        fontSize: 24,
-        fontFamily: 'sans-serif',
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        padding: '10px 20px',
-        borderRadius: 10,
-        border: '1px solid rgba(255,255,255,0.2)'
-      }}>
-        VOICEVOX:ずんだもん
-      </div>
+      {/* 左上固定ロゴ */}
+      <Img 
+        src={staticFile("images/logo.png")} 
+        style={{
+          position: 'absolute',
+          top: 40,
+          left: 40,
+          maxWidth: 350,  // 中央の枠（X:448から開始）に被らないように制限
+          maxHeight: 150,
+          objectFit: 'contain',
+          zIndex: 10
+        }}
+      />
     </AbsoluteFill>
   );
 };
