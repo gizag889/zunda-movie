@@ -67,13 +67,23 @@ export const LipSyncCharacter: React.FC<LipSyncCharacterProps> = ({ character, a
     }
   }
 
-  // 表情が指定されている場合（normal以外）は表情専用の画像をすべての状態に適用する
-  // ※表情差分は口パクやまばたきの差分がないため、固定の画像を使用します
+  // 表情が指定されている場合（normal以外）は表情専用の画像を使用する
   if (safeExpression && safeExpression !== 'normal') {
     const exprImg = isZundamon ? `images/${folder}/zunda_ex_${safeExpression}.png` : `images/${folder}/${character}_ex_${safeExpression}.png`;
     closedImg = exprImg;
-    openImg = exprImg;
-    closedEyeImg = exprImg;
+    closedEyeImg = exprImg; // まばたき差分がない場合はそのまま
+
+    // 特定の表情については開口画像が用意されているため、それを使用する
+    const zundaHasOpenMouth = ['angry', 'anxiety', 'thinking'].includes(safeExpression);
+    const metanHasOpenMouth = ['thinking'].includes(safeExpression);
+    
+    if (isZundamon && zundaHasOpenMouth) {
+      openImg = `images/${folder}/zunda_mouse_open_ex_${safeExpression}.png`;
+    } else if (!isZundamon && metanHasOpenMouth) {
+      openImg = `images/${folder}/${character}_mouse_open_ex_${safeExpression}.png`;
+    } else {
+      openImg = exprImg; // 用意されていない場合は閉口画像で代用
+    }
   }
   
   // オーディオデータが無い、または発話中でない場合は静止画像を表示（まばたきは継続）
