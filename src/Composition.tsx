@@ -7,16 +7,9 @@ import { EndRoll } from './EndRoll';
 import timingData from './timing.json';
 import React from 'react';
 
-interface Segment {
-  id: number;
-  character: string;
-  text: string;
-  audioFile: string;
-  startFrame: number;
-  durationInFrames: number;
-}
+import { TimingData, Segment } from './types';
 
-const timing = timingData as any;
+const timing = timingData as TimingData;
 
 export const RemotionVideo: React.FC = () => {
   return (
