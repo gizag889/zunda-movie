@@ -1,6 +1,9 @@
-import { Composition, Sequence, Audio, AbsoluteFill, useVideoConfig, staticFile, Img, Loop } from 'remotion';
+import { Composition, Sequence, Audio, AbsoluteFill, useVideoConfig, staticFile, Img, Loop, useCurrentFrame, interpolate } from 'remotion';
 import { IntroSequence } from './IntroSequence';
 import { LipSyncCharacter } from './LipSyncCharacter';
+import { Telop } from './Telop';
+import { TextArea } from './TextArea';
+import { EndRoll } from './EndRoll';
 import timingData from './timing.json';
 import React from 'react';
 
@@ -32,6 +35,7 @@ export const RemotionVideo: React.FC = () => {
 
 const MainComposition: React.FC = () => {
   const { fps } = useVideoConfig();
+
   return (
     <AbsoluteFill style={{ backgroundColor: 'black' }}>
       {/* 背景画像 */}
@@ -65,133 +69,67 @@ const MainComposition: React.FC = () => {
           durationInFrames={segment.durationInFrames}
         >
           <AbsoluteFill style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 50 }}>
-            {/* 画像・動画埋め込み用フレーム */}
+            {/* 画像・動画埋め込み用フレーム (動的レイアウト) */}
             <div style={{
               position: 'absolute',
-              top: 60,
+              top: 40,
               left: '50%',
               transform: 'translateX(-50%)',
-              width: 1024,
-              height: 576,
-              backgroundColor: 'rgba(0, 0, 0, 0.4)',
-              // border: '6px dashed rgba(255, 255, 255, 0.6)',
-              borderRadius: 24,
+              width: 1800,
+              height: 700,
               display: 'flex',
+              gap: 40,
               justifyContent: 'center',
               alignItems: 'center',
               zIndex: 0,
-              boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-              overflow: 'hidden'
             }}>
-              <Img 
-                src={staticFile("images/Frame 1.png")} 
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
-              />
+              {(segment.media?.layout === 'split' ? segment.media.frames : [segment.media?.frames?.[0] || "images/tb01.png"]).map((frameSrc: string, index: number) => (
+                <div key={index} style={{
+                  flex: segment.media?.layout === 'split' && segment.media?.splitRatio ? segment.media.splitRatio[index] : 1,
+                  height: '100%',
+                  backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                  borderRadius: 24,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+                  overflow: 'hidden'
+                }}>
+                  <Img 
+                    src={staticFile(frameSrc)} 
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+                  />
+                </div>
+              ))}
             </div>
 
             {/* キャラクター配置エリア */}
             <div style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between', 
-              width: '100%', 
-              padding: '0 10px',
-
-              marginBottom: -250, // 字幕に近づけるための調整
+              position: 'absolute',
+              left: -120,
+              bottom: -430, // テキストの高さに影響されないように絶対位置で固定
               zIndex: 1
             }}>
                <LipSyncCharacter 
                  character="zundamon" 
                  audioFile={segment.character === 'zundamon' ? segment.audioFile : undefined} 
                  expression={segment.character === 'zundamon' ? segment.expression : undefined}
-                 style={{ 
-                   opacity: segment.character === 'zundamon' ? 1 : 0.6,
-                   marginLeft: -50,
-                   //拡大するにはここをいじる
-                   transform: 'scale(1.3)' 
-                 }}
-               />
-               <LipSyncCharacter 
-                 character="metan" 
-                 audioFile={segment.character === 'metan' ? segment.audioFile : undefined} 
-                 expression={segment.character === 'metan' ? segment.expression : undefined}
-                 style={{ 
-                   opacity: segment.character === 'metan' ? 1 : 0.6,
-                   marginRight: -50,
-                   transform: 'scale(1.2)' 
-                 }}
+                 
                />
             </div>
-            
-            <div style={{ 
-              backgroundColor: 'white', 
-              color: '#333', 
-              padding: '30px 60px', 
-              borderRadius: 30, 
-              fontSize: Math.max(30, Math.min(50, 50 * (60 / Math.max(60, segment.text.length)))), 
-              fontWeight: 'bold',
-              maxWidth: '85%',
-              textAlign: 'center',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
-              border: `8px solid ${segment.character === 'zundamon' ? '#4CAF50' : segment.character === 'metan' ? '#FF69B4' : '#555'}`,
-              lineHeight: 1.4,
-              wordBreak: 'break-word',
-              zIndex: 2
-            }}>
-               {segment.text}
-            </div>
+            {/* テキストエリア */}
+            <TextArea character={segment.character} text={segment.text} />
             <Audio src={staticFile(segment.audioFile)} />
           </AbsoluteFill>
         </Sequence>
       ))}
 
+      {/* テロップ (左上最上部) */}
+      <Telop />
+
       {/* エンドロール・静止画面 (最後の5秒) */}
       <Sequence from={timing.totalDurationInFrames - fps * 5} durationInFrames={fps * 5}>
-        <AbsoluteFill style={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
-          backgroundColor: 'black'
-        }}>
-          <Img 
-            src={staticFile("images/tb01.png")} 
-            style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute' }} 
-          />
-          <div style={{ 
-            position: 'absolute', 
-            bottom: 180,
-            textAlign: 'center',
-            backgroundColor: 'white', 
-            color: '#333', 
-            padding: '30px 60px', 
-            borderRadius: 30, 
-            fontSize: 70,
-            fontWeight: 'bold',
-            maxWidth: '90%',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
-            border: '8px solid #FFB300',
-            lineHeight: 1.4,
-            wordBreak: 'break-word',
-            zIndex: 2
-          }}>
-            ご視聴ありがとうございました！
-          </div>
-        </AbsoluteFill>
-      </Sequence>
-
-      {/* 左上固定ロゴ (本編中のみ表示) */}
-      <Sequence from={fps * 5} durationInFrames={timing.totalDurationInFrames - fps * 10}>
-        <Img 
-          src={staticFile("images/logo.png")} 
-          style={{
-            position: 'absolute',
-            top: 40,
-            left: 40,
-            maxWidth: 350,  // 中央の枠（X:448から開始）に被らないように制限
-            maxHeight: 150,
-            objectFit: 'contain',
-            zIndex: 10
-          }}
-        />
+        <EndRoll />
       </Sequence>
     </AbsoluteFill>
   );

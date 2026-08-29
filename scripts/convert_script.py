@@ -72,6 +72,7 @@ def main():
                 "text": display_text, # 表示用テキスト
                 "audioFile": relative_audio_path,
                 "expression": entry.get("expression", "normal"),
+                "media": entry.get("media", {"layout": "single", "frames": ["images/tb01.png"]}),
                 "startFrame": current_frame,
                 "durationInFrames": duration_in_frames
             })
