@@ -36,10 +36,17 @@ def main():
         script_data = json.load(f)
 
     timing_data = []
+    telops = []
     current_frame = 0
     fps = 30
 
     for entry in script_data:
+        if "telop" in entry:
+            telops.append({
+                "text": entry["telop"],
+                "startSegmentId": entry["id"]
+            })
+            
         display_text = entry["text"]
         # audioText があればそれを使用、なければ text を使用
         audio_text = entry.get("audioText", display_text)
@@ -89,6 +96,7 @@ def main():
     with open(TIMING_FILE, "w", encoding="utf-8") as f:
         json.dump({
             "segments": timing_data,
+            "telops": telops,
             "totalDurationInFrames": current_frame + intro_offset + end_buffer
         }, f, indent=2, ensure_ascii=False)
 
