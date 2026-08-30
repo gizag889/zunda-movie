@@ -61,17 +61,18 @@ const MainComposition: React.FC = () => {
           from={segment.startFrame + fps * 5} 
           durationInFrames={segment.durationInFrames}
         >
-          <AbsoluteFill style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 50 }}>
+          <AbsoluteFill style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 20 }}>
             {/* 画像・動画埋め込み用フレーム (動的レイアウト) */}
             <div style={{
               position: 'absolute',
-              top: 40,
+              top: 20,
               left: '50%',
               transform: 'translateX(-50%)',
-              width: 1800,
-              height: 700,
+              padding: 20,
+              width: '100%',
+              height: '100%',
               display: 'flex',
-              gap: 40,
+              gap: 20,
               justifyContent: 'center',
               alignItems: 'center',
               zIndex: 0,
@@ -100,7 +101,7 @@ const MainComposition: React.FC = () => {
             <div style={{ 
               position: 'absolute',
               left: -120,
-              bottom: -430, // テキストの高さに影響されないように絶対位置で固定
+              bottom: -460, // テキストの高さに影響されないように絶対位置で固定
               zIndex: 1
             }}>
                <LipSyncCharacter 

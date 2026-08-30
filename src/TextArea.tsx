@@ -18,7 +18,7 @@ export const TextArea: React.FC<TextAreaProps> = ({ character, text }) => {
       maxWidth: '85%',
       textAlign: 'center',
       boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
-      border: `8px solid ${character === 'zundamon' ? '#4CAF50' : '#555'}`,
+      border: `4px solid ${character === 'zundamon' ? '#4CAF50' : '#555'}`,
       lineHeight: 1.4,
       wordBreak: 'break-word',
       zIndex: 2

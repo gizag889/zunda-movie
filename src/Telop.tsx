@@ -57,18 +57,18 @@ const FadeInText: React.FC<{ text: string }> = ({ text }) => {
   return (
     <div style={{
       position: 'absolute',
-      top: 40,
-      left: 40,
+      top: 20,
+      left: 20,
       backgroundColor: 'rgba(255, 255, 255, 0.9)',
-      padding: '20px 40px',
+      padding: '10px 30px',
       borderRadius: 20,
-      fontSize: 45,
+      fontSize: 40,
       fontWeight: '900',
       color: '#333',
       boxShadow: '0 8px 25px rgba(0,0,0,0.3)',
       zIndex: 10,
       opacity: opacity,
-      border: '5px solid #4CAF50',
+      // border: '5px solid #4CAF50',
       fontFamily: 'sans-serif'
     }}>
       {text}
