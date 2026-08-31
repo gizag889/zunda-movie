@@ -4,6 +4,7 @@ import { LipSyncCharacter } from './LipSyncCharacter';
 import { Telop } from './Telop';
 import { TextArea } from './TextArea';
 import { EndRoll } from './EndRoll';
+import { Background } from './Background';
 import timingData from './timing.json';
 import React from 'react';
 
@@ -32,16 +33,7 @@ const MainComposition: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: 'black' }}>
       {/* 背景画像 */}
-      <Img 
-        src={staticFile("images/background.png")} 
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          opacity: 0.6
-        }}
-      />
+      <Background />
 
       {/* BGM: リピートさせるためにLoopコンポーネントを使用 */}
       {/* durationInFramesには音源の正確なフレーム数（秒数 × fps）を指定してください。以下は仮で120秒(2分)としています */}
@@ -63,39 +55,41 @@ const MainComposition: React.FC = () => {
         >
           <AbsoluteFill style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 20 }}>
             {/* 画像・動画埋め込み用フレーム (動的レイアウト) */}
-            <div style={{
-              position: 'absolute',
-              top: 20,
-              left: '50%',
-              transform: 'translateX(-50%)',
-              padding: 20,
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              gap: 20,
-              justifyContent: 'center',
-              alignItems: 'center',
-              zIndex: 0,
-            }}>
-              {(segment.media?.layout === 'split' ? segment.media.frames : [segment.media?.frames?.[0] || "images/tb01.png"]).map((frameSrc: string, index: number) => (
-                <div key={index} style={{
-                  flex: segment.media?.layout === 'split' && segment.media?.splitRatio ? segment.media.splitRatio[index] : 1,
-                  height: '100%',
-                  backgroundColor: 'rgba(0, 0, 0, 0.4)',
-                  borderRadius: 24,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-                  overflow: 'hidden'
-                }}>
-                  <Img 
-                    src={staticFile(frameSrc)} 
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
-                  />
-                </div>
-              ))}
-            </div>
+            {segment.id !== 1 && segment.id !== 2 && (
+              <div style={{
+                position: 'absolute',
+                top: 20,
+                left: '50%',
+                transform: 'translateX(-50%)',
+                padding: 20,
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                gap: 20,
+                justifyContent: 'center',
+                alignItems: 'center',
+                zIndex: 0,
+              }}>
+                {(segment.media?.layout === 'split' ? segment.media.frames : [segment.media?.frames?.[0] || "images/tb01.png"]).map((frameSrc: string, index: number) => (
+                  <div key={index} style={{
+                    flex: segment.media?.layout === 'split' && segment.media?.splitRatio ? segment.media.splitRatio[index] : 1,
+                    height: '100%',
+                    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                    borderRadius: 24,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+                    overflow: 'hidden'
+                  }}>
+                    <Img 
+                      src={staticFile(frameSrc)} 
+                      style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
 
             {/* キャラクター配置エリア */}
             <div style={{ 

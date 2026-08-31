@@ -5,16 +5,15 @@ export const IntroSequence: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const shake = interpolate(frame, [0, 5, 10, 15, 20], [0, 10, -10, 10, 0], { extrapolateRight: 'clamp' });
-  const dropProgress = spring({ frame, fps, config: { damping: 12 }, delay: 30 });
-  const yPos = interpolate(dropProgress, [0, 1], [-1000, 0]);
+
+  const opacity = interpolate(frame, [0, 30], [0, 1], { extrapolateRight: 'clamp' });
 
   return (
-    <AbsoluteFill style={{ backgroundColor: 'black', transform: `translate(${shake}px, ${shake}px)` }}>
+    <AbsoluteFill style={{ backgroundColor: 'black' }}>
       <Sequence from={0} durationInFrames={fps * 5}>
-        <AbsoluteFill style={{ transform: `translateY(${yPos}px)`, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <AbsoluteFill style={{ opacity, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Img 
-            src={staticFile("images/tb01.png")} 
+            src={staticFile("images/thumb.png")} 
             style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
           />
         </AbsoluteFill>
