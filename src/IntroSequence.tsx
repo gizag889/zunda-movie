@@ -13,7 +13,7 @@ export const IntroSequence: React.FC = () => {
       <Sequence from={0} durationInFrames={fps * 5}>
         <AbsoluteFill style={{ opacity, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Img 
-            src={staticFile("images/thumb.png")} 
+            src={staticFile("images/useState/thumb.png")} 
             style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
           />
         </AbsoluteFill>

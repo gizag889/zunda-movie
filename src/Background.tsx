@@ -20,7 +20,7 @@ export const Background: React.FC = () => {
   
   // id が 1 または 2 の場合は背景を変更し、opacityをリセット
   if (currentSegment && (currentSegment.id === 1 || currentSegment.id === 2)) {
-    bgSrc = "images/thumb02.png"; // ※設定したい画像ファイル名に変更してください
+    bgSrc = "images/useState/thumb02.png"; // ※設定したい画像ファイル名に変更してください
     bgOpacity = 1;
   }
 
