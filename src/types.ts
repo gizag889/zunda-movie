@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface Segment {
   id: number;
   startFrame: number;
@@ -9,6 +11,7 @@ export interface Segment {
     layout?: string;
     splitRatio?: number[];
     frames?: string[];
+    frameStyles?: React.CSSProperties[];
   };
   expression?: string;
 }

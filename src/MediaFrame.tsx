@@ -45,7 +45,12 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segment }) => {
         }}>
           <Img 
             src={staticFile(frameSrc)} 
-            style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+            style={{ 
+              width: '100%', 
+              height: '100%', 
+              // objectFit: 'contain',
+              ...(segment.media?.frameStyles?.[index] || {})
+            }} 
           />
         </div>
       ))}
