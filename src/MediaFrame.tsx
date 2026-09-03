@@ -1,5 +1,5 @@
 import React from 'react';
-import { Img, staticFile } from 'remotion';
+import { Img, staticFile, Video } from 'remotion';
 import { Segment } from './types';
 
 interface MediaFrameProps {
@@ -31,29 +31,33 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segment }) => {
       alignItems: 'center',
       zIndex: 0,
     }}>
-      {frames.map((frameSrc: string, index: number) => (
-        <div key={index} style={{
-          flex: segment.media?.layout === 'split' && segment.media?.splitRatio ? segment.media.splitRatio[index] : 1,
-          height: '100%',
-          backgroundColor: 'rgba(0, 0, 0, 0.4)',
-          borderRadius: 24,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-          overflow: 'hidden'
-        }}>
-          <Img 
-            src={staticFile(frameSrc)} 
-            style={{ 
-              width: '100%', 
-              height: '100%', 
-              // objectFit: 'contain',
-              ...(segment.media?.frameStyles?.[index] || {})
-            }} 
-          />
-        </div>
-      ))}
+      {frames.map((frameSrc: string, index: number) => {
+        const isVideo = frameSrc.match(/\.(mp4|webm|mov)$/i);
+        const style = {
+          width: '100%', 
+          height: '100%', 
+          ...(segment.media?.frameStyles?.[index] || {})
+        };
+
+        return (
+          <div key={index} style={{
+            flex: segment.media?.layout === 'split' && segment.media?.splitRatio ? segment.media.splitRatio[index] : 1,
+            height: '100%',
+            borderRadius: 24,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+            overflow: 'hidden'
+          }}>
+            {isVideo ? (
+              <Video src={staticFile(frameSrc)} style={style} loop />
+            ) : (
+              <Img src={staticFile(frameSrc)} style={style} />
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 };
