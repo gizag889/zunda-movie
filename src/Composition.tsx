@@ -31,6 +31,19 @@ export const RemotionVideo: React.FC = () => {
 const MainComposition: React.FC = () => {
   const { fps } = useVideoConfig();
 
+  const segmentsWithMedia = React.useMemo(() => {
+    let lastMedia: any = undefined;
+    return timing.segments.map((segment: any) => {
+      if (segment.media) {
+        lastMedia = segment.media;
+      }
+      return {
+        ...segment,
+        media: lastMedia
+      };
+    });
+  }, []);
+
   return (
     <AbsoluteFill style={{ backgroundColor: 'black' }}>
       {/* 背景画像 */}
@@ -48,7 +61,7 @@ const MainComposition: React.FC = () => {
       </Sequence>
 
       {/* 本編セグメント */}
-      {timing.segments.map((segment: any) => (
+      {segmentsWithMedia.map((segment: any) => (
         <Sequence 
           key={segment.id} 
           from={segment.startFrame + fps * 5} 
