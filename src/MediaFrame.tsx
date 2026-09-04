@@ -67,7 +67,7 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segment }) => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+       
             overflow: 'hidden',
             opacity,
             ...(isAbsolute ? {

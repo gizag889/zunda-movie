@@ -15,8 +15,8 @@ export const Background: React.FC<BackgroundProps> = ({ segments }) => {
     (s: any) => frame >= s.startFrame + fps * 5 && frame < s.startFrame + fps * 5 + s.durationInFrames
   );
 
-  // デフォルトの設定
-  let bgSrc = "images/background.png";
+  // デフォルトの設定 (白単色)
+  let bgSrc: string | undefined = undefined;
   let bgOpacity = 1.0;
   
   if (currentSegment) {
@@ -38,15 +38,25 @@ export const Background: React.FC<BackgroundProps> = ({ segments }) => {
   }
 
   return (
-    <Img 
-      src={staticFile(bgSrc)} 
+    <div 
       style={{
         position: 'absolute',
         width: '100%',
         height: '100%',
-        objectFit: 'cover',
+        backgroundColor: 'gray',
         opacity: bgOpacity
       }}
-    />
+    >
+      {bgSrc && (
+        <Img 
+          src={staticFile(bgSrc)} 
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover'
+          }}
+        />
+      )}
+    </div>
   );
 };
