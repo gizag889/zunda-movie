@@ -1,5 +1,14 @@
 import React from 'react';
 
+export interface MediaElement {
+  src: string;
+  style?: React.CSSProperties;
+  animation?: {
+    fadeInStart?: number;
+    fadeInDuration?: number;
+  };
+}
+
 export interface Segment {
   id: number;
   startFrame: number;
@@ -7,11 +16,10 @@ export interface Segment {
   character: string;
   text: string;
   audioFile: string;
-  media?: {
-    layout?: string;
-    splitRatio?: number[];
-    frames?: string[];
-    frameStyles?: React.CSSProperties[];
+  media?: MediaElement[] | null;
+  background?: {
+    src?: string;
+    opacity?: number;
   };
   expression?: string;
 }

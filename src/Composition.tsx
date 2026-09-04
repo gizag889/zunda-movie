@@ -31,15 +31,22 @@ export const RemotionVideo: React.FC = () => {
 const MainComposition: React.FC = () => {
   const { fps } = useVideoConfig();
 
-  const segmentsWithMedia = React.useMemo(() => {
+  const processedSegments = React.useMemo(() => {
     let lastMedia: any = undefined;
+    let lastBackground: any = undefined;
     return timing.segments.map((segment: any) => {
-      if (segment.media) {
+      // mediaが明示的に指定されている場合（nullを含む）は更新する
+      if (segment.media !== undefined) {
         lastMedia = segment.media;
+      }
+      // backgroundも同様に指定されていれば更新する
+      if (segment.background !== undefined) {
+        lastBackground = segment.background;
       }
       return {
         ...segment,
-        media: lastMedia
+        media: lastMedia,
+        background: lastBackground
       };
     });
   }, []);
@@ -47,7 +54,7 @@ const MainComposition: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: 'black' }}>
       {/* 背景画像 */}
-      <Background />
+      <Background segments={processedSegments} />
 
       {/* BGM: リピートさせるためにLoopコンポーネントを使用 */}
       {/* durationInFramesには音源の正確なフレーム数（秒数 × fps）を指定してください。以下は仮で120秒(2分)としています */}
@@ -61,7 +68,7 @@ const MainComposition: React.FC = () => {
       </Sequence>
 
       {/* 本編セグメント */}
-      {segmentsWithMedia.map((segment: any) => (
+      {processedSegments.map((segment: any) => (
         <Sequence 
           key={segment.id} 
           from={segment.startFrame + fps * 5} 
