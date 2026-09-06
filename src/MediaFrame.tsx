@@ -9,8 +9,8 @@ interface MediaFrameProps {
 export const MediaFrame: React.FC<MediaFrameProps> = ({ segment }) => {
   const frame = useCurrentFrame();
 
-  // id1と2の時、またはmediaが明示的にnullの時は非表示
-  if (segment.id === 1 || segment.id === 2 || segment.media === null) {
+  // mediaが明示的にnullの時は非表示
+  if (segment.media === null) {
     return null;
   }
 
@@ -51,19 +51,23 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segment }) => {
           : 1;
 
         const customStyle = mediaElement.style || {};
-        const isAbsolute = customStyle.position === 'absolute';
+        const {
+          position, top, left, right, bottom, width, height, zIndex, flex, borderRadius,
+          ...innerStyleProps
+        } = customStyle as React.CSSProperties;
+        const isAbsolute = position === 'absolute';
 
         const contentStyle: React.CSSProperties = {
           width: '100%', 
           height: '100%', 
-          ...customStyle
+          ...innerStyleProps
         };
 
         return (
           <div key={index} style={{
-            flex: !isAbsolute ? (customStyle.flex !== undefined ? customStyle.flex : 1) : undefined,
+            flex: !isAbsolute ? (flex !== undefined ? flex : 1) : undefined,
             height: '100%',
-            borderRadius: 24,
+            borderRadius: borderRadius !== undefined ? borderRadius : 24,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -72,13 +76,13 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segment }) => {
             opacity,
             ...(isAbsolute ? {
               position: 'absolute' as const,
-              top: customStyle.top,
-              left: customStyle.left,
-              right: customStyle.right,
-              bottom: customStyle.bottom,
-              width: customStyle.width,
-              height: customStyle.height,
-              zIndex: customStyle.zIndex
+              top,
+              left,
+              right,
+              bottom,
+              width,
+              height,
+              zIndex
             } : {})
           }}>
             {isVideo ? (
