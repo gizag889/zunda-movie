@@ -1,7 +1,8 @@
 import React from 'react';
 
 export interface MediaElement {
-  src: string;
+  src?: string;
+  component?: string;
   style?: React.CSSProperties;
   animation?: {
     fadeInStart?: number;

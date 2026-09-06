@@ -1,6 +1,11 @@
 import React from 'react';
 import { Img, staticFile, Video, useCurrentFrame, interpolate } from 'remotion';
 import { Segment, MediaElement } from './types';
+import { Render02Mockup } from './components/Render02Mockup';
+
+const ComponentRegistry: Record<string, React.FC<any>> = {
+  "Render02Mockup": Render02Mockup,
+};
 
 interface MediaFrameProps {
   segment: Segment;
@@ -35,7 +40,7 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segment }) => {
       zIndex: 0,
     }}>
       {mediaElements.map((mediaElement: MediaElement, index: number) => {
-        const isVideo = mediaElement.src.match(/\.(mp4|webm|mov)$/i);
+        const isVideo = mediaElement.src?.match(/\.(mp4|webm|mov)$/i);
         
         const animation = mediaElement.animation;
         const fadeInStart = animation?.fadeInStart || 0;
@@ -85,11 +90,16 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segment }) => {
               zIndex
             } : {})
           }}>
-            {isVideo ? (
+            {mediaElement.component && ComponentRegistry[mediaElement.component] ? (
+              (() => {
+                const Component = ComponentRegistry[mediaElement.component];
+                return <Component style={contentStyle} />;
+              })()
+            ) : isVideo && mediaElement.src ? (
               <Video src={staticFile(mediaElement.src)} style={contentStyle} loop />
-            ) : (
+            ) : mediaElement.src ? (
               <Img src={staticFile(mediaElement.src)} style={contentStyle} />
-            )}
+            ) : null}
           </div>
         );
       })}
