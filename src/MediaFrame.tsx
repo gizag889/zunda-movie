@@ -2,9 +2,13 @@ import React from 'react';
 import { Img, staticFile, Video, useCurrentFrame, interpolate } from 'remotion';
 import { Segment, MediaElement } from './types';
 import { Render02Mockup } from './components/Render02Mockup';
+import { Commit01Mockup } from './components/Commit01Mockup';
+import { ArrowRight } from './components/ArrowRight';
 
 const ComponentRegistry: Record<string, React.FC<any>> = {
   "Render02Mockup": Render02Mockup,
+  "Commit01Mockup": Commit01Mockup,
+  "ArrowRight": ArrowRight,
 };
 
 interface MediaFrameProps {
@@ -70,8 +74,9 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segment }) => {
 
         return (
           <div key={index} style={{
-            flex: !isAbsolute ? (flex !== undefined ? flex : 1) : undefined,
-            height: '100%',
+            flex: !isAbsolute ? (flex !== undefined ? flex : (width !== undefined ? undefined : 1)) : undefined,
+            width,
+            height: height !== undefined ? height : '100%',
             borderRadius: borderRadius !== undefined ? borderRadius : 24,
             display: 'flex',
             justifyContent: 'center',
@@ -85,15 +90,13 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segment }) => {
               left,
               right,
               bottom,
-              width,
-              height,
               zIndex
             } : {})
           }}>
             {mediaElement.component && ComponentRegistry[mediaElement.component] ? (
               (() => {
                 const Component = ComponentRegistry[mediaElement.component];
-                return <Component style={contentStyle} />;
+                return <Component style={contentStyle} segment={segment} />;
               })()
             ) : isVideo && mediaElement.src ? (
               <Video src={staticFile(mediaElement.src)} style={contentStyle} loop />

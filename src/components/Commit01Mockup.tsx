@@ -1,15 +1,15 @@
 import React from 'react';
 import { useCurrentFrame, interpolate } from 'remotion';
 
-export const Render02Mockup: React.FC<{ style?: React.CSSProperties, segment?: any }> = ({ style, segment }) => {
+export const Commit01Mockup: React.FC<{ style?: React.CSSProperties, segment?: any }> = ({ style, segment }) => {
   const frame = useCurrentFrame();
 
-  const opacity = segment?.id === 8
+  const opacity = segment?.id === 10
     ? interpolate(frame, [0, 30], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
       })
-    : (segment?.id ?? 0) > 8
+    : (segment?.id ?? 0) > 10
       ? 1
       : 0;
 
@@ -25,11 +25,11 @@ export const Render02Mockup: React.FC<{ style?: React.CSSProperties, segment?: a
       flexDirection: 'column',
       alignItems: 'center',
       borderRadius: '16px',
-      border: `8px solid ${style?.borderColor || '#FF9800'}`
+      border: '8px solid #2196F3'
     }}>
-      <h2 style={{ fontSize: 80  , lineHeight: 0 }}>Render</h2>
+      <h2 style={{ fontSize: 80, lineHeight: 0 }}>Commit</h2>
       <div style={{ display: 'flex', gap: '20px' }}>
-        <div style={{ opacity, fontSize: 60, fontWeight: 'bold' }}>仮想DOM生成</div>
+        <div style={{ opacity, fontSize: 60, fontWeight: 'bold' }}>実際の画面へ反映</div>
       </div>
     </div>
   );

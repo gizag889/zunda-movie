@@ -18,6 +18,7 @@ export const Background: React.FC<BackgroundProps> = ({ segments }) => {
   // デフォルトの設定 (白単色)
   let bgSrc: string | undefined = undefined;
   let bgOpacity = 1.0;
+  let bgColor = 'white';
   
   if (currentSegment) {
     // 従来の id: 1, 2 の場合のハードコードされた背景設定 (後方互換性)
@@ -30,9 +31,14 @@ export const Background: React.FC<BackgroundProps> = ({ segments }) => {
     if (currentSegment.background && currentSegment.background !== null) {
       if (currentSegment.background.src) {
         bgSrc = currentSegment.background.src;
+      } else if (currentSegment.background.src === null) {
+        bgSrc = undefined;
       }
       if (currentSegment.background.opacity !== undefined) {
         bgOpacity = currentSegment.background.opacity;
+      }
+      if (currentSegment.background.color) {
+        bgColor = currentSegment.background.color;
       }
     }
   }
@@ -43,7 +49,7 @@ export const Background: React.FC<BackgroundProps> = ({ segments }) => {
         position: 'absolute',
         width: '100%',
         height: '100%',
-        backgroundColor: 'gray',
+        backgroundColor: bgColor,
         opacity: bgOpacity
       }}
     >

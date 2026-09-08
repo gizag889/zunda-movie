@@ -21,6 +21,7 @@ export interface Segment {
   background?: {
     src?: string;
     opacity?: number;
+    color?: string;
   };
   expression?: string;
 }
