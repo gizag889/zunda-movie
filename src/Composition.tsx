@@ -33,11 +33,13 @@ const MainComposition: React.FC = () => {
 
   const processedSegments = React.useMemo(() => {
     let lastMedia: any = undefined;
+    let lastMediaStartFrame: number | undefined = undefined;
     let lastBackground: any = undefined;
     return timing.segments.map((segment: any) => {
       // mediaが明示的に指定されている場合（nullを含む）は更新する
       if (segment.media !== undefined) {
         lastMedia = segment.media;
+        lastMediaStartFrame = segment.startFrame;
       }
       // backgroundも同様に指定されていれば更新する
       if (segment.background !== undefined) {
@@ -46,6 +48,7 @@ const MainComposition: React.FC = () => {
       return {
         ...segment,
         media: lastMedia,
+        mediaStartFrame: lastMediaStartFrame,
         background: lastBackground
       };
     });
@@ -67,6 +70,9 @@ const MainComposition: React.FC = () => {
         <IntroSequence />
       </Sequence>
 
+      {/* グローバルなメディアフレーム */}
+      <MediaFrame segments={processedSegments} />
+
       {/* 本編セグメント */}
       {processedSegments.map((segment: any) => (
         <Sequence 
@@ -75,9 +81,6 @@ const MainComposition: React.FC = () => {
           durationInFrames={segment.durationInFrames}
         >
           <AbsoluteFill style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', paddingBottom: 20 }}>
-            {/* 画像・動画埋め込み用フレーム (動的レイアウト) */}
-            <MediaFrame segment={segment} />
-
             {/* キャラクター配置エリア */}
             <CharacterArea segment={segment} />
             {/* テキストエリア */}

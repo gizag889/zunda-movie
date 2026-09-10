@@ -7,6 +7,9 @@ export interface MediaElement {
   animation?: {
     fadeInStart?: number;
     fadeInDuration?: number;
+    slideDownStart?: number;
+    slideDownDuration?: number;
+    slideDownDistance?: number;
   };
 }
 
@@ -14,6 +17,7 @@ export interface Segment {
   id: number;
   startFrame: number;
   durationInFrames: number;
+  mediaStartFrame?: number;
   character: string;
   text: string;
   audioFile: string;

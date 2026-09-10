@@ -1,32 +1,40 @@
 import React from 'react';
-import { Img, staticFile, Video, useCurrentFrame, interpolate } from 'remotion';
+import { Img, staticFile, Video, useCurrentFrame, interpolate, useVideoConfig } from 'remotion';
 import { Segment, MediaElement } from './types';
 import { Render02Mockup } from './components/Render02Mockup';
 import { Commit01Mockup } from './components/Commit01Mockup';
 import { ArrowRight } from './components/ArrowRight';
+import { HighlightBorder } from './components/HighlightBorder';
 
 const ComponentRegistry: Record<string, React.FC<any>> = {
   "Render02Mockup": Render02Mockup,
   "Commit01Mockup": Commit01Mockup,
   "ArrowRight": ArrowRight,
+  "HighlightBorder": HighlightBorder,
 };
 
 interface MediaFrameProps {
-  segment: Segment;
+  segments: Segment[];
 }
 
-export const MediaFrame: React.FC<MediaFrameProps> = ({ segment }) => {
-  const frame = useCurrentFrame();
+export const MediaFrame: React.FC<MediaFrameProps> = ({ segments }) => {
+  const { fps } = useVideoConfig();
+  const globalFrame = useCurrentFrame();
 
-  // mediaが明示的にnullの時は非表示
-  if (segment.media === null) {
+  const currentSegment = segments.find(
+    (s: any) => globalFrame >= s.startFrame + fps * 5 && globalFrame < s.startFrame + fps * 5 + s.durationInFrames
+  );
+
+  if (!currentSegment || currentSegment.media === null) {
     return null;
   }
 
-  // mediaが未指定の場合はデフォルト画像を表示
-  const mediaElements: MediaElement[] = segment.media || [
+  const mediaElements: MediaElement[] = currentSegment.media || [
     { src: "images/tb01.png" }
   ];
+
+  const mediaStartFrameGlobal = (currentSegment.mediaStartFrame !== undefined ? currentSegment.mediaStartFrame : currentSegment.startFrame) + fps * 5;
+  const frame = globalFrame - mediaStartFrameGlobal;
 
   return (
     <div style={{
@@ -49,6 +57,10 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segment }) => {
         const animation = mediaElement.animation;
         const fadeInStart = animation?.fadeInStart || 0;
         const fadeInDuration = animation?.fadeInDuration || 0;
+        
+        const slideDownStart = animation?.slideDownStart || 0;
+        const slideDownDuration = animation?.slideDownDuration || 0;
+        const slideDownDistance = animation?.slideDownDistance || 500;
 
         const opacity = fadeInDuration > 0
           ? interpolate(
@@ -58,6 +70,15 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segment }) => {
               { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
             )
           : 1;
+
+        const translateY = slideDownDuration > 0
+          ? interpolate(
+              frame,
+              [slideDownStart, slideDownStart + slideDownDuration],
+              [0, slideDownDistance],
+              { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+            )
+          : 0;
 
         const customStyle = mediaElement.style || {};
         const {
@@ -84,6 +105,7 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segment }) => {
        
             overflow: 'hidden',
             opacity,
+            transform: `translateY(${translateY}px)`,
             ...(isAbsolute ? {
               position: 'absolute' as const,
               top,
@@ -96,7 +118,7 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segment }) => {
             {mediaElement.component && ComponentRegistry[mediaElement.component] ? (
               (() => {
                 const Component = ComponentRegistry[mediaElement.component];
-                return <Component style={contentStyle} segment={segment} />;
+                return <Component style={contentStyle} segment={currentSegment} />;
               })()
             ) : isVideo && mediaElement.src ? (
               <Video src={staticFile(mediaElement.src)} style={contentStyle} loop />
