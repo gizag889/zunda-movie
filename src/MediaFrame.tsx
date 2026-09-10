@@ -5,12 +5,14 @@ import { Render02Mockup } from './components/Render02Mockup';
 import { Commit01Mockup } from './components/Commit01Mockup';
 import { ArrowRight } from './components/ArrowRight';
 import { HighlightBorder } from './components/HighlightBorder';
+import { ReRenderMockup } from './components/ReRenderMockup';
 
 const ComponentRegistry: Record<string, React.FC<any>> = {
   "Render02Mockup": Render02Mockup,
   "Commit01Mockup": Commit01Mockup,
   "ArrowRight": ArrowRight,
   "HighlightBorder": HighlightBorder,
+  "ReRenderMockup": ReRenderMockup,
 };
 
 interface MediaFrameProps {
