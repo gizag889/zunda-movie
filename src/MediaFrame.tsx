@@ -6,6 +6,7 @@ import { Commit01Mockup } from './components/Commit01Mockup';
 import { ArrowRight } from './components/ArrowRight';
 import { HighlightBorder } from './components/HighlightBorder';
 import { ReRenderMockup } from './components/ReRenderMockup';
+import { TextDisplay } from './components/TextDisplay';
 
 const ComponentRegistry: Record<string, React.FC<any>> = {
   "Render02Mockup": Render02Mockup,
@@ -13,6 +14,7 @@ const ComponentRegistry: Record<string, React.FC<any>> = {
   "ArrowRight": ArrowRight,
   "HighlightBorder": HighlightBorder,
   "ReRenderMockup": ReRenderMockup,
+  "TextDisplay": TextDisplay,
 };
 
 interface MediaFrameProps {
@@ -120,7 +122,7 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segments }) => {
             {mediaElement.component && ComponentRegistry[mediaElement.component] ? (
               (() => {
                 const Component = ComponentRegistry[mediaElement.component];
-                return <Component style={contentStyle} segment={currentSegment} />;
+                return <Component style={contentStyle} segment={currentSegment} mediaElement={mediaElement} />;
               })()
             ) : isVideo && mediaElement.src ? (
               <Video src={staticFile(mediaElement.src)} style={contentStyle} loop />
