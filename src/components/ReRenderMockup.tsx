@@ -13,14 +13,6 @@ export const ReRenderMockup: React.FC<{ style?: React.CSSProperties, segment?: a
   const segment29 = timingData.segments.find((s: any) => s.id === 29);
   const frame29 = (segment29 ? segment29.startFrame : 0) + fps * 5;
 
-  const segment22 = timingData.segments.find((s: any) => s.id === 22);
-  const frame22 = (segment22 ? segment22.startFrame : 0) + fps * 5;
-
-  // テキストのフェードインアニメーション（id:22基準で固定）
-  const opacity = interpolate(globalFrame - frame22, [0, 30], [0, 1], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
 
   const opacity2 = interpolate(globalFrame - frame29, [0, 30], [0, 1], {
     extrapolateLeft: 'clamp',
@@ -51,10 +43,8 @@ export const ReRenderMockup: React.FC<{ style?: React.CSSProperties, segment?: a
     }}>
       <h2 style={{ fontSize: 80  , lineHeight: 0 }}>Render</h2>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
-        <div style={{ opacity, fontSize: 60, fontWeight: 'bold' }}>差分判定</div>
-        <div style={{ opacity: opacity2, fontSize: 60, fontWeight: 'bold' }}>コンポーネント更新</div>
+        <div style={{ opacity: opacity2, fontSize: 60, fontWeight: 'bold' }}>仮想DOM生成</div>
         <div style={{ opacity: opacity3, fontSize: 60, fontWeight: 'bold' }}>仮想DOM生成</div>
-
       </div>
     </div>
   );

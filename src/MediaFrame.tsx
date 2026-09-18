@@ -6,6 +6,7 @@ import { Commit01Mockup } from './components/Commit01Mockup';
 import { ArrowRight } from './components/ArrowRight';
 import { HighlightBorder } from './components/HighlightBorder';
 import { ReRenderMockup } from './components/ReRenderMockup';
+import { DiffCheckMockup } from './components/DiffCheckMockup';
 import { TextDisplay } from './components/TextDisplay';
 
 const ComponentRegistry: Record<string, React.FC<any>> = {
@@ -14,6 +15,7 @@ const ComponentRegistry: Record<string, React.FC<any>> = {
   "ArrowRight": ArrowRight,
   "HighlightBorder": HighlightBorder,
   "ReRenderMockup": ReRenderMockup,
+  "DiffCheckMockup": DiffCheckMockup,
   "TextDisplay": TextDisplay,
 };
 
