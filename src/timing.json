@@ -1,0 +1,899 @@
+{
+  "segments": [
+    {
+      "id": 1,
+      "character": "zundamon",
+      "text": "今回は、useStateを例に、Reactのレンダリングプロセスの裏側について解説します。",
+      "audioFile": "voices/voice_1.wav",
+      "expression": "normal",
+      "startFrame": 0,
+      "durationInFrames": 258
+    },
+    {
+      "id": 2,
+      "character": "zundamon",
+      "text": "一見魔法のように見えるHooksの仕組みを紐解いて、Reactの理解を一段深めていきましょう！",
+      "audioFile": "voices/voice_2.wav",
+      "expression": "normal",
+      "startFrame": 258,
+      "durationInFrames": 263
+    },
+    {
+      "id": 3,
+      "character": "zundamon",
+      "text": "こちらは、ボタンをクリックするとカウントが増えて、画面が更新される簡易的なコンポーネントです。",
+      "audioFile": "voices/voice_3.wav",
+      "expression": "normal",
+      "media": [
+        {
+          "src": "images/useState/mock.mp4",
+          "style": {
+            "flex": 1,
+            "objectFit": "contain",
+            "transform": "scale(1.2)",
+            "objectPosition": "50% 30%"
+          }
+        },
+        {
+          "src": "images/useState/mock.png",
+          "style": {
+            "flex": 1,
+            "objectFit": "contain",
+            "transform": "scale(1.2)",
+            "objectPosition": "50% 20%"
+          }
+        }
+      ],
+      "startFrame": 521,
+      "durationInFrames": 260
+    },
+    {
+      "id": 4,
+      "character": "zundamon",
+      "text": "ボタンを押すと数字が切り替わりますが、このときuseStateの裏側では何が起きているのでしょうか？",
+      "audioFile": "voices/voice_4.wav",
+      "expression": "normal",
+      "startFrame": 781,
+      "durationInFrames": 258
+    },
+    {
+      "id": 5,
+      "character": "zundamon",
+      "text": "内部の挙動を説明する前に、まずはReactレンダリングの基本を確認していきましょう。",
+      "audioFile": "voices/voice_5.wav",
+      "expression": "normal",
+      "media": null,
+      "background": {
+        "src": "images/useState/render01.png"
+      },
+      "startFrame": 1039,
+      "durationInFrames": 240
+    },
+    {
+      "id": 6,
+      "character": "zundamon",
+      "text": "Reactのレンダリングは、大きく2つのフェーズに分かれています。",
+      "audioFile": "voices/voice_6.wav",
+      "expression": "normal",
+      "startFrame": 1279,
+      "durationInFrames": 177
+    },
+    {
+      "id": 7,
+      "character": "zundamon",
+      "text": "1つ目は「Renderフェーズ」。これはページを構成する設計図を作るフェーズです。",
+      "audioFile": "voices/voice_7.wav",
+      "expression": "normal",
+      "startFrame": 1456,
+      "durationInFrames": 225,
+      "media": [
+        {
+          "component": "Render02Mockup",
+          "style": {
+            "position": "absolute",
+            "top": "150px",
+            "left": "300px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          },
+          "animation": {
+            "fadeInStart": 30,
+            "fadeInDuration": 15
+          }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "character": "zundamon",
+      "text": "ここではメモリ上に「仮想DOM」を生成します。これがページを構成する設計図になります。",
+      "audioFile": "voices/voice_8.wav",
+      "expression": "normal",
+      "media": [
+        {
+          "component": "Render02Mockup",
+          "style": {
+            "position": "absolute",
+            "top": "150px",
+            "left": "300px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          }
+        }
+      ],
+      "startFrame": 1681,
+      "durationInFrames": 265
+    },
+    {
+      "id": 9,
+      "character": "zundamon",
+      "text": "Reactではレンダリングするたびに、必ずこの「仮想DOM」を生成します。",
+      "audioFile": "voices/voice_9.wav",
+      "expression": "normal",
+      "startFrame": 1946,
+      "durationInFrames": 225
+    },
+    {
+      "id": 10,
+      "character": "zundamon",
+      "text": "次に「Commitフェーズ」に移ります。",
+      "audioFile": "voices/voice_10.wav",
+      "expression": "normal",
+      "media": [
+        {
+          "component": "Render02Mockup",
+          "style": {
+            "position": "absolute",
+            "top": "150px",
+            "left": "300px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          }
+        },
+        {
+          "component": "ArrowRight",
+          "style": {
+            "position": "absolute",
+            "top": "400px",
+            "left": "910px",
+            "width": "80px",
+            "height": "100px"
+          },
+          "animation": {
+            "fadeInStart": 0,
+            "fadeInDuration": 15
+          }
+        },
+        {
+          "component": "Commit01Mockup",
+          "style": {
+            "position": "absolute",
+            "top": "150px",
+            "left": "1000px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          },
+          "animation": {
+            "fadeInStart": 0,
+            "fadeInDuration": 15
+          }
+        }
+      ],
+      "startFrame": 2171,
+      "durationInFrames": 134
+    },
+    {
+      "id": 11,
+      "character": "zundamon",
+      "text": "ここでは、出来上がった設計図をもとに、画面に描画する作業を担います。",
+      "audioFile": "voices/voice_11.wav",
+      "expression": "normal",
+      "media": [
+        {
+          "component": "Render02Mockup",
+          "style": {
+            "position": "absolute",
+            "top": "150px",
+            "left": "300px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          }
+        },
+        {
+          "component": "ArrowRight",
+          "style": {
+            "position": "absolute",
+            "top": "400px",
+            "left": "910px",
+            "width": "80px",
+            "height": "100px"
+          }
+        },
+        {
+          "component": "Commit01Mockup",
+          "style": {
+            "position": "absolute",
+            "top": "150px",
+            "left": "1000px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          }
+        }
+      ],
+      "startFrame": 2305,
+      "durationInFrames": 215
+    },
+    {
+      "id": 12,
+      "character": "zundamon",
+      "text": "Reactのレンダリングプロセスは「Render」「Commit」の二段階あると覚えておいてください。",
+      "audioFile": "voices/voice_12.wav",
+      "expression": "normal",
+      "startFrame": 2520,
+      "durationInFrames": 251
+    },
+    {
+      "id": 13,
+      "character": "zundamon",
+      "text": "これらを踏まえて、useState内部の挙動をJSで大まかに表現したこちらのモックコードを見てみましょう。",
+      "audioFile": "voices/voice_13.wav",
+      "expression": "normal",
+      "media": [
+        {
+          "src": "images/useState/usestatemock.png",
+          "style": {
+            "position": "absolute",
+            "top": 0,
+            "width": "1200px",
+            "height": "auto"
+          },
+          "animation": {
+            "slideDownStart": 0,
+            "slideDownDuration": 500,
+            "slideDownDistance": -500
+          }
+        }
+      ],
+      "background": null,
+      "startFrame": 2771,
+      "durationInFrames": 274
+    },
+    {
+      "id": 14,
+      "character": "zundamon",
+      "text": "このコードをもとに、実際の動きを追っていきます。",
+      "audioFile": "voices/voice_14.wav",
+      "expression": "normal",
+      "startFrame": 3045,
+      "durationInFrames": 156
+    },
+    {
+      "id": 15,
+      "character": "zundamon",
+      "text": "まずは「初回レンダリング」です！",
+      "audioFile": "voices/voice_15.wav",
+      "expression": "normal",
+      "background": {
+        "src": "images/useState/firstrender.png"
+      },
+      "media": [
+        {
+          "src": "images/useState/counter.png",
+          "style": {
+            "position": "absolute",
+            "top": 120,
+            "width": "1400px",
+            "height": "auto"
+          }
+        }
+      ],
+      "startFrame": 3201,
+      "durationInFrames": 126
+    },
+    {
+      "id": 16,
+      "character": "zundamon",
+      "text": "アプリを起動したり新しいページを開いたとき、最初に表示される画面を作るプロセスです。ここでは先ほどのカウンターの初期画面が表示されるまでを指します。",
+      "audioFile": "voices/voice_16.wav",
+      "expression": "normal",
+      "startFrame": 3327,
+      "durationInFrames": 249
+    },
+    {
+      "id": 17,
+      "character": "zundamon",
+      "text": "初回レンダリングのRenderフェーズでは、「仮想DOM」を生成します。先ほどのモックコードでいうこの部分です。",
+      "audioFile": "voices/voice_17.wav",
+      "expression": "normal",
+      "media": [
+        {
+          "component": "Render02Mockup",
+          "style": {
+            "position": "absolute",
+            "top": "150px",
+            "left": "300px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          },
+          "animation": {
+            "fadeInStart": 30,
+            "fadeInDuration": 15
+          }
+        }
+      ],
+      "startFrame": 3576,
+      "durationInFrames": 195
+    },
+    {
+      "id": 18,
+      "character": "zundamon",
+      "text": "このタイミングで、useStateの初期値、今回はゼロがセットされます。",
+      "audioFile": "voices/voice_18.wav",
+      "expression": "normal",
+      "media": [
+        {
+          "src": "images/useState/mockfirst.png",
+          "style": {
+            "position": "absolute",
+            "top": 200,
+            "width": "1400px",
+            "height": "auto"
+          }
+        },
+        {
+          "component": "HighlightBorder",
+          "style": {
+            "position": "absolute",
+            "top": "440px",
+            "left": "400px",
+            "width": "600px",
+            "height": "200px",
+            "border": "8px solid #FF5722",
+            "borderRadius": "16px"
+          }
+        }
+      ],
+      "startFrame": 3771,
+      "durationInFrames": 213
+    },
+    {
+      "id": 19,
+      "character": "zundamon",
+      "text": "次にCommitフェーズに移ります。初回レンダリング時のCommitフェーズでは、Renderフェーズで作られた仮想DOMを使って、そのまま画面を描画します。",
+      "audioFile": "voices/voice_19.wav",
+      "expression": "normal",
+      "media": [
+        {
+          "component": "Render02Mockup",
+          "style": {
+            "position": "absolute",
+            "top": "150px",
+            "left": "300px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          }
+        },
+        {
+          "component": "ArrowRight",
+          "style": {
+            "position": "absolute",
+            "top": "400px",
+            "left": "910px",
+            "width": "80px",
+            "height": "100px"
+          },
+          "animation": {
+            "fadeInStart": 0,
+            "fadeInDuration": 15
+          }
+        },
+        {
+          "component": "Commit01Mockup",
+          "style": {
+            "position": "absolute",
+            "top": "150px",
+            "left": "1000px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          },
+          "animation": {
+            "fadeInStart": 0,
+            "fadeInDuration": 15
+          }
+        }
+      ],
+      "startFrame": 3984,
+      "durationInFrames": 371
+    },
+    {
+      "id": 20,
+      "character": "zundamon",
+      "text": "ここまでで、このように画面に初期状態が表示されます。",
+      "audioFile": "voices/voice_20.wav",
+      "expression": "normal",
+      "media": [
+        {
+          "src": "images/useState/counter.png",
+          "style": {
+            "position": "absolute",
+            "top": 120,
+            "width": "1400px",
+            "height": "auto"
+          }
+        }
+      ],
+      "startFrame": 4355,
+      "durationInFrames": 166
+    },
+    {
+      "id": 21,
+      "character": "zundamon",
+      "text": "次は、Stateが更新されたときの「再レンダリング」の動きです。",
+      "audioFile": "voices/voice_21.wav",
+      "expression": "normal",
+      "background": {
+        "src": "images/useState/rerender.png"
+      },
+      "media":null,
+      "startFrame": 4521,
+      "durationInFrames": 233
+    },
+    {
+      "id": 22,
+      "character": "zundamon",
+      "text": "更新関数（setState）が呼ばれると、Reactはまず「現在のState」と「新しいState」の間に差分があるかを判定します。",
+      "audioFile": "voices/voice_22.wav",
+      "expression": "normal",
+      "media": [
+
+        {
+          "src": "images/useState/mockre.png",
+          "style": {
+            "position": "absolute",
+            "top": 300,
+            "right": 20,
+            "width": "1000px",
+            "height": "auto"
+          }
+        },
+        {
+          "component": "HighlightBorder",
+          "style": {
+            "position": "absolute",
+            "top": "320px",
+            "right": "50px",
+            "width": "950px",
+            "height": "150px",
+            "border": "8px solid #FF5722",
+            "borderRadius": "16px"
+          }
+        },
+        {
+          "component": "DiffCheckMockup",
+          "style": {
+            "position": "absolute",
+            "top": "150px",
+            "left": "200px",
+            "width": "600px",
+            "height": "110px",
+            "borderRadius": 0
+          }
+        }
+      ],
+      "startFrame": 4754,
+      "durationInFrames": 266
+    },
+    {
+      "id": 23,
+      "character": "zundamon",
+      "text": "この判定には Object.is() が使われており、",
+      "audioFile": "voices/voice_23.wav",
+      "expression": "normal",
+      "startFrame": 5020,
+      "durationInFrames": 194
+    },
+    {
+      "id": 24,
+      "character": "zundamon",
+      "text": "プリミティブ型なら「同じ値か」、オブジェクトや配列なら「同じ参照か」を厳密にチェックします。",
+      "audioFile": "voices/voice_24.wav",
+      "expression": "normal",
+      "startFrame": 5214,
+      "durationInFrames": 280
+    },
+    {
+      "id": 25,
+      "character": "zundamon",
+      "text": "だからこそ、オブジェクトや配列のStateを更新する際には、",
+      "audioFile": "voices/voice_25.wav",
+      "expression": "normal",
+      "startFrame": 5494,
+      "durationInFrames": 215
+    },
+    {
+      "id": 26,
+      "character": "zundamon",
+      "text": "値を直接書き換えるのではなく、新しく作り直す「シャローコピー」が必要になるわけです。",
+      "audioFile": "voices/voice_26.wav",
+      "expression": "normal",
+      "startFrame": 5709,
+      "durationInFrames": 322
+    },
+    {
+      "id": 27,
+      "character": "zundamon",
+      "text": "そして「差分あり」と判定された場合のみ、レンダリングが始まります。",
+      "audioFile": "voices/voice_27.wav",
+      "expression": "normal",
+      "media":[
+       
+         {
+          "component": "ReRenderMockup",
+          "style": {
+            "position": "absolute",
+            "top": "250px",
+            "left": "200px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          },
+          "animation": {
+            "fadeInStart": 30,
+            "fadeInDuration": 15
+          }
+        },
+         {
+          "component": "DiffCheckMockup",
+          "style": {
+            "position": "absolute",
+            "top": "130px",
+            "left": "200px",
+            "width": "600px",
+            "height": "110px",
+            "borderRadius": 0
+          }
+        },
+       
+        {
+          "src": "images/useState/mockre.png",
+          "style": {
+            "position": "absolute",
+            "top": 300,
+            "right": 20,
+            "width": "1000px",
+            "height": "auto"
+          }
+        },
+         {
+          "component": "HighlightBorder",
+          "style": {
+            "position": "absolute",
+            "top": "320px",
+            "right": "50px",
+            "width": "950px",
+            "height": "150px",
+            "border": "8px solid #FF5722",
+            "borderRadius": "16px"
+          }
+        }
+      ],
+      "startFrame": 6031,
+      "durationInFrames": 419
+    },
+    {
+      "id": 28,
+      "character": "zundamon",
+      "text": "まずRenderフェーズです。コンポーネントが再実行されると、最新のStateを反映した新しいJSXが返され、",
+      "audioFile": "voices/voice_28.wav",
+      "expression": "normal",
+      "startFrame": 6450,
+      "durationInFrames": 304
+    },
+    {
+      "id": 29,
+      "character": "zundamon",
+      "text": "Reactはそれをもとに「新しい仮想DOM」を生成します。",
+      "audioFile": "voices/voice_29.wav",
+      "expression": "normal",
+      "media":[
+       
+         {
+          "component": "ReRenderMockup",
+          "style": {
+            "position": "absolute",
+            "top": "250px",
+            "left": "200px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          },
+          "animation": {
+            "fadeInStart": 30,
+            "fadeInDuration": 15
+          }
+        },
+         {
+          "component": "DiffCheckMockup",
+          "style": {
+            "position": "absolute",
+            "top": "130px",
+            "left": "200px",
+            "width": "600px",
+            "height": "110px",
+            "borderRadius": 0
+          }
+        },
+       
+        {
+          "src": "images/useState/mockre.png",
+          "style": {
+            "position": "absolute",
+            "top": 300,
+            "right": 20,
+            "width": "1000px",
+            "height": "auto"
+          }
+        },
+         {
+          "component": "HighlightBorder",
+          "style": {
+            "position": "absolute",
+            "top": "320px",
+            "right": "50px",
+            "width": "950px",
+            "height": "150px",
+            "border": "8px solid #FF5722",
+            "borderRadius": "16px"
+          }
+        }
+      ],
+      "startFrame": 6754,
+      "durationInFrames": 268
+    },
+    {
+      "id": 30,
+      "character": "zundamon",
+      "text": "さらに、この「新しい仮想DOM」と「一つ前の仮想DOM」を見比べ、差分検出を行います。",
+      "audioFile": "voices/voice_30.wav",
+      "expression": "normal",
+       "media":[
+       
+         {
+          "component": "ReRenderMockup",
+          "style": {
+            "position": "absolute",
+            "top": "250px",
+            "left": "200px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          }
+      
+        },
+         {
+          "component": "DiffCheckMockup",
+          "style": {
+            "position": "absolute",
+            "top": "130px",
+            "left": "200px",
+            "width": "600px",
+            "height": "110px",
+            "borderRadius": 0
+          }
+        },
+       
+        {
+          "src": "images/useState/mockre.png",
+          "style": {
+            "position": "absolute",
+            "top": 300,
+            "right": 20,
+            "width": "1000px",
+            "height": "auto"
+          }
+        },
+         {
+          "component": "HighlightBorder",
+          "style": {
+            "position": "absolute",
+            "top": "320px",
+            "right": "50px",
+            "width": "950px",
+            "height": "150px",
+            "border": "8px solid #FF5722",
+            "borderRadius": "16px"
+          }
+        }
+      ],
+      "startFrame": 7022,
+      "durationInFrames": 209
+    },
+    {
+      "id": 31,
+      "character": "zundamon",
+      "text": "実際の画面のどこを変更すべきか、仮想DOM同士の具体的な差分を洗い出します。",
+      "audioFile": "voices/voice_31.wav",
+      "expression": "normal",
+      "startFrame": 7231,
+      "durationInFrames": 216
+    },
+    {
+      "id": 32,
+      "character": "zundamon",
+      "text": "ここまでの一連の作業、つまり「仮想DOMの生成と、仮想DOM同士の差分検出」までが、再レンダリング時のRenderフェーズとなります。",
+      "audioFile": "voices/voice_32.wav",
+      "expression": "normal",
+      "startFrame": 7447,
+      "durationInFrames": 298
+    },
+    {
+      "id": 33,
+      "character": "zundamon",
+      "text": "最後に再レンダリングのCommitフェーズです。先ほど洗い出した差分だけを、実際の画面に反映します。",
+      "audioFile": "voices/voice_33.wav",
+      "expression": "normal",
+      "media": [
+        {
+          "component": "ReRenderMockup",
+          "style": {
+            "position": "absolute",
+            "top": "250px",
+            "left": "200px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          },
+          "animation": {
+            "fadeInStart": 30,
+            "fadeInDuration": 15
+          }
+        },
+         {
+          "component": "DiffCheckMockup",
+          "style": {
+            "position": "absolute",
+            "top": "130px",
+            "left": "200px",
+            "width": "600px",
+            "height": "110px",
+            "borderRadius": 0
+          }
+        },
+        {
+          "component": "ArrowRight",
+          "style": {
+            "position": "absolute",
+            "top": "500px",
+            "left": "860px",
+            "width": "80px",
+            "height": "100px"
+          },
+          "animation": {
+            "fadeInStart": 0,
+            "fadeInDuration": 15
+          }
+        },
+        {
+          "component": "Commit01Mockup",
+          "style": {
+            "position": "absolute",
+            "top": "250px",
+            "left": "1000px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          },
+          "animation": {
+            "fadeInStart": 0,
+            "fadeInDuration": 15
+          }
+        }
+      ],
+      "startFrame": 7745,
+      "durationInFrames": 317
+    },
+    {
+      "id": 34,
+      "character": "zundamon",
+      "text": "今回の場合、数字が更新されるたびにこのプロセスが走り、差分のある数字の部分だけが画面に再描画されます。",
+      "audioFile": "voices/voice_34.wav",
+      "expression": "normal",
+      "background": "none",
+      "media": [
+        {
+          "src": "images/useState/mock.mp4"
+        }
+      ],
+      "startFrame": 8062,
+      "durationInFrames": 321
+    },
+    {
+      "id": 35,
+      "character": "zundamon",
+      "text": "今回のポイントのおさらいです。Reactはレンダリングするたびに「仮想DOM」を生成します。",
+      "audioFile": "voices/voice_35.wav",
+      "expression": "normal",
+      "background": {
+        "src": "images/useState/summary.png"
+      },
+      "media": [
+        {
+          "component": "TextDisplay",
+          "text": "・Reactはレンダリングするたびに「仮想DOM」を生成する。",
+          "style": {
+            "position": "absolute",
+            "top": "170px"
+          }
+        }
+      ],
+      "startFrame": 8383,
+      "durationInFrames": 263
+    },
+    {
+      "id": 36,
+      "character": "zundamon",
+      "text": "そして再レンダリング時は、新しい仮想DOMと1つ前の仮想DOMを比べて、見つかった差分だけを実際の画面に反映します。",
+      "audioFile": "voices/voice_36.wav",
+      "expression": "normal",
+      "media": [
+        {
+          "component": "TextDisplay",
+          "text": "・Reactはレンダリングするたびに「仮想DOM」を生成する。",
+          "style": {
+            "position": "absolute",
+            "top": "170px"
+          }
+        },
+        {
+          "component": "TextDisplay",
+          "text": "・仮想DOM同士の差分を検出して、その差分だけを実際の画面（DOM）に反映して更新する。",
+          "style": {
+            "position": "absolute",
+            "top": "270px"
+          }
+        }
+      ],
+      "startFrame": 8646,
+      "durationInFrames": 312
+    },
+    {
+      "id": 37,
+      "character": "zundamon",
+      "text": "これが大まかなレンダリングの流れです。",
+      "audioFile": "voices/voice_37.wav",
+      "expression": "happy",
+      "media": [
+        {
+          "src": "images/tb01.png"
+        }
+      ],
+      "startFrame": 8958,
+      "durationInFrames": 252
+    },
+    {
+      "id": 38,
+      "character": "zundamon",
+      "text": "最後までご視聴ありがとうございました。",
+      "audioFile": "voices/voice_38.wav",
+      "expression": "normal",
+      "media": [
+        {
+          "src": "images/tb01.png"
+        }
+      ],
+      "startFrame": 9210,
+      "durationInFrames": 123
+    }
+  ],
+  "totalDurationInFrames": 9633
+}
+     

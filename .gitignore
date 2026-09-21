@@ -48,7 +48,7 @@ next-env.d.ts
 /public/voices/*.wav
 
 # 生成されるタイミングファイルも無視する場合
-/src/timing.json
+# /src/timing.json
 
 /scripts/script.json
 /sctipts/pastscripts/script.json
