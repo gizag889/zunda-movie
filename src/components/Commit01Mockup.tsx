@@ -28,8 +28,9 @@ export const Commit01Mockup: React.FC<{ style?: React.CSSProperties, segment?: a
       border: '8px solid #2196F3'
     }}>
       <h2 style={{ fontSize: 80, lineHeight: 0 }}>Commit</h2>
-      <div style={{ display: 'flex', gap: '20px' }}>
+      <div style={{ display: 'flex',  flexDirection: 'column', textAlign: 'center' }}>
         <div style={{ opacity, fontSize: 60, fontWeight: 'bold' }}>実際の画面へ反映</div>
+        <div style={{ opacity, fontSize: 60, fontWeight: 'bold' }}>(変更分だけ)</div>
       </div>
     </div>
   );

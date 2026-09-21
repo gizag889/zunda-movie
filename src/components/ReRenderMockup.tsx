@@ -44,7 +44,7 @@ export const ReRenderMockup: React.FC<{ style?: React.CSSProperties, segment?: a
       <h2 style={{ fontSize: 80  , lineHeight: 0 }}>Render</h2>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
         <div style={{ opacity: opacity2, fontSize: 60, fontWeight: 'bold' }}>仮想DOM生成</div>
-        <div style={{ opacity: opacity3, fontSize: 60, fontWeight: 'bold' }}>仮想DOM生成</div>
+        <div style={{ opacity: opacity3, fontSize: 60, fontWeight: 'bold' }}>差分検出</div>
       </div>
     </div>
   );

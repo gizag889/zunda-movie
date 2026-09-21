@@ -35,9 +35,8 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segments }) => {
     return null;
   }
 
-  const mediaElements: MediaElement[] = currentSegment.media || [
-    { src: "images/tb01.png" }
-  ];
+  const rawMedia = currentSegment.media;
+  const mediaElements: MediaElement[] = Array.isArray(rawMedia) ? rawMedia : [];
 
   const mediaStartFrameGlobal = (currentSegment.mediaStartFrame !== undefined ? currentSegment.mediaStartFrame : currentSegment.startFrame) + fps * 5;
   const frame = globalFrame - mediaStartFrameGlobal;
