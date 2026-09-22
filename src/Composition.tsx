@@ -60,7 +60,7 @@ style={{
 backgroundColor: 'black',
 translate: "-30px 0px"
 }}
-from={668}>
+from={521}>
       {/* 背景画像 */}
       <Background segments={processedSegments} />
 

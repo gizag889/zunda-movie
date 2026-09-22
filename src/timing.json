@@ -16,7 +16,7 @@
       "audioFile": "voices/voice_2.wav",
       "expression": "normal",
       "startFrame": 258,
-      "durationInFrames": 263
+      "durationInFrames": 253
     },
     {
       "id": 3,
@@ -44,7 +44,7 @@
           }
         }
       ],
-      "startFrame": 521,
+      "startFrame": 511,
       "durationInFrames": 260
     },
     {
@@ -53,7 +53,7 @@
       "text": "ボタンを押すと数字が切り替わりますが、このときuseStateの裏側では何が起きているのでしょうか？",
       "audioFile": "voices/voice_4.wav",
       "expression": "normal",
-      "startFrame": 781,
+      "startFrame": 771,
       "durationInFrames": 258
     },
     {
@@ -66,7 +66,7 @@
       "background": {
         "src": "images/useState/render01.png"
       },
-      "startFrame": 1039,
+      "startFrame": 1029,
       "durationInFrames": 240
     },
     {
@@ -75,7 +75,7 @@
       "text": "Reactのレンダリングは、大きく2つのフェーズに分かれています。",
       "audioFile": "voices/voice_6.wav",
       "expression": "normal",
-      "startFrame": 1279,
+      "startFrame": 1269,
       "durationInFrames": 177
     },
     {
@@ -84,7 +84,7 @@
       "text": "1つ目は「Renderフェーズ」。これはページを構成する設計図を作るフェーズです。",
       "audioFile": "voices/voice_7.wav",
       "expression": "normal",
-      "startFrame": 1456,
+      "startFrame": 1446,
       "durationInFrames": 225,
       "media": [
         {
@@ -123,7 +123,7 @@
           }
         }
       ],
-      "startFrame": 1681,
+      "startFrame": 1671,
       "durationInFrames": 265
     },
     {
@@ -132,7 +132,7 @@
       "text": "Reactではレンダリングするたびに、必ずこの「仮想DOM」を生成します。",
       "audioFile": "voices/voice_9.wav",
       "expression": "normal",
-      "startFrame": 1946,
+      "startFrame": 1936,
       "durationInFrames": 225
     },
     {
@@ -183,7 +183,7 @@
           }
         }
       ],
-      "startFrame": 2171,
+      "startFrame": 2161,
       "durationInFrames": 134
     },
     {
@@ -226,7 +226,7 @@
           }
         }
       ],
-      "startFrame": 2305,
+      "startFrame": 2295,
       "durationInFrames": 215
     },
     {
@@ -235,7 +235,7 @@
       "text": "Reactのレンダリングプロセスは「Render」「Commit」の二段階あると覚えておいてください。",
       "audioFile": "voices/voice_12.wav",
       "expression": "normal",
-      "startFrame": 2520,
+      "startFrame": 2510,
       "durationInFrames": 251
     },
     {
@@ -261,7 +261,7 @@
         }
       ],
       "background": null,
-      "startFrame": 2771,
+      "startFrame": 2761,
       "durationInFrames": 274
     },
     {
@@ -270,8 +270,8 @@
       "text": "このコードをもとに、実際の動きを追っていきます。",
       "audioFile": "voices/voice_14.wav",
       "expression": "normal",
-      "startFrame": 3045,
-      "durationInFrames": 156
+      "startFrame": 3035,
+      "durationInFrames": 150
     },
     {
       "id": 15,
@@ -293,7 +293,7 @@
           }
         }
       ],
-      "startFrame": 3201,
+      "startFrame": 3185,
       "durationInFrames": 126
     },
     {
@@ -302,8 +302,8 @@
       "text": "アプリを起動したり新しいページを開いたとき、最初に表示される画面を作るプロセスです。ここでは先ほどのカウンターの初期画面が表示されるまでを指します。",
       "audioFile": "voices/voice_16.wav",
       "expression": "normal",
-      "startFrame": 3327,
-      "durationInFrames": 249
+      "startFrame": 3311,
+      "durationInFrames": 402
     },
     {
       "id": 17,
@@ -328,7 +328,7 @@
           }
         }
       ],
-      "startFrame": 3576,
+      "startFrame": 3713,
       "durationInFrames": 195
     },
     {
@@ -360,8 +360,8 @@
           }
         }
       ],
-      "startFrame": 3771,
-      "durationInFrames": 213
+      "startFrame": 3908,
+      "durationInFrames": 205
     },
     {
       "id": 19,
@@ -411,7 +411,7 @@
           }
         }
       ],
-      "startFrame": 3984,
+      "startFrame": 4113,
       "durationInFrames": 371
     },
     {
@@ -431,7 +431,7 @@
           }
         }
       ],
-      "startFrame": 4355,
+      "startFrame": 4484,
       "durationInFrames": 166
     },
     {
@@ -443,9 +443,9 @@
       "background": {
         "src": "images/useState/rerender.png"
       },
-      "media":null,
-      "startFrame": 4521,
-      "durationInFrames": 233
+      "media": null,
+      "startFrame": 4650,
+      "durationInFrames": 206
     },
     {
       "id": 22,
@@ -454,7 +454,6 @@
       "audioFile": "voices/voice_22.wav",
       "expression": "normal",
       "media": [
-
         {
           "src": "images/useState/mockre.png",
           "style": {
@@ -489,8 +488,8 @@
           }
         }
       ],
-      "startFrame": 4754,
-      "durationInFrames": 266
+      "startFrame": 4856,
+      "durationInFrames": 413
     },
     {
       "id": 23,
@@ -498,8 +497,8 @@
       "text": "この判定には Object.is() が使われており、",
       "audioFile": "voices/voice_23.wav",
       "expression": "normal",
-      "startFrame": 5020,
-      "durationInFrames": 194
+      "startFrame": 5269,
+      "durationInFrames": 189
     },
     {
       "id": 24,
@@ -507,8 +506,8 @@
       "text": "プリミティブ型なら「同じ値か」、オブジェクトや配列なら「同じ参照か」を厳密にチェックします。",
       "audioFile": "voices/voice_24.wav",
       "expression": "normal",
-      "startFrame": 5214,
-      "durationInFrames": 280
+      "startFrame": 5458,
+      "durationInFrames": 286
     },
     {
       "id": 25,
@@ -516,8 +515,8 @@
       "text": "だからこそ、オブジェクトや配列のStateを更新する際には、",
       "audioFile": "voices/voice_25.wav",
       "expression": "normal",
-      "startFrame": 5494,
-      "durationInFrames": 215
+      "startFrame": 5744,
+      "durationInFrames": 179
     },
     {
       "id": 26,
@@ -525,8 +524,8 @@
       "text": "値を直接書き換えるのではなく、新しく作り直す「シャローコピー」が必要になるわけです。",
       "audioFile": "voices/voice_26.wav",
       "expression": "normal",
-      "startFrame": 5709,
-      "durationInFrames": 322
+      "startFrame": 5923,
+      "durationInFrames": 271
     },
     {
       "id": 27,
@@ -534,9 +533,8 @@
       "text": "そして「差分あり」と判定された場合のみ、レンダリングが始まります。",
       "audioFile": "voices/voice_27.wav",
       "expression": "normal",
-      "media":[
-       
-         {
+      "media": [
+        {
           "component": "ReRenderMockup",
           "style": {
             "position": "absolute",
@@ -545,13 +543,10 @@
             "width": "600px",
             "height": "600px",
             "borderRadius": 0
-          },
-          "animation": {
-            "fadeInStart": 30,
-            "fadeInDuration": 15
           }
+         
         },
-         {
+        {
           "component": "DiffCheckMockup",
           "style": {
             "position": "absolute",
@@ -562,7 +557,6 @@
             "borderRadius": 0
           }
         },
-       
         {
           "src": "images/useState/mockre.png",
           "style": {
@@ -573,7 +567,7 @@
             "height": "auto"
           }
         },
-         {
+        {
           "component": "HighlightBorder",
           "style": {
             "position": "absolute",
@@ -586,8 +580,8 @@
           }
         }
       ],
-      "startFrame": 6031,
-      "durationInFrames": 419
+      "startFrame": 6194,
+      "durationInFrames": 216
     },
     {
       "id": 28,
@@ -595,8 +589,8 @@
       "text": "まずRenderフェーズです。コンポーネントが再実行されると、最新のStateを反映した新しいJSXが返され、",
       "audioFile": "voices/voice_28.wav",
       "expression": "normal",
-      "startFrame": 6450,
-      "durationInFrames": 304
+      "startFrame": 6410,
+      "durationInFrames": 319
     },
     {
       "id": 29,
@@ -604,9 +598,8 @@
       "text": "Reactはそれをもとに「新しい仮想DOM」を生成します。",
       "audioFile": "voices/voice_29.wav",
       "expression": "normal",
-      "media":[
-       
-         {
+      "media": [
+        {
           "component": "ReRenderMockup",
           "style": {
             "position": "absolute",
@@ -615,13 +608,11 @@
             "width": "600px",
             "height": "600px",
             "borderRadius": 0
-          },
-          "animation": {
-            "fadeInStart": 30,
-            "fadeInDuration": 15
           }
+
+        
         },
-         {
+        {
           "component": "DiffCheckMockup",
           "style": {
             "position": "absolute",
@@ -632,7 +623,6 @@
             "borderRadius": 0
           }
         },
-       
         {
           "src": "images/useState/mockre.png",
           "style": {
@@ -643,7 +633,7 @@
             "height": "auto"
           }
         },
-         {
+        {
           "component": "HighlightBorder",
           "style": {
             "position": "absolute",
@@ -656,8 +646,8 @@
           }
         }
       ],
-      "startFrame": 6754,
-      "durationInFrames": 268
+      "startFrame": 6729,
+      "durationInFrames": 182
     },
     {
       "id": 30,
@@ -665,9 +655,8 @@
       "text": "さらに、この「新しい仮想DOM」と「一つ前の仮想DOM」を見比べ、差分検出を行います。",
       "audioFile": "voices/voice_30.wav",
       "expression": "normal",
-       "media":[
-       
-         {
+      "media": [
+        {
           "component": "ReRenderMockup",
           "style": {
             "position": "absolute",
@@ -677,9 +666,8 @@
             "height": "600px",
             "borderRadius": 0
           }
-      
         },
-         {
+        {
           "component": "DiffCheckMockup",
           "style": {
             "position": "absolute",
@@ -690,7 +678,6 @@
             "borderRadius": 0
           }
         },
-       
         {
           "src": "images/useState/mockre.png",
           "style": {
@@ -701,7 +688,7 @@
             "height": "auto"
           }
         },
-         {
+        {
           "component": "HighlightBorder",
           "style": {
             "position": "absolute",
@@ -714,8 +701,8 @@
           }
         }
       ],
-      "startFrame": 7022,
-      "durationInFrames": 209
+      "startFrame": 6911,
+      "durationInFrames": 302
     },
     {
       "id": 31,
@@ -723,8 +710,8 @@
       "text": "実際の画面のどこを変更すべきか、仮想DOM同士の具体的な差分を洗い出します。",
       "audioFile": "voices/voice_31.wav",
       "expression": "normal",
-      "startFrame": 7231,
-      "durationInFrames": 216
+      "startFrame": 7213,
+      "durationInFrames": 233
     },
     {
       "id": 32,
@@ -732,8 +719,8 @@
       "text": "ここまでの一連の作業、つまり「仮想DOMの生成と、仮想DOM同士の差分検出」までが、再レンダリング時のRenderフェーズとなります。",
       "audioFile": "voices/voice_32.wav",
       "expression": "normal",
-      "startFrame": 7447,
-      "durationInFrames": 298
+      "startFrame": 7446,
+      "durationInFrames": 382
     },
     {
       "id": 33,
@@ -751,13 +738,10 @@
             "width": "600px",
             "height": "600px",
             "borderRadius": 0
-          },
-          "animation": {
-            "fadeInStart": 30,
-            "fadeInDuration": 15
           }
+         
         },
-         {
+        {
           "component": "DiffCheckMockup",
           "style": {
             "position": "absolute",
@@ -798,8 +782,8 @@
           }
         }
       ],
-      "startFrame": 7745,
-      "durationInFrames": 317
+      "startFrame": 7828,
+      "durationInFrames": 281
     },
     {
       "id": 34,
@@ -813,8 +797,8 @@
           "src": "images/useState/mock.mp4"
         }
       ],
-      "startFrame": 8062,
-      "durationInFrames": 321
+      "startFrame": 8109,
+      "durationInFrames": 314
     },
     {
       "id": 35,
@@ -835,8 +819,8 @@
           }
         }
       ],
-      "startFrame": 8383,
-      "durationInFrames": 263
+      "startFrame": 8423,
+      "durationInFrames": 244
     },
     {
       "id": 36,
@@ -862,8 +846,8 @@
           }
         }
       ],
-      "startFrame": 8646,
-      "durationInFrames": 312
+      "startFrame": 8667,
+      "durationInFrames": 329
     },
     {
       "id": 37,
@@ -876,8 +860,8 @@
           "src": "images/tb01.png"
         }
       ],
-      "startFrame": 8958,
-      "durationInFrames": 252
+      "startFrame": 8996,
+      "durationInFrames": 118
     },
     {
       "id": 38,
@@ -890,9 +874,9 @@
           "src": "images/tb01.png"
         }
       ],
-      "startFrame": 9210,
+      "startFrame": 9114,
       "durationInFrames": 123
     }
   ],
-  "totalDurationInFrames": 9633
+  "totalDurationInFrames": 9537
 }
