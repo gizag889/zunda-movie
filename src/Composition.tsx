@@ -56,10 +56,11 @@ const MainComposition: React.FC = () => {
 
   return (
     <AbsoluteFill
-  style={{
-backgroundColor: 'black'
+style={{
+backgroundColor: 'black',
+translate: "-30px 0px"
 }}
-  from={668}>
+from={668}>
       {/* 背景画像 */}
       <Background segments={processedSegments} />
 

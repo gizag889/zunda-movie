@@ -1,0 +1,248 @@
+[
+  {
+    "id": 1,
+    "character": "zundamon",
+    "text": "今回は、useStateを例に、Reactのレンダリングプロセスの裏側について解説します。",
+    "expression": "normal"
+  },
+  {
+    "id": 2,
+    "character": "zundamon",
+    "text": "一見魔法のように見えるHooksの仕組みを紐解いて、Reactの理解を一段深めていきましょう！",
+    "audioText": "一見魔法のように見えるフックスの仕組みを紐解いて、Reactの理解を一段深めていきましょう。",
+    "expression": "normal"
+  },
+  {
+    "id": 3,
+    "character": "zundamon",
+    "text": "こちらは、ボタンをクリックするとカウントが増えて、画面が更新される簡易的なコンポーネントです。",
+    "expression": "normal"
+  },
+  {
+    "id": 4,
+    "character": "zundamon",
+    "text": "ボタンを押すと数字が切り替わりますが、このときuseStateの裏側では何が起きているのでしょうか？",
+    "expression": "normal"
+  },
+  {
+    "id": 5,
+    "character": "zundamon",
+    "text": "内部の挙動を説明する前に、まずはReactレンダリングの基本を確認していきましょう。",
+    "expression": "normal"
+  },
+  {
+    "id": 6,
+    "character": "zundamon",
+    "text": "Reactのレンダリングは、大きく2つのフェーズに分かれています。",
+    "expression": "normal"
+  },
+  {
+    "id": 7,
+    "character": "zundamon",
+    "text": "1つ目は「Renderフェーズ」。これはページを構成する設計図を作るフェーズです。",
+    "expression": "normal"
+  },
+  {
+    "id": 8,
+    "character": "zundamon",
+    "text": "ここではメモリ上に「仮想DOM」を生成します。これがページを構成する設計図になります。",
+    "expression": "normal",
+    "audioText": "ここではメモリ上に「仮想ドム」を生成します。これがページを構成する設計図になります。"
+  },
+  {
+    "id": 9,
+    "character": "zundamon",
+    "text": "Reactではレンダリングするたびに、必ずこの「仮想DOM」を生成します。",
+    "expression": "normal",
+    "audioText": "Reactではレンダリングするたびに、必ずこの「仮想ドム」を生成します。"
+  },
+  {
+    "id": 10,
+    "character": "zundamon",
+    "text": "次に「Commitフェーズ」に移ります。",
+    "expression": "normal"
+  },
+  {
+    "id": 11,
+    "character": "zundamon",
+    "text": "ここでは、出来上がった設計図をもとに、画面に描画する作業を担います。",
+    "expression": "normal"
+  },
+  {
+    "id": 12,
+    "character": "zundamon",
+    "text": "Reactのレンダリングプロセスは「Render」「Commit」の二段階あると覚えておいてください。",
+    "expression": "normal"
+  },
+  {
+    "id": 13,
+    "character": "zundamon",
+    "text": "これらを踏まえて、useState内部の挙動をJSで大まかに表現したこちらのモックコードを見てみましょう。",
+    "expression": "normal"
+  },
+  {
+    "id": 14,
+    "character": "zundamon",
+    "text": "このコードをもとに、実際の動きを追っていきます。",
+    "expression": "normal"
+  },
+  {
+    "id": 15,
+    "character": "zundamon",
+    "text": "まずは「初回レンダリング」です！",
+    "expression": "normal"
+  },
+  {
+    "id": 16,
+    "character": "zundamon",
+    "text": "アプリを起動したり新しいページを開いたとき、最初に表示される画面を作るプロセスです。ここでは先ほどのカウンターの初期画面が表示されるまでを指します。",
+    "expression": "normal"
+  },
+  {
+    "id": 17,
+    "character": "zundamon",
+    "text": "初回レンダリングのRenderフェーズでは、「仮想DOM」を生成します。先ほどのモックコードでいうこの部分です。",
+    "expression": "normal",
+    "audioText": "初回レンダリングのRenderフェーズでは、「仮想ドム」を生成します。"
+  },
+  {
+    "id": 18,
+    "character": "zundamon",
+    "text": "このタイミングで、useStateの初期値、今回はゼロがセットされます。",
+    "expression": "normal",
+    "audioText": "このタイミングで、useStateの初期ち、今回はゼロがセットされます。"
+  },
+  {
+    "id": 19,
+    "character": "zundamon",
+    "text": "次にCommitフェーズに移ります。初回レンダリング時のCommitフェーズでは、Renderフェーズで作られた仮想DOMを使って、そのまま画面を描画します。",
+    "expression": "normal",
+    "audioText": "次にCommitフェーズに移ります。初回レンダリング時のCommitフェーズでは、Renderフェーズで作られた仮想ドムを使って、そのまま画面を描画します。"
+  },
+  {
+    "id": 20,
+    "character": "zundamon",
+    "text": "ここまでで、このように画面に初期状態が表示されます。",
+    "expression": "normal"
+  },
+  {
+    "id": 21,
+    "character": "zundamon",
+    "text": "次は、Stateが更新されたときの「再レンダリング」の動きです。",
+    "expression": "normal",
+    "energy": "high"
+  },
+  {
+    "id": 22,
+    "character": "zundamon",
+    "text": "更新関数（setState）が呼ばれると、Reactはまず「現在のState」と「新しいState」の間に差分があるかを判定します。",
+    "expression": "normal"
+  },
+  {
+    "id": 23,
+    "character": "zundamon",
+    "text": "この判定には Object.is() が使われており、",
+    "expression": "normal"
+  },
+  {
+    "id": 24,
+    "character": "zundamon",
+    "text": "プリミティブ型なら「同じ値か」、オブジェクトや配列なら「同じ参照か」を厳密にチェックします。",
+    "expression": "normal",
+    "audioText": "プリミティブ型なら「同じあたいか」、オブジェクトや配列なら「同じ参照か」を厳密にチェックします。"
+  },
+  {
+    "id": 25,
+    "character": "zundamon",
+    "text": "だからこそ、オブジェクトや配列のStateを更新する際には、",
+    "expression": "normal",
+    "energy": "high"
+  },
+  {
+    "id": 26,
+    "character": "zundamon",
+    "text": "値を直接書き換えるのではなく、新しく作り直す「シャローコピー」が必要になるわけです。",
+    "audioText": "あたいを直接書き換えるのではなく、新しく作り直す「シャローコピー」が必要になるわけです。",
+    "expression": "normal"
+  },
+  {
+    "id": 27,
+    "character": "zundamon",
+    "text": "そして「差分あり」と判定された場合のみ、レンダリングが始まります。",
+    "expression": "normal"
+  },
+  {
+    "id": 28,
+    "character": "zundamon",
+    "text": "まずRenderフェーズです。コンポーネントが再実行されると、最新のStateを反映した新しいJSXが返され、",
+    "expression": "normal"
+  },
+  {
+    "id": 29,
+    "character": "zundamon",
+    "text": "Reactはそれをもとに「新しい仮想DOM」を生成します。",
+    "expression": "normal",
+    "audioText": "Reactはそれをもとに「新しい仮想ドム」を生成します。"
+  },
+  {
+    "id": 30,
+    "character": "zundamon",
+    "text": "さらに、この「新しい仮想DOM」と「一つ前の仮想DOM」を見比べ、差分検出を行います。",
+    "expression": "normal",
+    "audioText": "さらに、この「新しい仮想ドム」と「一つ前の仮想ドム」を見比べ、差分検出を行います。"
+  },
+  {
+    "id": 31,
+    "character": "zundamon",
+    "text": "実際の画面のどこを変更すべきか、仮想DOM同士の具体的な差分を洗い出します。",
+    "expression": "normal",
+    "audioText": "実際の画面のどこを変更すべきか、仮想ドム同士の具体的な差分を洗い出します。"
+  },
+  {
+    "id": 32,
+    "character": "zundamon",
+    "text": "ここまでの一連の作業、つまり「仮想DOMの生成と、仮想DOM同士の差分検出」までが、再レンダリング時のRenderフェーズとなります。",
+    "expression": "normal",
+    "audioText": "ここまでの一連の作業、つまり「仮想ドムの生成と、仮想ドム同士の差分検出」までが、再レンダリング時のRenderフェーズとなります。"
+  },
+  {
+    "id": 33,
+    "character": "zundamon",
+    "text": "最後に再レンダリングのCommitフェーズです。先ほど洗い出した差分だけを、実際の画面に反映します。",
+    "expression": "normal",
+    "audioText": "最後に再レンダリングのCommitフェーズです。先ほど洗い出した差分だけを、実際の画面に反映します。"
+  },
+  {
+    "id": 34,
+    "character": "zundamon",
+    "text": "今回の場合、数字が更新されるたびにこのプロセスが走り、差分のある数字の部分だけが画面に再描画されます。",
+    "expression": "normal"
+  },
+  {
+    "id": 35,
+    "character": "zundamon",
+    "text": "今回のポイントです。Reactはレンダリングするたびに「仮想DOM」を生成します。",
+    "expression": "normal",
+    "audioText": "今回のポイントです。Reactはレンダリングするたびに「仮想ドム」を生成します。"
+  },
+  {
+    "id": 36,
+    "character": "zundamon",
+    "text": "そして再レンダリング時は、新しい仮想DOMと1つ前の仮想DOMを比べて、見つかった差分だけを実際の画面に反映します。",
+    "expression": "normal",
+    "audioText": "そして再レンダリング時は、新しい仮想ドムと1つ前の仮想ドムを比べて、見つかった差分だけを実際の画面に反映します。"
+  },
+  {
+    "id": 37,
+    "character": "zundamon",
+    "text": "これが大まかなレンダリングの流れです。",
+    "expression": "happy",
+    "energy": "high"
+  },
+  {
+    "id": 38,
+    "character": "zundamon",
+    "text": "最後までご視聴ありがとうございました。",
+    "expression": "normal"
+  }
+]
