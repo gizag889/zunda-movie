@@ -855,11 +855,6 @@
       "text": "これが大まかなレンダリングの流れです。",
       "audioFile": "voices/voice_37.wav",
       "expression": "happy",
-      "media": [
-        {
-          "src": "images/tb01.png"
-        }
-      ],
       "startFrame": 8996,
       "durationInFrames": 118
     },
@@ -869,11 +864,6 @@
       "text": "最後までご視聴ありがとうございました。",
       "audioFile": "voices/voice_38.wav",
       "expression": "normal",
-      "media": [
-        {
-          "src": "images/tb01.png"
-        }
-      ],
       "startFrame": 9114,
       "durationInFrames": 123
     }
