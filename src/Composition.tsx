@@ -3,7 +3,6 @@ import { IntroSequence } from './IntroSequence';
 import { CharacterArea } from './CharacterArea';
 import { Telop } from './Telop';
 import { TextArea } from './TextArea';
-import { EndRoll } from './EndRoll';
 import { Background } from './Background';
 import { MediaFrame } from './MediaFrame';
 import timingData from './timing.json';
@@ -96,10 +95,6 @@ style={{
       {/* テロップ (左上最上部) */}
       <Telop />
 
-      {/* エンドロール・静止画面 (最後の5秒) */}
-      <Sequence from={timing.totalDurationInFrames - fps * 5} durationInFrames={fps * 5}>
-        <EndRoll />
-      </Sequence>
     </AbsoluteFill>
   );
 };

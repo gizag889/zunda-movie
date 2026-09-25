@@ -88,19 +88,17 @@ def main():
         except Exception as e:
             print(f"Error parsing result for ID {entry['id']}: {e}")
 
-    # timing.json の保存
-    # イントロの5秒（150フレーム）を加算し、最後に5秒（150フレーム）の余裕を持たせる
+    # イントロの5秒（150フレーム）を加算
     intro_offset = fps * 5
-    end_buffer = fps * 5 
 
     with open(TIMING_FILE, "w", encoding="utf-8") as f:
         json.dump({
             "segments": timing_data,
             "telops": telops,
-            "totalDurationInFrames": current_frame + intro_offset + end_buffer
+            "totalDurationInFrames": current_frame + intro_offset
         }, f, indent=2, ensure_ascii=False)
 
-    print(f"Finished. Total duration: {current_frame + intro_offset + end_buffer} frames.")
+    print(f"Finished. Total duration: {current_frame + intro_offset} frames.")
 
 if __name__ == "__main__":
     main()
