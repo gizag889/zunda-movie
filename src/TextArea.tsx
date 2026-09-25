@@ -21,7 +21,8 @@ export const TextArea: React.FC<TextAreaProps> = ({ character, text }) => {
       border: `4px solid ${character === 'zundamon' ? '#4CAF50' : '#555'}`,
       lineHeight: 1.4,
       wordBreak: 'break-word',
-      zIndex: 2
+      zIndex: 2,
+      fontFamily: '"Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif'
     }}>
        {text}
     </div>

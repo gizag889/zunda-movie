@@ -69,7 +69,7 @@ const FadeInText: React.FC<{ text: string }> = ({ text }) => {
       zIndex: 10,
       opacity: opacity,
       // border: '5px solid #4CAF50',
-      fontFamily: 'sans-serif'
+      fontFamily: '"Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif'
     }}>
       {text}
     </div>
