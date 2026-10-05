@@ -74,7 +74,7 @@ style={{
 
       {/* グローバルなメディアフレーム */}
       <MediaFrame segments={processedSegments} />
-
+      
       {/* 本編セグメント */}
       {processedSegments.map((segment: any) => (
         <Sequence 

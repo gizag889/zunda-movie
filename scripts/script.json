@@ -2,247 +2,280 @@
   {
     "id": 1,
     "character": "zundamon",
-    "text": "今回は、useStateを例に、Reactのレンダリングプロセスの裏側について解説します。",
-    "expression": "normal"
+    "text": "今回は、useEffectを例に、Reactの副作用の裏側について解説します。",
+    "expression": "normal",
+    "audioText": "今回は、ユーズエフェクトを例に、リアクトの副作用の裏側について解説します。"
   },
   {
     "id": 2,
     "character": "zundamon",
-    "text": "一見魔法のように見えるHooksの仕組みを紐解いて、Reactの理解を一段深めていきましょう！",
-    "audioText": "一見魔法のように見えるフックスの仕組みを紐解いて、Reactの理解を一段深めていきましょう。",
-    "expression": "normal"
+    "text": "データのフェッチ処理などでよく使うuseEffectですが、その仕組みを紐解いて理解を深めていきましょう！",
+    "expression": "normal",
+    "audioText": "データのフェッチ処理などでよく使うユーズエフェクトですが、その仕組みを紐解いて理解を深めていきましょう！"
   },
   {
     "id": 3,
     "character": "zundamon",
-    "text": "こちらは、ボタンをクリックするとカウントが増えて、画面が更新される簡易的なコンポーネントです。",
+    "text": "こちらは、ボタンを押すと美術館のAPIから作品データを取得するコンポーネントです。",
     "expression": "normal"
   },
   {
     "id": 4,
     "character": "zundamon",
-    "text": "ボタンを押すと数字が切り替わりますが、このときuseStateの裏側では何が起きているのでしょうか？",
-    "expression": "normal"
+    "text": "fetchTriggerというStateが更新され、それを依存配列に持つuseEffectが発火する仕組みです。",
+    "expression": "normal",
+    "audioText": "フェッチトリガーというステートが更新され、それを依存配列に持つユーズエフェクトが発火する仕組みです。"
   },
   {
     "id": 5,
     "character": "zundamon",
-    "text": "内部の挙動を説明する前に、まずはReactレンダリングの基本を確認していきましょう。",
+    "text": "では、この裏側では一体どのような処理が行われているのでしょうか？",
     "expression": "normal"
   },
   {
     "id": 6,
     "character": "zundamon",
-    "text": "Reactのレンダリングは、大きく2つのフェーズに分かれています。",
+    "text": "内部の挙動をJSで大まかに表現した、モックコードを見ながら、全体の流れを時系列に沿って見ていきましょう。",
     "expression": "normal"
   },
   {
     "id": 7,
     "character": "zundamon",
-    "text": "1つ目は「Renderフェーズ」。これはページを構成する設計図を作るフェーズです。",
-    "expression": "normal"
+    "text": "Reactのレンダリングは大きく二つのフェーズに分かれています。",
+    "expression": "normal",
+    "audioText": "リアクトのレンダリングは大きく二つのフェーズに分かれています。"
   },
   {
     "id": 8,
     "character": "zundamon",
-    "text": "ここではメモリ上に「仮想DOM」を生成します。これがページを構成する設計図になります。",
+    "text": "1つ目は「Renderフェーズ」。これはページを構成する設計図を作るフェーズです。",
     "expression": "normal",
-    "audioText": "ここではメモリ上に「仮想ドム」を生成します。これがページを構成する設計図になります。"
+    "audioText": "1つ目は「レンダーフェーズ」。これはページを構成する設計図を作るフェーズです。"
   },
   {
     "id": 9,
     "character": "zundamon",
-    "text": "Reactではレンダリングするたびに、必ずこの「仮想DOM」を生成します。",
+    "text": "ここではメモリ上に「仮想DOM」を生成します。これがぺーじを構成する設計図になります。",
     "expression": "normal",
-    "audioText": "Reactではレンダリングするたびに、必ずこの「仮想ドム」を生成します。"
+    "audioText": "ここではメモリ上に「かそうドム」を生成します。これがページを構成する設計図になります。"
   },
   {
     "id": 10,
     "character": "zundamon",
-    "text": "次に「Commitフェーズ」に移ります。",
-    "expression": "normal"
+    "text": "Reactではレンダリングするたびに、必ずこの「仮想DOM」を生成します。",
+    "expression": "normal",
+    "audioText": "リアクトではレンダリングするたびに、必ずこの「かそうドム」を生成します。"
   },
   {
     "id": 11,
     "character": "zundamon",
-    "text": "ここでは、出来上がった設計図をもとに、画面に描画する作業を担います。",
-    "expression": "normal"
+    "text": "次に「Commitフェーズ」に移ります。ここでは出来上がった設計図をもとに、画面に描画する作業を担います。",
+    "expression": "normal",
+    "audioText": "次に「コミットフェーズ」に移ります。ここでは出来上がった設計図をもとに、画面に描画する作業を担います。"
   },
   {
     "id": 12,
     "character": "zundamon",
     "text": "Reactのレンダリングプロセスは「Render」「Commit」の二段階あると覚えておいてください。",
-    "expression": "normal"
+    "expression": "normal",
+    "audioText": "リアクトのレンダリングプロセスは「レンダー」「コミット」の二段階あると覚えておいてください。"
   },
   {
     "id": 13,
     "character": "zundamon",
-    "text": "これらを踏まえて、useState内部の挙動をJSで大まかに表現したこちらのモックコードを見てみましょう。",
+    "text": "まずは「初回レンダリング」、つまり画面を初めて開いた時のステップです。",
     "expression": "normal"
   },
   {
     "id": 14,
     "character": "zundamon",
-    "text": "このコードをもとに、実際の動きを追っていきます。",
-    "expression": "normal"
+    "text": "初回レンダリング時のRenderフェーズでは、仮想DOMの生成とともに、あとで実行するコールバック関数の登録を行います。",
+    "expression": "normal",
+    "audioText": "初回レンダリング時のレンダーフェーズでは、仮想ドムの生成とともに、あとで実行するコールバック関数の登録を行います。"
   },
   {
     "id": 15,
     "character": "zundamon",
-    "text": "まずは「初回レンダリング」です！",
+    "text": "ここでは関数をメモしておくだけで、まだ実行はされません。",
     "expression": "normal"
   },
   {
     "id": 16,
     "character": "zundamon",
-    "text": "アプリを起動したり新しいページを開いたとき、最初に表示される画面を作るプロセスです。ここでは先ほどのカウンターの初期画面が表示されるまでを指します。",
-    "expression": "normal"
+    "text": "続いてCommitフェーズです。ブラウザが新しい画面をユーザーに表示し終わった後に、先ほどメモしておいた関数が実行されます。",
+    "expression": "normal",
+    "audioText": "続いてコミットフェーズです。ブラウザが新しい画面をユーザーに表示し終わった後に、先ほどメモしておいた関数が実行されます。"
   },
   {
     "id": 17,
     "character": "zundamon",
-    "text": "初回レンダリングのRenderフェーズでは、「仮想DOM」を生成します。先ほどのモックコードでいうこの部分です。",
-    "expression": "normal",
-    "audioText": "初回レンダリングのRenderフェーズでは、「仮想ドム」を生成します。"
+    "text": "重たい処理を書いても画面の表示を邪魔しない仕組みです。",
+    "expression": "normal"
   },
   {
     "id": 18,
     "character": "zundamon",
-    "text": "このタイミングで、useStateの初期値、今回はゼロがセットされます。",
-    "expression": "normal",
-    "audioText": "このタイミングで、useStateの初期ち、今回はゼロがセットされます。"
+    "text": "次に、Stateが更新されたときの「再レンダリング」時の動きを見ていきましょう。",
+    "audioText": "次に、Stateが更新されたときの「再レンダリング」じの動きを見ていきましょう。",
+    "expression": "normal"
   },
   {
     "id": 19,
     "character": "zundamon",
-    "text": "次にCommitフェーズに移ります。初回レンダリング時のCommitフェーズでは、Renderフェーズで作られた仮想DOMを使って、そのまま画面を描画します。",
+    "text": "ボタンが押されてStateが変わると、再びコンポーネントが実行され、Renderフェーズが走ります。",
     "expression": "normal",
-    "audioText": "次にCommitフェーズに移ります。初回レンダリング時のCommitフェーズでは、Renderフェーズで作られた仮想ドムを使って、そのまま画面を描画します。"
+    "audioText": "ボタンが押されてステートが変わると、再びコンポーネントが実行され、レンダーフェーズが走ります。"
   },
   {
     "id": 20,
     "character": "zundamon",
-    "text": "ここまでで、このように画面に初期状態が表示されます。",
-    "expression": "normal"
+    "text": "ここでもう一度useEffectが呼ばれますが、重要になるのが第2引数の「依存配列」です。",
+    "expression": "normal",
+    "audioText": "ここでもう一度ユーズエフェクトが呼ばれますが、重要になるのが第2引数の「いぞんはいれつ」です。"
   },
   {
     "id": 21,
     "character": "zundamon",
-    "text": "次は、Stateが更新されたときの「再レンダリング」の動きです。",
+    "text": "ReactはRenderフェーズの最中に、前回の配列と今回の配列を見比べます。",
     "expression": "normal",
-    "energy": "high"
+    "audioText": "リアクトはレンダーフェーズの最中に、前回の配列と今回の配列を見比べます。"
   },
   {
     "id": 22,
     "character": "zundamon",
-    "text": "更新関数（setState）が呼ばれると、Reactはまず「現在のState」と「新しいState」の間に差分があるかを判定します。",
+    "text": "もし値が異なっていれば、前回のRenderフェーズと同じように関数を登録します。",
     "expression": "normal"
   },
   {
     "id": 23,
     "character": "zundamon",
-    "text": "この判定には Object.is() が使われており、",
-    "expression": "normal"
+    "text": "逆に、関係ないStateが更新された場合は、依存配列に変化がないため、関数のメモはスキップされます。",
+    "expression": "normal",
+    "audioText": "逆に、関係ないステートが更新された場合は、いぞんはいれつに変化がないため、関数のメモはスキップされます。"
   },
   {
     "id": 24,
     "character": "zundamon",
-    "text": "プリミティブ型なら「同じ値か」、オブジェクトや配列なら「同じ参照か」を厳密にチェックします。",
+    "text": "Renderフェーズでの差分チェックが終わると、画面の更新、つまりCommitフェーズが行われます。",
     "expression": "normal",
-    "audioText": "プリミティブ型なら「同じあたいか」、オブジェクトや配列なら「同じ参照か」を厳密にチェックします。"
+    "audioText": "レンダーフェーズでのさぶんチェックが終わると、画面の更新、つまりコミットフェーズが行われます。"
   },
   {
     "id": 25,
     "character": "zundamon",
-    "text": "だからこそ、オブジェクトや配列のStateを更新する際には、",
+    "text": "useEffectは、このCommitフェーズでは実際の処理を行わず、",
     "expression": "normal",
-    "energy": "high"
+    "audioText": "ユーズエフェクトは、このコミットフェーズでは実際の処理を行わず、"
   },
   {
     "id": 26,
     "character": "zundamon",
-    "text": "値を直接書き換えるのではなく、新しく作り直す「シャローコピー」が必要になるわけです。",
-    "audioText": "あたいを直接書き換えるのではなく、新しく作り直す「シャローコピー」が必要になるわけです。",
+    "text": "実際に処理を行うのは「画面の更新（Commitフェーズ）がすべて終わった後」という役割分担です。",
     "expression": "normal"
   },
   {
     "id": 27,
     "character": "zundamon",
-    "text": "そして「差分あり」と判定された場合のみ、レンダリングが始まります。",
+    "text": "ここでさらに重要なのが、次回の実行前に行う「お片付け」、クリーンアップ関数です。",
     "expression": "normal"
   },
   {
     "id": 28,
     "character": "zundamon",
-    "text": "まずRenderフェーズです。コンポーネントが再実行されると、最新のStateを反映した新しいJSXが返され、",
-    "expression": "normal"
+    "text": "useEffectの中でreturnを使って関数を返すと、それはクリーンアップ関数として扱われます。",
+    "expression": "normal",
+    "audioText": "ユーズエフェクトの中でリターンを使って関数を返すと、それはクリーンアップ関数として扱われます。"
   },
   {
     "id": 29,
     "character": "zundamon",
-    "text": "Reactはそれをもとに「新しい仮想DOM」を生成します。",
-    "expression": "normal",
-    "audioText": "Reactはそれをもとに「新しい仮想ドム」を生成します。"
+    "text": "タイマーやイベントリスナーの解除など、前回のコールバック関数の実行内容のお片付けをするための機能です。",
+    "expression": "normal"
   },
   {
     "id": 30,
     "character": "zundamon",
-    "text": "さらに、この「新しい仮想DOM」と「一つ前の仮想DOM」を見比べ、差分検出を行います。",
+    "text": "依存配列に変化があって新しいEffectが走る場合、その処理の直前に、必ず前回のクリーンアップ関数が実行されます。",
     "expression": "normal",
-    "audioText": "さらに、この「新しい仮想ドム」と「一つ前の仮想ドム」を見比べ、差分検出を行います。"
+    "audioText": "いぞんはいれつに変化があって新しいエフェクトが走る場合、その処理の直前に、必ず前回のクリーンアップ関数が実行されます。"
   },
   {
     "id": 31,
     "character": "zundamon",
-    "text": "実際の画面のどこを変更すべきか、仮想DOM同士の具体的な差分を洗い出します。",
-    "expression": "normal",
-    "audioText": "実際の画面のどこを変更すべきか、仮想ドム同士の具体的な差分を洗い出します。"
+    "text": "Reactは常に「前回の後始末をしてから、今回の処理を始める」という丁寧な動きをすることで、バグやメモリの無駄遣いを防いでいるのです。",
+    "expression": "normal"
   },
   {
     "id": 32,
     "character": "zundamon",
-    "text": "ここまでの一連の作業、つまり「仮想DOMの生成と、仮想DOM同士の差分検出」までが、再レンダリング時のRenderフェーズとなります。",
-    "expression": "normal",
-    "audioText": "ここまでの一連の作業、つまり「仮想ドムの生成と、仮想ドム同士の差分検出」までが、再レンダリング時のRenderフェーズとなります。"
+    "text": "また、このクリーンアップ関数は画面が遷移する際など、コンポーネントが消える時、つまり「アンマウント時」にも必ず実行され、最後のお片付けをしてくれます。",
+    "expression": "normal"
   },
   {
     "id": 33,
     "character": "zundamon",
-    "text": "最後に再レンダリングのCommitフェーズです。先ほど洗い出した差分だけを、実際の画面に反映します。",
-    "expression": "normal",
-    "audioText": "最後に再レンダリングのCommitフェーズです。先ほど洗い出した差分だけを、実際の画面に反映します。"
+    "text": "もう一度、実際のアプリのコードを見てみましょう。",
+    "expression": "normal"
   },
   {
     "id": 34,
     "character": "zundamon",
-    "text": "今回の場合、数字が更新されるたびにこのプロセスが走り、差分のある数字の部分だけが画面に再描画されます。",
-    "expression": "normal"
+    "text": "ボタンを連続でクリックすると、fetchTriggerが何度も更新され、再レンダリングが連続して走ります。",
+    "expression": "normal",
+    "audioText": "ボタンを連続でクリックすると、フェッチトリガーが何度も更新され、再レンダリングが連続して走ります。"
   },
   {
     "id": 35,
     "character": "zundamon",
-    "text": "今回のポイントです。Reactはレンダリングするたびに「仮想DOM」を生成します。",
+    "text": "そのたびに、前回のクリーンアップ関数が呼ばれ、ignoreフラグがtrueになります。",
     "expression": "normal",
-    "audioText": "今回のポイントです。Reactはレンダリングするたびに「仮想ドム」を生成します。"
+    "audioText": "そのたびに、前回のクリーンアップ関数が呼ばれ、イグノアフラグがトゥルーになります。"
   },
   {
     "id": 36,
     "character": "zundamon",
-    "text": "そして再レンダリング時は、新しい仮想DOMと1つ前の仮想DOMを比べて、見つかった差分だけを実際の画面に反映します。",
+    "text": "これにより、古い非同期処理が遅れて完了しても、結果がStateに反映されるのを防ぐことができるんです。",
     "expression": "normal",
-    "audioText": "そして再レンダリング時は、新しい仮想ドムと1つ前の仮想ドムを比べて、見つかった差分だけを実際の画面に反映します。"
+    "audioText": "これにより、古い非同期処理が遅れて完了しても、結果がステートに反映されるのを防ぐことができるんです。"
   },
   {
     "id": 37,
     "character": "zundamon",
-    "text": "これが大まかなレンダリングの流れです。",
-    "expression": "happy",
-    "energy": "high"
+    "text": "今回のポイントのおさらいです。",
+    "expression": "normal"
   },
   {
     "id": 38,
     "character": "zundamon",
-    "text": "最後までご視聴ありがとうございました。",
+    "text": "useEffectは、レンダーフェーズでコールバック関数の登録を行います。再レンダリング以降は差分チェックを行い、その結果に応じて登録の可否を決めます。",
+    "expression": "normal",
+    "audioText": "ユーズエフェクトは、レンダーフェーズでコールバックかんすうのとうろくを、行います。再レンダリング以降は、さぶんちぇっくをおこない、そのけっかにおうじてとうろくのかひを決めます。"
+  },
+  {
+    "id": 39,
+    "character": "zundamon",
+    "text": "実際に処理を行うのは、Commitフェーズが完了し、画面が更新された後になります。",
+    "expression": "normal",
+    "audioText": "実際に処理を行うのは、コミットフェーズが完了し、画面が更新された後になります。"
+  },
+  {
+    "id": 40,
+    "character": "zundamon",
+    "text": "そして、クリーンアップ関数は、次回のEffectが走る直前や、コンポーネントのアンマウント時に『前回の後始末』として実行されます。",
     "expression": "normal"
+  },
+  {
+    "id": 41,
+    "character": "zundamon",
+    "text": "これが大まかなuseEffectとレンダリングの関わりの流れになります。",
+    "expression": "normal",
+    "audioText": "これが大まかなユーズエフェクトとレンダリングの関わりの流れになります。"
+  },
+  {
+    "id": 42,
+    "character": "zundamon",
+    "text": "最後までご視聴ありがとうございました！",
+    "expression": "happy",
+    "energy": "high"
   }
 ]

@@ -3,88 +3,78 @@
     {
       "id": 1,
       "character": "zundamon",
-      "text": "今回は、useStateを例に、Reactのレンダリングプロセスの裏側について解説します。",
+      "text": "今回は、useEffectを例に、Reactの副作用の裏側について解説します。",
       "audioFile": "voices/voice_1.wav",
       "expression": "normal",
       "startFrame": 0,
-      "durationInFrames": 258
+      "durationInFrames": 239
     },
     {
       "id": 2,
       "character": "zundamon",
-      "text": "一見魔法のように見えるHooksの仕組みを紐解いて、Reactの理解を一段深めていきましょう！",
+      "text": "データのフェッチ処理などでよく使うuseEffectですが、その仕組みを紐解いて理解を深めていきましょう！",
       "audioFile": "voices/voice_2.wav",
       "expression": "normal",
-      "startFrame": 258,
-      "durationInFrames": 253
+      "startFrame": 239,
+      "durationInFrames": 256
     },
     {
       "id": 3,
       "character": "zundamon",
-      "text": "こちらは、ボタンをクリックするとカウントが増えて、画面が更新される簡易的なコンポーネントです。",
+      "text": "こちらは、ボタンを押すと美術館のAPIから作品データを取得するコンポーネントです。",
       "audioFile": "voices/voice_3.wav",
       "expression": "normal",
       "media": [
         {
-          "src": "images/useState/mock.mp4",
+          "src": "images/useEffect/mock2.mp4",
           "style": {
             "flex": 1,
             "objectFit": "contain",
-            "transform": "scale(1.2)",
+            "transform": "scale(1.1)",
             "objectPosition": "50% 30%"
-          }
-        },
-        {
-          "src": "images/useState/mock.png",
-          "style": {
-            "flex": 1,
-            "objectFit": "contain",
-            "transform": "scale(1.2)",
-            "objectPosition": "50% 20%"
           }
         }
       ],
-      "startFrame": 511,
-      "durationInFrames": 260
+      "startFrame": 495,
+      "durationInFrames": 198
     },
     {
       "id": 4,
       "character": "zundamon",
-      "text": "ボタンを押すと数字が切り替わりますが、このときuseStateの裏側では何が起きているのでしょうか？",
-      "audioFile": "voices/voice_4.wav",
+      "text": "では、この裏側では一体どのような処理が行われているのでしょうか？",
+      "audioFile": "voices/voice_5.wav",
       "expression": "normal",
-      "startFrame": 771,
-      "durationInFrames": 258
+      "startFrame": 693,
+      "durationInFrames": 199
     },
     {
       "id": 5,
       "character": "zundamon",
-      "text": "内部の挙動を説明する前に、まずはReactレンダリングの基本を確認していきましょう。",
-      "audioFile": "voices/voice_5.wav",
+      "text": "Reactのレンダリングプロセスの流れをざっと説明します。",
+      "audioFile": "voices/voice_7.wav",
       "expression": "normal",
-      "media": null,
       "background": {
         "src": "images/useState/render01.png"
       },
-      "startFrame": 1029,
-      "durationInFrames": 240
+      "startFrame": 892,
+      "durationInFrames": 165
     },
     {
       "id": 6,
       "character": "zundamon",
-      "text": "Reactのレンダリングは、大きく2つのフェーズに分かれています。",
-      "audioFile": "voices/voice_6.wav",
+      "text": "Reactのレンダリングは大きく二つのフェーズに分かれています。",
+      "audioFile": "voices/voice_7.wav",
       "expression": "normal",
-      "startFrame": 1269,
-      "durationInFrames": 177
+      "startFrame": 1057,
+      "durationInFrames": 165
     },
     {
       "id": 7,
       "character": "zundamon",
       "text": "1つ目は「Renderフェーズ」。これはページを構成する設計図を作るフェーズです。",
-      "audioFile": "voices/voice_7.wav",
+      "audioFile": "voices/voice_8.wav",
       "expression": "normal",
-      "startFrame": 1446,
+      "startFrame": 1222,
       "durationInFrames": 225,
       "media": [
         {
@@ -108,7 +98,7 @@
       "id": 8,
       "character": "zundamon",
       "text": "ここではメモリ上に「仮想DOM」を生成します。これがページを構成する設計図になります。",
-      "audioFile": "voices/voice_8.wav",
+      "audioFile": "voices/voice_9.wav",
       "expression": "normal",
       "media": [
         {
@@ -123,73 +113,22 @@
           }
         }
       ],
-      "startFrame": 1671,
+      "startFrame": 1447,
       "durationInFrames": 265
     },
     {
       "id": 9,
       "character": "zundamon",
       "text": "Reactではレンダリングするたびに、必ずこの「仮想DOM」を生成します。",
-      "audioFile": "voices/voice_9.wav",
+      "audioFile": "voices/voice_10.wav",
       "expression": "normal",
-      "startFrame": 1936,
+      "startFrame": 1712,
       "durationInFrames": 225
     },
     {
       "id": 10,
       "character": "zundamon",
-      "text": "次に「Commitフェーズ」に移ります。",
-      "audioFile": "voices/voice_10.wav",
-      "expression": "normal",
-      "media": [
-        {
-          "component": "Render02Mockup",
-          "style": {
-            "position": "absolute",
-            "top": "150px",
-            "left": "300px",
-            "width": "600px",
-            "height": "600px",
-            "borderRadius": 0
-          }
-        },
-        {
-          "component": "ArrowRight",
-          "style": {
-            "position": "absolute",
-            "top": "400px",
-            "left": "910px",
-            "width": "80px",
-            "height": "100px"
-          },
-          "animation": {
-            "fadeInStart": 0,
-            "fadeInDuration": 15
-          }
-        },
-        {
-          "component": "Commit01Mockup",
-          "style": {
-            "position": "absolute",
-            "top": "150px",
-            "left": "1000px",
-            "width": "600px",
-            "height": "600px",
-            "borderRadius": 0
-          },
-          "animation": {
-            "fadeInStart": 0,
-            "fadeInDuration": 15
-          }
-        }
-      ],
-      "startFrame": 2161,
-      "durationInFrames": 134
-    },
-    {
-      "id": 11,
-      "character": "zundamon",
-      "text": "ここでは、出来上がった設計図をもとに、画面に描画する作業を担います。",
+      "text": "次に「Commitフェーズ」に移ります。ここでは出来上がった設計図をもとに、画面に描画する作業を担います。",
       "audioFile": "voices/voice_11.wav",
       "expression": "normal",
       "media": [
@@ -212,6 +151,10 @@
             "left": "910px",
             "width": "80px",
             "height": "100px"
+          },
+          "animation": {
+            "fadeInStart": 0,
+            "fadeInDuration": 15
           }
         },
         {
@@ -223,30 +166,34 @@
             "width": "600px",
             "height": "600px",
             "borderRadius": 0
+          },
+          "animation": {
+            "fadeInStart": 0,
+            "fadeInDuration": 15
           }
         }
       ],
-      "startFrame": 2295,
-      "durationInFrames": 215
+      "startFrame": 1937,
+      "durationInFrames": 309
     },
     {
-      "id": 12,
+      "id": 11,
       "character": "zundamon",
       "text": "Reactのレンダリングプロセスは「Render」「Commit」の二段階あると覚えておいてください。",
       "audioFile": "voices/voice_12.wav",
       "expression": "normal",
-      "startFrame": 2510,
-      "durationInFrames": 251
+      "startFrame": 2246,
+      "durationInFrames": 252
     },
     {
-      "id": 13,
+      "id": 12,
       "character": "zundamon",
-      "text": "これらを踏まえて、useState内部の挙動をJSで大まかに表現したこちらのモックコードを見てみましょう。",
+      "text": "これらを踏まえて、useEffect内部の挙動をJSで大まかに表現したこちらのモックコードを見てみましょう。",
       "audioFile": "voices/voice_13.wav",
       "expression": "normal",
       "media": [
         {
-          "src": "images/useState/usestatemock.png",
+          "src": "images/useEffect/carbon.png",
           "style": {
             "position": "absolute",
             "top": 0,
@@ -261,30 +208,30 @@
         }
       ],
       "background": null,
-      "startFrame": 2761,
+      "startFrame": 2498,
       "durationInFrames": 274
     },
     {
-      "id": 14,
+      "id": 13,
       "character": "zundamon",
       "text": "このコードをもとに、実際の動きを追っていきます。",
       "audioFile": "voices/voice_14.wav",
       "expression": "normal",
-      "startFrame": 3035,
-      "durationInFrames": 150
+      "startFrame": 2772,
+      "durationInFrames": 156
     },
     {
-      "id": 15,
+      "id": 14,
       "character": "zundamon",
-      "text": "まずは「初回レンダリング」です！",
-      "audioFile": "voices/voice_15.wav",
+      "text": "まずは「初回レンダリング」、つまり画面を初めて開く際の動きから見ていきましょう。",
+      "audioFile": "voices/voice_13.wav",
       "expression": "normal",
       "background": {
         "src": "images/useState/firstrender.png"
       },
       "media": [
         {
-          "src": "images/useState/counter.png",
+          "src": "images/useEffect/first.png",
           "style": {
             "position": "absolute",
             "top": 120,
@@ -293,580 +240,271 @@
           }
         }
       ],
-      "startFrame": 3185,
-      "durationInFrames": 126
+      "startFrame": 2928,
+      "durationInFrames": 212
+    },
+    {
+      "id": 15,
+      "character": "zundamon",
+      "text": "初回レンダリング時のRenderフェーズでは、仮想DOMの生成とともに、あとで実行するコールバック関数の登録を行います。",
+      "audioFile": "voices/voice_14.wav",
+      "expression": "normal",
+      "startFrame": 3140,
+      "durationInFrames": 321
     },
     {
       "id": 16,
       "character": "zundamon",
-      "text": "アプリを起動したり新しいページを開いたとき、最初に表示される画面を作るプロセスです。ここでは先ほどのカウンターの初期画面が表示されるまでを指します。",
-      "audioFile": "voices/voice_16.wav",
+      "text": "ここでは関数をメモしておくだけで、まだ実行はされません。",
+      "audioFile": "voices/voice_15.wav",
       "expression": "normal",
-      "startFrame": 3311,
-      "durationInFrames": 402
+      "startFrame": 3461,
+      "durationInFrames": 172
     },
     {
       "id": 17,
       "character": "zundamon",
-      "text": "初回レンダリングのRenderフェーズでは、「仮想DOM」を生成します。先ほどのモックコードでいうこの部分です。",
-      "audioFile": "voices/voice_17.wav",
+      "text": "続いてCommitフェーズです。ブラウザが新しい画面をユーザーに表示し終わった後に、先ほどメモしておいた関数が実行されます。",
+      "audioFile": "voices/voice_16.wav",
       "expression": "normal",
-      "media": [
-        {
-          "component": "Render02Mockup",
-          "style": {
-            "position": "absolute",
-            "top": "150px",
-            "left": "300px",
-            "width": "600px",
-            "height": "600px",
-            "borderRadius": 0
-          },
-          "animation": {
-            "fadeInStart": 30,
-            "fadeInDuration": 15
-          }
-        }
-      ],
-      "startFrame": 3713,
-      "durationInFrames": 195
+      "startFrame": 3633,
+      "durationInFrames": 335
     },
     {
       "id": 18,
       "character": "zundamon",
-      "text": "このタイミングで、useStateの初期値、今回はゼロがセットされます。",
-      "audioFile": "voices/voice_18.wav",
+      "text": "重たい処理を書いても画面の表示を邪魔しない仕組みです。",
+      "audioFile": "voices/voice_17.wav",
       "expression": "normal",
-      "media": [
-        {
-          "src": "images/useState/mockfirst.png",
-          "style": {
-            "position": "absolute",
-            "top": 200,
-            "width": "1400px",
-            "height": "auto"
-          }
-        },
-        {
-          "component": "HighlightBorder",
-          "style": {
-            "position": "absolute",
-            "top": "440px",
-            "left": "400px",
-            "width": "600px",
-            "height": "200px",
-            "border": "8px solid #FF5722",
-            "borderRadius": "16px"
-          }
-        }
-      ],
-      "startFrame": 3908,
-      "durationInFrames": 205
+      "startFrame": 3968,
+      "durationInFrames": 153
     },
     {
       "id": 19,
       "character": "zundamon",
-      "text": "次にCommitフェーズに移ります。初回レンダリング時のCommitフェーズでは、Renderフェーズで作られた仮想DOMを使って、そのまま画面を描画します。",
-      "audioFile": "voices/voice_19.wav",
+      "text": "次に、Stateが更新されたときの「再レンダリング」時の動きを見ていきましょう。",
+      "audioFile": "voices/voice_18.wav",
       "expression": "normal",
-      "media": [
-        {
-          "component": "Render02Mockup",
-          "style": {
-            "position": "absolute",
-            "top": "150px",
-            "left": "300px",
-            "width": "600px",
-            "height": "600px",
-            "borderRadius": 0
-          }
-        },
-        {
-          "component": "ArrowRight",
-          "style": {
-            "position": "absolute",
-            "top": "400px",
-            "left": "910px",
-            "width": "80px",
-            "height": "100px"
-          },
-          "animation": {
-            "fadeInStart": 0,
-            "fadeInDuration": 15
-          }
-        },
-        {
-          "component": "Commit01Mockup",
-          "style": {
-            "position": "absolute",
-            "top": "150px",
-            "left": "1000px",
-            "width": "600px",
-            "height": "600px",
-            "borderRadius": 0
-          },
-          "animation": {
-            "fadeInStart": 0,
-            "fadeInDuration": 15
-          }
-        }
-      ],
-      "startFrame": 4113,
-      "durationInFrames": 371
+      "startFrame": 4121,
+      "durationInFrames": 240
     },
     {
       "id": 20,
       "character": "zundamon",
-      "text": "ここまでで、このように画面に初期状態が表示されます。",
-      "audioFile": "voices/voice_20.wav",
+      "text": "ボタンが押されてStateが変わると、再びコンポーネントが実行され、Renderフェーズが走ります。",
+      "audioFile": "voices/voice_19.wav",
       "expression": "normal",
-      "media": [
-        {
-          "src": "images/useState/counter.png",
-          "style": {
-            "position": "absolute",
-            "top": 120,
-            "width": "1400px",
-            "height": "auto"
-          }
-        }
-      ],
-      "startFrame": 4484,
-      "durationInFrames": 166
+      "startFrame": 4361,
+      "durationInFrames": 262
     },
     {
       "id": 21,
       "character": "zundamon",
-      "text": "次は、Stateが更新されたときの「再レンダリング」の動きです。",
-      "audioFile": "voices/voice_21.wav",
+      "text": "ここでもう一度useEffectが呼ばれますが、重要になるのが第2引数の「依存配列」です。",
+      "audioFile": "voices/voice_20.wav",
       "expression": "normal",
-      "background": {
-        "src": "images/useState/rerender.png"
-      },
-      "media": null,
-      "startFrame": 4650,
-      "durationInFrames": 206
+      "startFrame": 4623,
+      "durationInFrames": 276
     },
     {
       "id": 22,
       "character": "zundamon",
-      "text": "更新関数（setState）が呼ばれると、Reactはまず「現在のState」と「新しいState」の間に差分があるかを判定します。",
-      "audioFile": "voices/voice_22.wav",
+      "text": "ReactはRenderフェーズの最中に、前回の配列と今回の配列を見比べます。",
+      "audioFile": "voices/voice_21.wav",
       "expression": "normal",
-      "media": [
-        {
-          "src": "images/useState/mockre.png",
-          "style": {
-            "position": "absolute",
-            "top": 300,
-            "right": 20,
-            "width": "1000px",
-            "height": "auto"
-          }
-        },
-        {
-          "component": "HighlightBorder",
-          "style": {
-            "position": "absolute",
-            "top": "320px",
-            "right": "50px",
-            "width": "950px",
-            "height": "150px",
-            "border": "8px solid #FF5722",
-            "borderRadius": "16px"
-          }
-        },
-        {
-          "component": "DiffCheckMockup",
-          "style": {
-            "position": "absolute",
-            "top": "150px",
-            "left": "200px",
-            "width": "600px",
-            "height": "110px",
-            "borderRadius": 0
-          }
-        }
-      ],
-      "startFrame": 4856,
-      "durationInFrames": 413
+      "startFrame": 4899,
+      "durationInFrames": 235
     },
     {
       "id": 23,
       "character": "zundamon",
-      "text": "この判定には Object.is() が使われており、",
-      "audioFile": "voices/voice_23.wav",
+      "text": "もし値が異なっていれば、前回のRenderフェーズと同じように関数を登録します。",
+      "audioFile": "voices/voice_22.wav",
       "expression": "normal",
-      "startFrame": 5269,
-      "durationInFrames": 189
+      "startFrame": 5134,
+      "durationInFrames": 224
     },
     {
       "id": 24,
       "character": "zundamon",
-      "text": "プリミティブ型なら「同じ値か」、オブジェクトや配列なら「同じ参照か」を厳密にチェックします。",
-      "audioFile": "voices/voice_24.wav",
+      "text": "逆に、関係ないStateが更新された場合は、依存配列に変化がないため、関数のメモはスキップされます。",
+      "audioFile": "voices/voice_23.wav",
       "expression": "normal",
-      "startFrame": 5458,
-      "durationInFrames": 286
+      "startFrame": 5358,
+      "durationInFrames": 308
     },
     {
       "id": 25,
       "character": "zundamon",
-      "text": "だからこそ、オブジェクトや配列のStateを更新する際には、",
-      "audioFile": "voices/voice_25.wav",
+      "text": "Renderフェーズでの差分チェックが終わると、画面の更新、つまりCommitフェーズが行われます。",
+      "audioFile": "voices/voice_24.wav",
       "expression": "normal",
-      "startFrame": 5744,
-      "durationInFrames": 179
+      "startFrame": 5666,
+      "durationInFrames": 257
     },
     {
       "id": 26,
       "character": "zundamon",
-      "text": "値を直接書き換えるのではなく、新しく作り直す「シャローコピー」が必要になるわけです。",
-      "audioFile": "voices/voice_26.wav",
+      "text": "useEffectは、このCommitフェーズでは実際の処理を行わず、",
+      "audioFile": "voices/voice_25.wav",
       "expression": "normal",
       "startFrame": 5923,
-      "durationInFrames": 271
+      "durationInFrames": 183
     },
     {
       "id": 27,
       "character": "zundamon",
-      "text": "そして「差分あり」と判定された場合のみ、レンダリングが始まります。",
-      "audioFile": "voices/voice_27.wav",
+      "text": "実際に処理を行うのは「画面の更新（Commitフェーズ）がすべて終わった後」という役割分担です。",
+      "audioFile": "voices/voice_26.wav",
       "expression": "normal",
-      "media": [
-        {
-          "component": "ReRenderMockup",
-          "style": {
-            "position": "absolute",
-            "top": "250px",
-            "left": "200px",
-            "width": "600px",
-            "height": "600px",
-            "borderRadius": 0
-          }
-         
-        },
-        {
-          "component": "DiffCheckMockup",
-          "style": {
-            "position": "absolute",
-            "top": "130px",
-            "left": "200px",
-            "width": "600px",
-            "height": "110px",
-            "borderRadius": 0
-          }
-        },
-        {
-          "src": "images/useState/mockre.png",
-          "style": {
-            "position": "absolute",
-            "top": 300,
-            "right": 20,
-            "width": "1000px",
-            "height": "auto"
-          }
-        },
-        {
-          "component": "HighlightBorder",
-          "style": {
-            "position": "absolute",
-            "top": "320px",
-            "right": "50px",
-            "width": "950px",
-            "height": "150px",
-            "border": "8px solid #FF5722",
-            "borderRadius": "16px"
-          }
-        }
-      ],
-      "startFrame": 6194,
-      "durationInFrames": 216
+      "startFrame": 6106,
+      "durationInFrames": 301
     },
     {
       "id": 28,
       "character": "zundamon",
-      "text": "まずRenderフェーズです。コンポーネントが再実行されると、最新のStateを反映した新しいJSXが返され、",
-      "audioFile": "voices/voice_28.wav",
+      "text": "ここでさらに重要なのが、次回の実行前に行う「お片付け」、クリーンアップ関数です。",
+      "audioFile": "voices/voice_27.wav",
       "expression": "normal",
-      "startFrame": 6410,
-      "durationInFrames": 319
+      "startFrame": 6407,
+      "durationInFrames": 255
     },
     {
       "id": 29,
       "character": "zundamon",
-      "text": "Reactはそれをもとに「新しい仮想DOM」を生成します。",
-      "audioFile": "voices/voice_29.wav",
+      "text": "useEffectの中でreturnを使って関数を返すと、それはクリーンアップ関数として扱われます。",
+      "audioFile": "voices/voice_28.wav",
       "expression": "normal",
-      "media": [
-        {
-          "component": "ReRenderMockup",
-          "style": {
-            "position": "absolute",
-            "top": "250px",
-            "left": "200px",
-            "width": "600px",
-            "height": "600px",
-            "borderRadius": 0
-          }
-
-        
-        },
-        {
-          "component": "DiffCheckMockup",
-          "style": {
-            "position": "absolute",
-            "top": "130px",
-            "left": "200px",
-            "width": "600px",
-            "height": "110px",
-            "borderRadius": 0
-          }
-        },
-        {
-          "src": "images/useState/mockre.png",
-          "style": {
-            "position": "absolute",
-            "top": 300,
-            "right": 20,
-            "width": "1000px",
-            "height": "auto"
-          }
-        },
-        {
-          "component": "HighlightBorder",
-          "style": {
-            "position": "absolute",
-            "top": "320px",
-            "right": "50px",
-            "width": "950px",
-            "height": "150px",
-            "border": "8px solid #FF5722",
-            "borderRadius": "16px"
-          }
-        }
-      ],
-      "startFrame": 6729,
-      "durationInFrames": 182
+      "startFrame": 6662,
+      "durationInFrames": 259
     },
     {
       "id": 30,
       "character": "zundamon",
-      "text": "さらに、この「新しい仮想DOM」と「一つ前の仮想DOM」を見比べ、差分検出を行います。",
-      "audioFile": "voices/voice_30.wav",
+      "text": "タイマーやイベントリスナーの解除など、前回のコールバック関数の実行内容のお片付けをするための機能です。",
+      "audioFile": "voices/voice_29.wav",
       "expression": "normal",
-      "media": [
-        {
-          "component": "ReRenderMockup",
-          "style": {
-            "position": "absolute",
-            "top": "250px",
-            "left": "200px",
-            "width": "600px",
-            "height": "600px",
-            "borderRadius": 0
-          }
-        },
-        {
-          "component": "DiffCheckMockup",
-          "style": {
-            "position": "absolute",
-            "top": "130px",
-            "left": "200px",
-            "width": "600px",
-            "height": "110px",
-            "borderRadius": 0
-          }
-        },
-        {
-          "src": "images/useState/mockre.png",
-          "style": {
-            "position": "absolute",
-            "top": 300,
-            "right": 20,
-            "width": "1000px",
-            "height": "auto"
-          }
-        },
-        {
-          "component": "HighlightBorder",
-          "style": {
-            "position": "absolute",
-            "top": "320px",
-            "right": "50px",
-            "width": "950px",
-            "height": "150px",
-            "border": "8px solid #FF5722",
-            "borderRadius": "16px"
-          }
-        }
-      ],
-      "startFrame": 6911,
-      "durationInFrames": 302
+      "startFrame": 6921,
+      "durationInFrames": 288
     },
     {
       "id": 31,
       "character": "zundamon",
-      "text": "実際の画面のどこを変更すべきか、仮想DOM同士の具体的な差分を洗い出します。",
-      "audioFile": "voices/voice_31.wav",
+      "text": "依存配列に変化があって新しいEffectが走る場合、その処理の直前に、必ず前回のクリーンアップ関数が実行されます。",
+      "audioFile": "voices/voice_30.wav",
       "expression": "normal",
-      "startFrame": 7213,
-      "durationInFrames": 233
+      "startFrame": 7209,
+      "durationInFrames": 345
     },
     {
       "id": 32,
       "character": "zundamon",
-      "text": "ここまでの一連の作業、つまり「仮想DOMの生成と、仮想DOM同士の差分検出」までが、再レンダリング時のRenderフェーズとなります。",
-      "audioFile": "voices/voice_32.wav",
+      "text": "Reactは常に「前回の後始末をしてから、今回の処理を始める」という丁寧な動きをすることで、バグやメモリの無駄遣いを防いでいるのです。",
+      "audioFile": "voices/voice_31.wav",
       "expression": "normal",
-      "startFrame": 7446,
-      "durationInFrames": 382
+      "startFrame": 7554,
+      "durationInFrames": 394
     },
     {
       "id": 33,
       "character": "zundamon",
-      "text": "最後に再レンダリングのCommitフェーズです。先ほど洗い出した差分だけを、実際の画面に反映します。",
-      "audioFile": "voices/voice_33.wav",
+      "text": "また、このクリーンアップ関数は画面が遷移する際など、コンポーネントが消える時、つまり「アンマウント時」にも必ず実行され、最後のお片付けをしてくれます。",
+      "audioFile": "voices/voice_32.wav",
       "expression": "normal",
-      "media": [
-        {
-          "component": "ReRenderMockup",
-          "style": {
-            "position": "absolute",
-            "top": "250px",
-            "left": "200px",
-            "width": "600px",
-            "height": "600px",
-            "borderRadius": 0
-          }
-         
-        },
-        {
-          "component": "DiffCheckMockup",
-          "style": {
-            "position": "absolute",
-            "top": "130px",
-            "left": "200px",
-            "width": "600px",
-            "height": "110px",
-            "borderRadius": 0
-          }
-        },
-        {
-          "component": "ArrowRight",
-          "style": {
-            "position": "absolute",
-            "top": "500px",
-            "left": "860px",
-            "width": "80px",
-            "height": "100px"
-          },
-          "animation": {
-            "fadeInStart": 0,
-            "fadeInDuration": 15
-          }
-        },
-        {
-          "component": "Commit01Mockup",
-          "style": {
-            "position": "absolute",
-            "top": "250px",
-            "left": "1000px",
-            "width": "600px",
-            "height": "600px",
-            "borderRadius": 0
-          },
-          "animation": {
-            "fadeInStart": 0,
-            "fadeInDuration": 15
-          }
-        }
-      ],
-      "startFrame": 7828,
-      "durationInFrames": 281
+      "startFrame": 7948,
+      "durationInFrames": 439
     },
     {
       "id": 34,
       "character": "zundamon",
-      "text": "今回の場合、数字が更新されるたびにこのプロセスが走り、差分のある数字の部分だけが画面に再描画されます。",
-      "audioFile": "voices/voice_34.wav",
+      "text": "もう一度、実際のアプリのコードを見てみましょう。",
+      "audioFile": "voices/voice_33.wav",
       "expression": "normal",
-      "background": "none",
-      "media": [
-        {
-          "src": "images/useState/mock.mp4"
-        }
-      ],
-      "startFrame": 8109,
-      "durationInFrames": 314
+      "startFrame": 8387,
+      "durationInFrames": 148
     },
     {
       "id": 35,
       "character": "zundamon",
-      "text": "今回のポイントのおさらいです。Reactはレンダリングするたびに「仮想DOM」を生成します。",
-      "audioFile": "voices/voice_35.wav",
+      "text": "ボタンを連続でクリックすると、fetchTriggerが何度も更新され、再レンダリングが連続して走ります。",
+      "audioFile": "voices/voice_34.wav",
       "expression": "normal",
-      "background": {
-        "src": "images/useState/summary.png"
-      },
-      "media": [
-        {
-          "component": "TextDisplay",
-          "text": "・Reactはレンダリングするたびに「仮想DOM」を生成する。",
-          "style": {
-            "position": "absolute",
-            "top": "170px"
-          }
-        }
-      ],
-      "startFrame": 8423,
-      "durationInFrames": 244
+      "startFrame": 8535,
+      "durationInFrames": 279
     },
     {
       "id": 36,
       "character": "zundamon",
-      "text": "そして再レンダリング時は、新しい仮想DOMと1つ前の仮想DOMを比べて、見つかった差分だけを実際の画面に反映します。",
-      "audioFile": "voices/voice_36.wav",
+      "text": "そのたびに、前回のクリーンアップ関数が呼ばれ、ignoreフラグがtrueになります。",
+      "audioFile": "voices/voice_35.wav",
       "expression": "normal",
-      "media": [
-        {
-          "component": "TextDisplay",
-          "text": "・Reactはレンダリングするたびに「仮想DOM」を生成する。",
-          "style": {
-            "position": "absolute",
-            "top": "170px"
-          }
-        },
-        {
-          "component": "TextDisplay",
-          "text": "・仮想DOM同士の差分を検出して、その差分だけを実際の画面（DOM）に反映して更新する。",
-          "style": {
-            "position": "absolute",
-            "top": "270px"
-          }
-        }
-      ],
-      "startFrame": 8667,
-      "durationInFrames": 329
+      "startFrame": 8814,
+      "durationInFrames": 232
     },
     {
       "id": 37,
       "character": "zundamon",
-      "text": "これが大まかなレンダリングの流れです。",
-      "audioFile": "voices/voice_37.wav",
-      "expression": "happy",
-      "startFrame": 8996,
-      "durationInFrames": 118
+      "text": "これにより、古い非同期処理が遅れて完了しても、結果がStateに反映されるのを防ぐことができるんです。",
+      "audioFile": "voices/voice_36.wav",
+      "expression": "normal",
+      "startFrame": 9046,
+      "durationInFrames": 287
     },
     {
       "id": 38,
       "character": "zundamon",
-      "text": "最後までご視聴ありがとうございました。",
+      "text": "今回のポイントのおさらいです。",
+      "audioFile": "voices/voice_37.wav",
+      "expression": "normal",
+      "startFrame": 9333,
+      "durationInFrames": 102
+    },
+    {
+      "id": 39,
+      "character": "zundamon",
+      "text": "useEffectは、レンダーフェーズでコールバック関数の登録を行います。再レンダリング以降は差分チェックを行い、その結果に応じて登録の可否を決めます。",
       "audioFile": "voices/voice_38.wav",
       "expression": "normal",
-      "startFrame": 9114,
+      "startFrame": 9435,
+      "durationInFrames": 430
+    },
+    {
+      "id": 40,
+      "character": "zundamon",
+      "text": "実際に処理を行うのは、Commitフェーズが完了し、画面が更新された後になります。",
+      "audioFile": "voices/voice_39.wav",
+      "expression": "normal",
+      "startFrame": 9865,
+      "durationInFrames": 247
+    },
+    {
+      "id": 41,
+      "character": "zundamon",
+      "text": "そして、クリーンアップ関数は、次回のEffectが走る直前や、コンポーネントのアンマウント時に『前回の後始末』として実行されます。",
+      "audioFile": "voices/voice_40.wav",
+      "expression": "normal",
+      "startFrame": 10112,
+      "durationInFrames": 382
+    },
+    {
+      "id": 42,
+      "character": "zundamon",
+      "text": "これが大まかなuseEffectとレンダリングの関わりの流れになります。",
+      "audioFile": "voices/voice_41.wav",
+      "expression": "normal",
+      "startFrame": 10494,
+      "durationInFrames": 182
+    },
+    {
+      "id": 43,
+      "character": "zundamon",
+      "text": "最後までご視聴ありがとうございました！",
+      "audioFile": "voices/voice_42.wav",
+      "expression": "happy",
+      "startFrame": 10676,
       "durationInFrames": 123
     }
   ],
-  "totalDurationInFrames": 9387
+  "telops": [],
+  "totalDurationInFrames": 10799
 }
