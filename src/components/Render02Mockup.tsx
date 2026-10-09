@@ -28,8 +28,10 @@ export const Render02Mockup: React.FC<{ style?: React.CSSProperties, segment?: a
       border: `8px solid ${style?.borderColor || '#FF9800'}`
     }}>
       <h2 style={{ fontSize: 80  , lineHeight: 0 }}>Render</h2>
-      <div style={{ display: 'flex', gap: '20px' }}>
+      <div style={{ display: 'flex', gap: '20px', flexDirection: 'column' }}>
         <div style={{ opacity, fontSize: 60, fontWeight: 'bold' }}>仮想DOM生成</div>
+        <div style={{ opacity, fontSize: 60, fontWeight: 'bold' }}>コールバック登録</div>
+
       </div>
     </div>
   );

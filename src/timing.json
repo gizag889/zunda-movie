@@ -78,15 +78,7 @@
       "durationInFrames": 225,
       "media": [
         {
-          "component": "Render02Mockup",
-          "style": {
-            "position": "absolute",
-            "top": "150px",
-            "left": "300px",
-            "width": "600px",
-            "height": "600px",
-            "borderRadius": 0
-          },
+          "component": "RenderPhaseScene",
           "animation": {
             "fadeInStart": 30,
             "fadeInDuration": 15
@@ -133,44 +125,7 @@
       "expression": "normal",
       "media": [
         {
-          "component": "Render02Mockup",
-          "style": {
-            "position": "absolute",
-            "top": "150px",
-            "left": "300px",
-            "width": "600px",
-            "height": "600px",
-            "borderRadius": 0
-          }
-        },
-        {
-          "component": "ArrowRight",
-          "style": {
-            "position": "absolute",
-            "top": "400px",
-            "left": "910px",
-            "width": "80px",
-            "height": "100px"
-          },
-          "animation": {
-            "fadeInStart": 0,
-            "fadeInDuration": 15
-          }
-        },
-        {
-          "component": "Commit01Mockup",
-          "style": {
-            "position": "absolute",
-            "top": "150px",
-            "left": "1000px",
-            "width": "600px",
-            "height": "600px",
-            "borderRadius": 0
-          },
-          "animation": {
-            "fadeInStart": 0,
-            "fadeInDuration": 15
-          }
+          "component": "RenderCommitPhaseScene"
         }
       ],
       "startFrame": 1937,
@@ -249,6 +204,23 @@
       "text": "初回レンダリング時のRenderフェーズでは、仮想DOMの生成とともに、あとで実行するコールバック関数の登録を行います。",
       "audioFile": "voices/voice_14.wav",
       "expression": "normal",
+      "media": [
+        {
+          "component": "Render02Mockup",
+          "style": {
+            "position": "absolute",
+            "top": "150px",
+            "left": "300px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          },
+          "animation": {
+            "fadeInStart": 30,
+            "fadeInDuration": 15
+          }
+        }
+      ],
       "startFrame": 3140,
       "durationInFrames": 321
     },
@@ -264,32 +236,67 @@
     {
       "id": 17,
       "character": "zundamon",
-      "text": "続いてCommitフェーズです。ブラウザが新しい画面をユーザーに表示し終わった後に、先ほどメモしておいた関数が実行されます。",
+      "text": "続いてCommitフェーズです。新しい画面をユーザーに表示し終わると、",
       "audioFile": "voices/voice_16.wav",
       "expression": "normal",
+      "media": [
+        {
+          "component": "RenderCommitPhaseScene"
+        }
+      ],
       "startFrame": 3633,
-      "durationInFrames": 335
+      "durationInFrames": 160
     },
     {
       "id": 18,
       "character": "zundamon",
-      "text": "重たい処理を書いても画面の表示を邪魔しない仕組みです。",
+      "text": "先ほどメモしておいたコールバック関数が実行されます。",
+      "audioFile": "voices/voice_16.wav",
+      "expression": "normal",
+      "media": [
+        {
+          "component": "CallbackPhaseScene"
+        }
+      ],
+      "startFrame": 3793,
+      "durationInFrames": 175
+    },
+    {
+      "id": 19,
+      "character": "zundamon",
+      "text": "useEffectで重たい処理を書いても画面の表示を邪魔しない仕組みです。",
       "audioFile": "voices/voice_17.wav",
       "expression": "normal",
       "startFrame": 3968,
       "durationInFrames": 153
     },
     {
-      "id": 19,
+      "id": 20,
       "character": "zundamon",
       "text": "次に、Stateが更新されたときの「再レンダリング」時の動きを見ていきましょう。",
       "audioFile": "voices/voice_18.wav",
       "expression": "normal",
+      "background": {
+        "src": "images/useState/rerender.png"
+      },
+      "media": [
+        {
+          "component": "Render03Mockup",
+          "style": {
+            "position": "absolute",
+            "top": "150px",
+            "left": "300px",
+            "width": "600px",
+            "height": "600px",
+            "borderRadius": 0
+          }
+        }
+      ],
       "startFrame": 4121,
       "durationInFrames": 240
     },
     {
-      "id": 20,
+      "id": 21,
       "character": "zundamon",
       "text": "ボタンが押されてStateが変わると、再びコンポーネントが実行され、Renderフェーズが走ります。",
       "audioFile": "voices/voice_19.wav",
@@ -298,7 +305,7 @@
       "durationInFrames": 262
     },
     {
-      "id": 21,
+      "id": 22,
       "character": "zundamon",
       "text": "ここでもう一度useEffectが呼ばれますが、重要になるのが第2引数の「依存配列」です。",
       "audioFile": "voices/voice_20.wav",
@@ -307,7 +314,7 @@
       "durationInFrames": 276
     },
     {
-      "id": 22,
+      "id": 23,
       "character": "zundamon",
       "text": "ReactはRenderフェーズの最中に、前回の配列と今回の配列を見比べます。",
       "audioFile": "voices/voice_21.wav",
@@ -316,7 +323,7 @@
       "durationInFrames": 235
     },
     {
-      "id": 23,
+      "id": 24,
       "character": "zundamon",
       "text": "もし値が異なっていれば、前回のRenderフェーズと同じように関数を登録します。",
       "audioFile": "voices/voice_22.wav",
@@ -325,7 +332,7 @@
       "durationInFrames": 224
     },
     {
-      "id": 24,
+      "id": 25,
       "character": "zundamon",
       "text": "逆に、関係ないStateが更新された場合は、依存配列に変化がないため、関数のメモはスキップされます。",
       "audioFile": "voices/voice_23.wav",
@@ -334,7 +341,7 @@
       "durationInFrames": 308
     },
     {
-      "id": 25,
+      "id": 26,
       "character": "zundamon",
       "text": "Renderフェーズでの差分チェックが終わると、画面の更新、つまりCommitフェーズが行われます。",
       "audioFile": "voices/voice_24.wav",
@@ -343,7 +350,7 @@
       "durationInFrames": 257
     },
     {
-      "id": 26,
+      "id": 27,
       "character": "zundamon",
       "text": "useEffectは、このCommitフェーズでは実際の処理を行わず、",
       "audioFile": "voices/voice_25.wav",
@@ -352,7 +359,7 @@
       "durationInFrames": 183
     },
     {
-      "id": 27,
+      "id": 28,
       "character": "zundamon",
       "text": "実際に処理を行うのは「画面の更新（Commitフェーズ）がすべて終わった後」という役割分担です。",
       "audioFile": "voices/voice_26.wav",
@@ -361,7 +368,7 @@
       "durationInFrames": 301
     },
     {
-      "id": 28,
+      "id": 29,
       "character": "zundamon",
       "text": "ここでさらに重要なのが、次回の実行前に行う「お片付け」、クリーンアップ関数です。",
       "audioFile": "voices/voice_27.wav",
@@ -370,7 +377,7 @@
       "durationInFrames": 255
     },
     {
-      "id": 29,
+      "id": 30,
       "character": "zundamon",
       "text": "useEffectの中でreturnを使って関数を返すと、それはクリーンアップ関数として扱われます。",
       "audioFile": "voices/voice_28.wav",
@@ -379,7 +386,7 @@
       "durationInFrames": 259
     },
     {
-      "id": 30,
+      "id": 31,
       "character": "zundamon",
       "text": "タイマーやイベントリスナーの解除など、前回のコールバック関数の実行内容のお片付けをするための機能です。",
       "audioFile": "voices/voice_29.wav",
@@ -388,7 +395,7 @@
       "durationInFrames": 288
     },
     {
-      "id": 31,
+      "id": 32,
       "character": "zundamon",
       "text": "依存配列に変化があって新しいEffectが走る場合、その処理の直前に、必ず前回のクリーンアップ関数が実行されます。",
       "audioFile": "voices/voice_30.wav",
@@ -397,7 +404,7 @@
       "durationInFrames": 345
     },
     {
-      "id": 32,
+      "id": 33,
       "character": "zundamon",
       "text": "Reactは常に「前回の後始末をしてから、今回の処理を始める」という丁寧な動きをすることで、バグやメモリの無駄遣いを防いでいるのです。",
       "audioFile": "voices/voice_31.wav",
@@ -406,7 +413,7 @@
       "durationInFrames": 394
     },
     {
-      "id": 33,
+      "id": 34,
       "character": "zundamon",
       "text": "また、このクリーンアップ関数は画面が遷移する際など、コンポーネントが消える時、つまり「アンマウント時」にも必ず実行され、最後のお片付けをしてくれます。",
       "audioFile": "voices/voice_32.wav",
@@ -415,7 +422,7 @@
       "durationInFrames": 439
     },
     {
-      "id": 34,
+      "id": 35,
       "character": "zundamon",
       "text": "もう一度、実際のアプリのコードを見てみましょう。",
       "audioFile": "voices/voice_33.wav",
@@ -424,7 +431,7 @@
       "durationInFrames": 148
     },
     {
-      "id": 35,
+      "id": 36,
       "character": "zundamon",
       "text": "ボタンを連続でクリックすると、fetchTriggerが何度も更新され、再レンダリングが連続して走ります。",
       "audioFile": "voices/voice_34.wav",
@@ -433,7 +440,7 @@
       "durationInFrames": 279
     },
     {
-      "id": 36,
+      "id": 37,
       "character": "zundamon",
       "text": "そのたびに、前回のクリーンアップ関数が呼ばれ、ignoreフラグがtrueになります。",
       "audioFile": "voices/voice_35.wav",
@@ -442,7 +449,7 @@
       "durationInFrames": 232
     },
     {
-      "id": 37,
+      "id": 38,
       "character": "zundamon",
       "text": "これにより、古い非同期処理が遅れて完了しても、結果がStateに反映されるのを防ぐことができるんです。",
       "audioFile": "voices/voice_36.wav",
@@ -451,7 +458,7 @@
       "durationInFrames": 287
     },
     {
-      "id": 38,
+      "id": 39,
       "character": "zundamon",
       "text": "今回のポイントのおさらいです。",
       "audioFile": "voices/voice_37.wav",
@@ -460,7 +467,7 @@
       "durationInFrames": 102
     },
     {
-      "id": 39,
+      "id": 40,
       "character": "zundamon",
       "text": "useEffectは、レンダーフェーズでコールバック関数の登録を行います。再レンダリング以降は差分チェックを行い、その結果に応じて登録の可否を決めます。",
       "audioFile": "voices/voice_38.wav",
@@ -469,7 +476,7 @@
       "durationInFrames": 430
     },
     {
-      "id": 40,
+      "id": 41,
       "character": "zundamon",
       "text": "実際に処理を行うのは、Commitフェーズが完了し、画面が更新された後になります。",
       "audioFile": "voices/voice_39.wav",
@@ -478,7 +485,7 @@
       "durationInFrames": 247
     },
     {
-      "id": 41,
+      "id": 42,
       "character": "zundamon",
       "text": "そして、クリーンアップ関数は、次回のEffectが走る直前や、コンポーネントのアンマウント時に『前回の後始末』として実行されます。",
       "audioFile": "voices/voice_40.wav",
@@ -487,7 +494,7 @@
       "durationInFrames": 382
     },
     {
-      "id": 42,
+      "id": 43,
       "character": "zundamon",
       "text": "これが大まかなuseEffectとレンダリングの関わりの流れになります。",
       "audioFile": "voices/voice_41.wav",
@@ -496,7 +503,7 @@
       "durationInFrames": 182
     },
     {
-      "id": 43,
+      "id": 44,
       "character": "zundamon",
       "text": "最後までご視聴ありがとうございました！",
       "audioFile": "voices/voice_42.wav",

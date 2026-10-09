@@ -8,6 +8,11 @@ import { HighlightBorder } from './components/HighlightBorder';
 import { ReRenderMockup } from './components/ReRenderMockup';
 import { DiffCheckMockup } from './components/DiffCheckMockup';
 import { TextDisplay } from './components/TextDisplay';
+import { CallbackMockup } from './components/CallbackMockup';
+import { CallbackPhaseScene } from './components/CallbackPhaseScene';
+import { RenderPhaseScene } from './components/RenderPhaseScene';
+import { RenderCommitPhaseScene } from './components/RenderCommitPhaseScene';
+import { Render03Mockup } from './components/Render03Mockup';
 
 const ComponentRegistry: Record<string, React.FC<any>> = {
   "Render02Mockup": Render02Mockup,
@@ -17,6 +22,11 @@ const ComponentRegistry: Record<string, React.FC<any>> = {
   "ReRenderMockup": ReRenderMockup,
   "DiffCheckMockup": DiffCheckMockup,
   "TextDisplay": TextDisplay,
+  "CallbackMockup": CallbackMockup,
+  "CallbackPhaseScene": CallbackPhaseScene,
+  "RenderPhaseScene": RenderPhaseScene,
+  "RenderCommitPhaseScene": RenderCommitPhaseScene,
+  "Render03Mockup": Render03Mockup,
 };
 
 interface MediaFrameProps {
