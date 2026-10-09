@@ -17,8 +17,8 @@ export const Render03Mockup: React.FC<{ style?: React.CSSProperties, segment?: a
     }}>
       <h2 style={{ fontSize: 80, lineHeight: 0 }}>Render</h2>
       <div style={{ display: 'flex', gap: '20px', flexDirection: 'column' }}>
-        <div style={{ fontSize: 60, fontWeight: 'bold' }}>仮想DOM生成</div>
-        <div style={{ fontSize: 60, fontWeight: 'bold' }}>コールバック登録判定</div>
+        <div style={{ fontSize: 50, fontWeight: 'bold' }}>仮想DOM生成</div>
+        <div style={{ fontSize: 50, fontWeight: 'bold' }}>コールバック登録判定</div>
       </div>
     </div>
   );

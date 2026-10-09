@@ -281,15 +281,7 @@
       },
       "media": [
         {
-          "component": "Render03Mockup",
-          "style": {
-            "position": "absolute",
-            "top": "150px",
-            "left": "300px",
-            "width": "600px",
-            "height": "600px",
-            "borderRadius": 0
-          }
+          "component": "ReRenderPhaseScene"
         }
       ],
       "startFrame": 4121,
@@ -343,16 +335,21 @@
     {
       "id": 26,
       "character": "zundamon",
-      "text": "Renderフェーズでの差分チェックが終わると、画面の更新、つまりCommitフェーズが行われます。",
+      "text": "次にCommitフェーズです。",
       "audioFile": "voices/voice_24.wav",
       "expression": "normal",
+      "media": [
+        {
+          "component": "RenderCommitPhaseScene"
+        }
+      ],
       "startFrame": 5666,
       "durationInFrames": 257
     },
     {
       "id": 27,
       "character": "zundamon",
-      "text": "useEffectは、このCommitフェーズでは実際の処理を行わず、",
+      "text": "先ほどの反復ですが、useEffectは、このCommitフェーズでは実際の処理を行いません。",
       "audioFile": "voices/voice_25.wav",
       "expression": "normal",
       "startFrame": 5923,
@@ -361,9 +358,14 @@
     {
       "id": 28,
       "character": "zundamon",
-      "text": "実際に処理を行うのは「画面の更新（Commitフェーズ）がすべて終わった後」という役割分担です。",
+      "text": "実際に処理を行うのは「画面の更新（Commitフェーズ）がすべて終わった後」です。",
       "audioFile": "voices/voice_26.wav",
       "expression": "normal",
+      "media": [
+        {
+          "component": "ReRenderCallbackPhaseScene"
+        }
+      ],
       "startFrame": 6106,
       "durationInFrames": 301
     },
@@ -424,9 +426,20 @@
     {
       "id": 35,
       "character": "zundamon",
-      "text": "もう一度、実際のアプリのコードを見てみましょう。",
+      "text": "もう一度、実際のアプリの画面を見てみましょう。",
       "audioFile": "voices/voice_33.wav",
       "expression": "normal",
+       "media": [
+        {
+          "src": "images/useEffect/mock2.mp4",
+          "style": {
+            "flex": 1,
+            "objectFit": "contain",
+            "transform": "scale(1.1)",
+            "objectPosition": "50% 30%"
+          }
+        }
+      ],
       "startFrame": 8387,
       "durationInFrames": 148
     },
@@ -442,7 +455,7 @@
     {
       "id": 37,
       "character": "zundamon",
-      "text": "そのたびに、前回のクリーンアップ関数が呼ばれ、ignoreフラグがtrueになります。",
+      "text": "そのたびに、前回のクリーンアップ関数が呼ばれます。",
       "audioFile": "voices/voice_35.wav",
       "expression": "normal",
       "startFrame": 8814,

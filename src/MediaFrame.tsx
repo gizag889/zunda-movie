@@ -13,6 +13,9 @@ import { CallbackPhaseScene } from './components/CallbackPhaseScene';
 import { RenderPhaseScene } from './components/RenderPhaseScene';
 import { RenderCommitPhaseScene } from './components/RenderCommitPhaseScene';
 import { Render03Mockup } from './components/Render03Mockup';
+import { ReRenderPhaseScene } from './components/ReRenderPhaseScene';
+import { CleanupAndCallbackMockup } from './components/CleanupAndCallbackMockup';
+import { ReRenderCallbackPhaseScene } from './components/ReRenderCallbackPhaseScene';
 
 const ComponentRegistry: Record<string, React.FC<any>> = {
   "Render02Mockup": Render02Mockup,
@@ -27,6 +30,9 @@ const ComponentRegistry: Record<string, React.FC<any>> = {
   "RenderPhaseScene": RenderPhaseScene,
   "RenderCommitPhaseScene": RenderCommitPhaseScene,
   "Render03Mockup": Render03Mockup,
+  "ReRenderPhaseScene": ReRenderPhaseScene,
+  "CleanupAndCallbackMockup": CleanupAndCallbackMockup,
+  "ReRenderCallbackPhaseScene": ReRenderCallbackPhaseScene,
 };
 
 interface MediaFrameProps {
