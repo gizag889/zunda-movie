@@ -1,11 +1,20 @@
 import React from 'react';
-import { useCurrentFrame, interpolate } from 'remotion';
+import { useCurrentFrame, interpolate, useVideoConfig } from 'remotion';
+import timingData from '../timing.json';
+
+// クリーンアップ関数のテロップを表示し始めるセグメントID
+const CLEANUP_SEGMENT_ID = 29;
 
 export const CleanupAndCallbackMockup: React.FC<{ style?: React.CSSProperties, segment?: any }> = ({ style, segment }) => {
+  // MediaFrame は Sequence 外のため、useCurrentFrame() はグローバルフレームを返す
   const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
 
-  // クリーンアップ関数は早めに表示
-  const cleanupOpacity = interpolate(frame, [0, 15], [0, 1], {
+  // id:29 のセグメント開始時点（グローバルフレーム = startFrame + イントロ5秒）でクリーンアップ関数を表示
+  const cleanupSegment = timingData.segments.find((s: any) => s.id === CLEANUP_SEGMENT_ID);
+  const cleanupStartGlobal = (cleanupSegment ? cleanupSegment.startFrame : 0) + fps * 5;
+
+  const cleanupOpacity = interpolate(frame - cleanupStartGlobal, [0, 15], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
@@ -36,8 +45,8 @@ export const CleanupAndCallbackMockup: React.FC<{ style?: React.CSSProperties, s
           <div style={{ fontSize: 60, fontWeight: 'bold' }}>Cleanup関数実行</div>
         </div>
 
-        {/* 下向き矢印 */}
-        <div style={{ opacity: callbackOpacity, fontSize: 60, color: '#666' }}>⬇</div>
+        {/* 下向き矢印 (id:29 のタイミングでクリーンアップと同時に表示) */}
+        <div style={{ opacity: cleanupOpacity, fontSize: 60, color: '#666' }}>⬇</div>
         
         {/* コールバック */}
         <div style={{ opacity: callbackOpacity, display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#4CAF50' }}>
