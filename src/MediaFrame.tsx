@@ -19,7 +19,7 @@ import { CleanupAndCallbackMockup } from './components/CleanupAndCallbackMockup'
 import { ReRenderCallbackPhaseScene } from './components/ReRenderCallbackPhaseScene';
 import { SummaryScene } from './components/SummaryScene';
 
-const ComponentRegistry: Record<string, React.FC<any>> = {
+export const ComponentRegistry = {
   "Render01Mockup": Render01Mockup,
   "Render02Mockup": Render02Mockup,
   "Commit01Mockup": Commit01Mockup,
@@ -37,7 +37,11 @@ const ComponentRegistry: Record<string, React.FC<any>> = {
   "CleanupAndCallbackMockup": CleanupAndCallbackMockup,
   "ReRenderCallbackPhaseScene": ReRenderCallbackPhaseScene,
   "SummaryScene": SummaryScene,
-};
+} as const;
+
+export type RegisteredComponentName = keyof typeof ComponentRegistry;
+
+const ComponentMap: Record<string, React.FC<any>> = ComponentRegistry;
 
 interface MediaFrameProps {
   segments: Segment[];
@@ -188,9 +192,9 @@ export const MediaFrame: React.FC<MediaFrameProps> = ({ segments }) => {
                   zIndex
                 } : {})
               }}>
-                {mediaElement.component && ComponentRegistry[mediaElement.component] ? (
+                {mediaElement.component && ComponentMap[mediaElement.component] ? (
                   (() => {
-                    const Component = ComponentRegistry[mediaElement.component];
+                    const Component = ComponentMap[mediaElement.component];
                     return <Component style={contentStyle} segment={currentSegment} mediaElement={mediaElement} />;
                   })()
                 ) : isVideo && mediaElement.src ? (

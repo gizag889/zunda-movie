@@ -4,6 +4,7 @@ import { CharacterArea } from './CharacterArea';
 import { TextArea } from './TextArea';
 import { Background } from './Background';
 import { MediaFrame } from './MediaFrame';
+import { scenes } from './scenes';
 import timingData from './timing.json';
 import React from 'react';
 
@@ -35,7 +36,12 @@ const MainComposition: React.FC = () => {
     let lastBackground: any = undefined;
     let lastTexts: TextElement[] | null | undefined = undefined;
     let lastTextsStartFrame: number | undefined = undefined;
-    return timing.segments.map((segment: any) => {
+    return timing.segments.map((rawSegment: Segment) => {
+      const sceneOverride = scenes[rawSegment.id];
+      const segment: Segment = sceneOverride
+        ? { ...rawSegment, ...sceneOverride }
+        : rawSegment;
+
       // mediaが明示的に指定されている場合（nullを含む）は更新する
       if (segment.media !== undefined) {
         lastMedia = segment.media;
@@ -98,7 +104,7 @@ const MainComposition: React.FC = () => {
         textsStartFrame: lastTextsStartFrame,
       };
     });
-  }, []);
+  }, [scenes, timing]);
 
   return (
     <AbsoluteFill

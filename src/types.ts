@@ -55,6 +55,13 @@ export interface Segment {
   expression?: string;
 }
 
+export interface SceneConfig {
+  media?: MediaElement[] | null;
+  texts?: TextElement[] | null;
+  background?: Segment['background'];
+  expression?: string;
+}
+
 export interface TelopData {
   text: string;
   startSegmentId: number;
