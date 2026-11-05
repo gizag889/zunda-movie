@@ -4,12 +4,12 @@ import { useCurrentFrame, interpolate } from 'remotion';
 export const Render02Mockup: React.FC<{ style?: React.CSSProperties, segment?: any }> = ({ style, segment }) => {
   const frame = useCurrentFrame();
 
-  const opacity = segment?.id === 8
+  const opacity = segment?.id === 20
     ? interpolate(frame, [0, 30], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
       })
-    : (segment?.id ?? 0) > 8
+    : (segment?.id ?? 0) > 20
       ? 1
       : 0;
 

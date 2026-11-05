@@ -1,16 +1,15 @@
 import { Composition, Sequence, Audio, AbsoluteFill, useVideoConfig, staticFile, Img, Loop, useCurrentFrame, interpolate } from 'remotion';
 import { IntroSequence } from './IntroSequence';
 import { CharacterArea } from './CharacterArea';
-import { Telop } from './Telop';
 import { TextArea } from './TextArea';
 import { Background } from './Background';
 import { MediaFrame } from './MediaFrame';
 import timingData from './timing.json';
 import React from 'react';
 
-import { TimingData, Segment } from './types';
+import { TimingData, Segment, TextElement } from './types';
 
-const timing = timingData as TimingData;
+const timing = timingData as unknown as TimingData;
 
 export const RemotionVideo: React.FC = () => {
   return (
@@ -34,30 +33,79 @@ const MainComposition: React.FC = () => {
     let lastMedia: any = undefined;
     let lastMediaStartFrame: number | undefined = undefined;
     let lastBackground: any = undefined;
+    let lastTexts: TextElement[] | null | undefined = undefined;
+    let lastTextsStartFrame: number | undefined = undefined;
     return timing.segments.map((segment: any) => {
       // mediaが明示的に指定されている場合（nullを含む）は更新する
       if (segment.media !== undefined) {
         lastMedia = segment.media;
         lastMediaStartFrame = segment.startFrame;
+      } else if (segment.background !== undefined) {
+        // backgroundが切り替わり、mediaが指定されていない場合は古いmediaをクリアする
+        lastMedia = undefined;
+        lastMediaStartFrame = undefined;
       }
       // backgroundも同様に指定されていれば更新する
       if (segment.background !== undefined) {
         lastBackground = segment.background;
       }
+      // textsが明示的に指定されている場合（nullを含む）は更新する
+      if (segment.texts !== undefined) {
+        if (Array.isArray(segment.texts)) {
+          const prevTexts = Array.isArray(lastTexts) ? lastTexts : [];
+          lastTexts = segment.texts.map((item: TextElement) => {
+            const matchedPrev = prevTexts.find((prev) => {
+              if (item.id !== undefined || prev.id !== undefined) {
+                return item.id === prev.id;
+              }
+              const itemTop = item.top ?? item.y ?? item.style?.top;
+              const prevTop = prev.top ?? prev.y ?? prev.style?.top;
+              const itemLeft = item.left ?? item.x ?? item.style?.left;
+              const prevLeft = prev.left ?? prev.x ?? prev.style?.left;
+              const itemRight = item.right ?? item.style?.right;
+              const prevRight = prev.right ?? prev.style?.right;
+              const itemBottom = item.bottom ?? item.style?.bottom;
+              const prevBottom = prev.bottom ?? prev.style?.bottom;
+              return (
+                item.text === prev.text &&
+                itemTop === prevTop &&
+                itemLeft === prevLeft &&
+                itemRight === prevRight &&
+                itemBottom === prevBottom
+              );
+            });
+            return {
+              ...item,
+              startFrame:
+                item.startFrame !== undefined
+                  ? item.startFrame
+                  : matchedPrev?.startFrame !== undefined
+                    ? matchedPrev.startFrame
+                    : segment.startFrame,
+            };
+          });
+        } else {
+          lastTexts = segment.texts;
+        }
+        lastTextsStartFrame = segment.startFrame;
+      }
       return {
         ...segment,
         media: lastMedia,
         mediaStartFrame: lastMediaStartFrame,
-        background: lastBackground
+        background: lastBackground,
+        texts: lastTexts,
+        textsStartFrame: lastTextsStartFrame,
       };
     });
   }, []);
 
   return (
     <AbsoluteFill
-style={{
-  backgroundColor: 'black'
-}}>
+  style={{
+    backgroundColor: 'black'
+  }}
+  from={1730}>
       {/* 背景画像 */}
       <Background segments={processedSegments} />
 
@@ -92,10 +140,6 @@ style={{
         </Sequence>
       ))}
 
-      {/* テロップ (左上最上部) */}
-      <Telop />
-
     </AbsoluteFill>
   );
 };
-

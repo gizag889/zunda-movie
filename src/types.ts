@@ -1,17 +1,39 @@
 import React from 'react';
 
+export interface ElementAnimation {
+  fadeInStart?: number;
+  fadeInDuration?: number;
+  fadeOutStart?: number;
+  fadeOutDuration?: number;
+  slideDownStart?: number;
+  slideDownDuration?: number;
+  slideDownDistance?: number;
+  slideInStart?: number;
+  slideInDuration?: number;
+  slideInX?: number;
+  slideInY?: number;
+}
+
 export interface MediaElement {
   src?: string;
   component?: string;
   text?: string;
   style?: React.CSSProperties;
-  animation?: {
-    fadeInStart?: number;
-    fadeInDuration?: number;
-    slideDownStart?: number;
-    slideDownDuration?: number;
-    slideDownDistance?: number;
-  };
+  animation?: ElementAnimation;
+}
+
+export interface TextElement {
+  id?: string;
+  text: string;
+  top?: number | string;
+  left?: number | string;
+  right?: number | string;
+  bottom?: number | string;
+  x?: number | string;
+  y?: number | string;
+  style?: React.CSSProperties;
+  animation?: ElementAnimation;
+  startFrame?: number;
 }
 
 export interface Segment {
@@ -19,15 +41,17 @@ export interface Segment {
   startFrame: number;
   durationInFrames: number;
   mediaStartFrame?: number;
+  textsStartFrame?: number;
   character: string;
   text: string;
   audioFile: string;
   media?: MediaElement[] | null;
+  texts?: TextElement[] | null;
   background?: {
-    src?: string;
+    src?: string | null;
     opacity?: number;
     color?: string;
-  };
+  } | null;
   expression?: string;
 }
 
