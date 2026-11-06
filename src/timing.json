@@ -3,46 +3,37 @@
     {
       "id": 1,
       "character": "zundamon",
-      "text": "今回は、useEffectを例に、Reactの副作用の裏側について解説します。",
+      "text": "今回は、useEffectの裏側について解説します。",
       "audioFile": "voices/voice_1.wav",
       "expression": "normal",
       "startFrame": 0,
-      "durationInFrames": 239
+      "durationInFrames": 165
     },
     {
       "id": 2,
       "character": "zundamon",
-      "text": "スクロールに応じたアニメーション発火などでよく使うIntersection Observerを実践的な例として、その仕組みを紐解いて理解を深めていきましょう！",
+      "text": "こちらは、画面をスクロールして作品カードが視界に入ると、ふわっと要素が表示されるコンポーネントです。",
       "audioFile": "voices/voice_2.wav",
       "expression": "normal",
-      "startFrame": 239,
-      "durationInFrames": 356
+      "startFrame": 165,
+      "durationInFrames": 290
     },
     {
       "id": 3,
       "character": "zundamon",
-      "text": "こちらは、画面をスクロールして作品カードが視界に入ると、ふわっと表示されるギャラリーのコンポーネントです。",
+      "text": "今回はこのコードを例に、useEffectの仕組みをみていきます。",
       "audioFile": "voices/voice_3.wav",
       "expression": "normal",
-      "startFrame": 595,
-      "durationInFrames": 290
-    },
-    {
-      "id": 4,
-      "character": "zundamon",
-      "text": "では、この裏側では一体どのような処理が行われているのでしょうか？",
-      "audioFile": "voices/voice_4.wav",
-      "expression": "normal",
-      "startFrame": 885,
-      "durationInFrames": 199
+      "startFrame": 455,
+      "durationInFrames": 186
     },
     {
       "id": 5,
       "character": "zundamon",
-      "text": "まずReactのレンダリングプロセスの流れをざっと説明します。",
+      "text": "Reactのレンダリングプロセスの流れをざっとおさらいします。",
       "audioFile": "voices/voice_5.wav",
       "expression": "normal",
-      "startFrame": 1084,
+      "startFrame": 641,
       "durationInFrames": 158
     },
     {
@@ -51,7 +42,7 @@
       "text": "Reactのレンダリングは大きく二つのフェーズに分かれています。",
       "audioFile": "voices/voice_6.wav",
       "expression": "normal",
-      "startFrame": 1242,
+      "startFrame": 799,
       "durationInFrames": 165
     },
     {
@@ -60,7 +51,7 @@
       "text": "1つ目は「Renderフェーズ」。これはページを構成する設計図を作るフェーズです。",
       "audioFile": "voices/voice_7.wav",
       "expression": "normal",
-      "startFrame": 1407,
+      "startFrame": 964,
       "durationInFrames": 225
     },
     {
@@ -69,7 +60,7 @@
       "text": "ここではメモリ上に「仮想DOM」を生成します。これがページを構成する設計図になります。",
       "audioFile": "voices/voice_8.wav",
       "expression": "normal",
-      "startFrame": 1632,
+      "startFrame": 1189,
       "durationInFrames": 265
     },
     {
@@ -78,7 +69,7 @@
       "text": "Reactではレンダリングするたびに、必ずこの「仮想DOM」を生成します。",
       "audioFile": "voices/voice_9.wav",
       "expression": "normal",
-      "startFrame": 1897,
+      "startFrame": 1454,
       "durationInFrames": 225
     },
     {
@@ -87,7 +78,7 @@
       "text": "次に「Commitフェーズ」に移ります。ここでは出来上がった設計図をもとに、実際のDOMを画面に描画する作業を担います。",
       "audioFile": "voices/voice_10.wav",
       "expression": "normal",
-      "startFrame": 2122,
+      "startFrame": 1679,
       "durationInFrames": 339
     },
     {
@@ -96,17 +87,26 @@
       "text": "Reactのレンダリングプロセスは「Render」「Commit」の二段階あると覚えておいてください。",
       "audioFile": "voices/voice_11.wav",
       "expression": "normal",
-      "startFrame": 2461,
+      "startFrame": 2018,
       "durationInFrames": 252
     },
     {
       "id": 12,
       "character": "zundamon",
-      "text": "まずは「初回レンダリング」、つまり画面を初めて開く際の動きから見ていきましょう。[cite: 1]",
+      "text": "それではuseEffectの中身についてみていきます。",
       "audioFile": "voices/voice_12.wav",
       "expression": "normal",
-      "startFrame": 2713,
-      "durationInFrames": 288
+      "startFrame": 2270,
+      "durationInFrames": 141
+    },
+    {
+      "id": 12,
+      "character": "zundamon",
+      "text": "まずは「初回レンダリング」、つまり画面を初めて開く際の動きから見ていきましょう。",
+      "audioFile": "voices/voice_12.wav",
+      "expression": "normal",
+      "startFrame": 2411,
+      "durationInFrames": 234
     },
     {
       "id": 13,
@@ -114,7 +114,7 @@
       "text": "初回レンダリング時のRenderフェーズでは、仮想DOMの生成とともに、あとで実行するコールバック関数の登録を行います。",
       "audioFile": "voices/voice_13.wav",
       "expression": "normal",
-      "startFrame": 3001,
+      "startFrame": 2645,
       "durationInFrames": 321
     },
     {
@@ -123,7 +123,7 @@
       "text": "この時点ではまだ画面に要素が存在しないため、関数をメモしておくだけで実行はされません。",
       "audioFile": "voices/voice_14.wav",
       "expression": "normal",
-      "startFrame": 3322,
+      "startFrame": 2966,
       "durationInFrames": 248
     },
     {
@@ -132,7 +132,7 @@
       "text": "続いてCommitフェーズです。新しい画面をユーザーに表示し終わると、",
       "audioFile": "voices/voice_15.wav",
       "expression": "normal",
-      "startFrame": 3570,
+      "startFrame": 3214,
       "durationInFrames": 228
     },
     {
@@ -141,7 +141,7 @@
       "text": "先ほどメモしておいたコールバック関数が実行されます。",
       "audioFile": "voices/voice_16.wav",
       "expression": "normal",
-      "startFrame": 3798,
+      "startFrame": 3442,
       "durationInFrames": 158
     },
     {
@@ -150,7 +150,7 @@
       "text": "画面への描画が完了してから実行されるため、useEffectの中では確実に実際のDOM要素を取得して、スクロールの監視を開始できる仕組みです。",
       "audioFile": "voices/voice_17.wav",
       "expression": "normal",
-      "startFrame": 3956,
+      "startFrame": 3600,
       "durationInFrames": 380
     },
     {
@@ -159,7 +159,7 @@
       "text": "次に、Stateが更新されたときの「再レンダリング」時の動きを見ていきましょう。",
       "audioFile": "voices/voice_18.wav",
       "expression": "normal",
-      "startFrame": 4336,
+      "startFrame": 3980,
       "durationInFrames": 240
     },
     {
@@ -168,7 +168,7 @@
       "text": "ボタンが押されてStateが変わると、再びコンポーネントが実行され、Renderフェーズが走ります。",
       "audioFile": "voices/voice_19.wav",
       "expression": "normal",
-      "startFrame": 4576,
+      "startFrame": 4220,
       "durationInFrames": 262
     },
     {
@@ -177,7 +177,7 @@
       "text": "ここでもう一度useEffectが呼ばれますが、重要になるのが第2引数の「依存配列」です。",
       "audioFile": "voices/voice_20.wav",
       "expression": "normal",
-      "startFrame": 4838,
+      "startFrame": 4482,
       "durationInFrames": 276
     },
     {
@@ -186,7 +186,7 @@
       "text": "ReactはRenderフェーズの最中に、前回の配列と今回の配列を見比べます。",
       "audioFile": "voices/voice_21.wav",
       "expression": "normal",
-      "startFrame": 5114,
+      "startFrame": 4758,
       "durationInFrames": 235
     },
     {
@@ -195,7 +195,7 @@
       "text": "もし値が異なっていれば、前回のRenderフェーズと同じように関数を登録します。",
       "audioFile": "voices/voice_22.wav",
       "expression": "normal",
-      "startFrame": 5349,
+      "startFrame": 4993,
       "durationInFrames": 224
     },
     {
@@ -204,7 +204,7 @@
       "text": "逆に、関係ないStateが更新された場合は、依存配列に変化がないため、関数のメモはスキップされます。",
       "audioFile": "voices/voice_23.wav",
       "expression": "normal",
-      "startFrame": 5573,
+      "startFrame": 5217,
       "durationInFrames": 308
     },
     {
@@ -213,7 +213,7 @@
       "text": "次にCommitフェーズです。",
       "audioFile": "voices/voice_24.wav",
       "expression": "normal",
-      "startFrame": 5881,
+      "startFrame": 5525,
       "durationInFrames": 247
     },
     {
@@ -222,7 +222,7 @@
       "text": "先ほどの反復ですが、useEffectは、このCommitフェーズでは実際の処理を行いません。",
       "audioFile": "voices/voice_25.wav",
       "expression": "normal",
-      "startFrame": 6128,
+      "startFrame": 5772,
       "durationInFrames": 183
     },
     {
@@ -231,7 +231,7 @@
       "text": "実際に処理を行うのは「画面の更新（Commitフェーズ）がすべて終わった後」です。",
       "audioFile": "voices/voice_26.wav",
       "expression": "normal",
-      "startFrame": 6311,
+      "startFrame": 5955,
       "durationInFrames": 262
     },
     {
@@ -240,7 +240,7 @@
       "text": "ここでさらに重要なのが、次回の実行前に行う「お片付け」、クリーンアップ関数です。",
       "audioFile": "voices/voice_27.wav",
       "expression": "normal",
-      "startFrame": 6573,
+      "startFrame": 6217,
       "durationInFrames": 255
     },
     {
@@ -249,7 +249,7 @@
       "text": "useEffectの中でreturnを使って関数を返すと、それはクリーンアップ関数として扱われます。",
       "audioFile": "voices/voice_28.wav",
       "expression": "normal",
-      "startFrame": 6828,
+      "startFrame": 6472,
       "durationInFrames": 259
     },
     {
@@ -258,7 +258,7 @@
       "text": "Intersection Observerの監視解除やイベントリスナーの削除など、前回のコールバック関数の実行内容のお片付けをするための機能です。",
       "audioFile": "voices/voice_29.wav",
       "expression": "normal",
-      "startFrame": 7087,
+      "startFrame": 6731,
       "durationInFrames": 355
     },
     {
@@ -267,7 +267,7 @@
       "text": "依存配列に変化があって新しいEffectが走る場合、その処理の直前に、必ず前回のクリーンアップ関数が実行されます。",
       "audioFile": "voices/voice_30.wav",
       "expression": "normal",
-      "startFrame": 7442,
+      "startFrame": 7086,
       "durationInFrames": 345
     },
     {
@@ -276,7 +276,7 @@
       "text": "Reactは常に「前回の後始末をしてから、今回の処理を始める」という丁寧な動きをすることで、バグやメモリの無駄遣いを防いでいるのです。",
       "audioFile": "voices/voice_31.wav",
       "expression": "normal",
-      "startFrame": 7787,
+      "startFrame": 7431,
       "durationInFrames": 394
     },
     {
@@ -285,7 +285,7 @@
       "text": "また、このクリーンアップ関数は画面が遷移する際など、コンポーネントが消える時、つまり「アンマウント時」にも必ず実行され、最後のお片付けをしてくれます。",
       "audioFile": "voices/voice_32.wav",
       "expression": "normal",
-      "startFrame": 8181,
+      "startFrame": 7825,
       "durationInFrames": 439
     },
     {
@@ -294,7 +294,7 @@
       "text": "もう一度、実際のアプリの画面を見てみましょう。",
       "audioFile": "voices/voice_33.wav",
       "expression": "normal",
-      "startFrame": 8620,
+      "startFrame": 8264,
       "durationInFrames": 148
     },
     {
@@ -303,7 +303,7 @@
       "text": "上のボタンを押してアニメーションの発火タイミングを切り替えると、thresholdの値が更新され、再レンダリングが走ります。",
       "audioFile": "voices/voice_34.wav",
       "expression": "normal",
-      "startFrame": 8768,
+      "startFrame": 8412,
       "durationInFrames": 308
     },
     {
@@ -312,7 +312,7 @@
       "text": "そのたびに、クリーンアップ関数が呼ばれます。",
       "audioFile": "voices/voice_35.wav",
       "expression": "normal",
-      "startFrame": 9076,
+      "startFrame": 8720,
       "durationInFrames": 199
     },
     {
@@ -321,7 +321,7 @@
       "text": "これにより、古い設定の監視インスタンスが確実に破棄され、監視が二重に重なってメモリリークが起きてしまうのを防ぐことができるんです。",
       "audioFile": "voices/voice_36.wav",
       "expression": "normal",
-      "startFrame": 9275,
+      "startFrame": 8919,
       "durationInFrames": 354
     },
     {
@@ -330,7 +330,7 @@
       "text": "今回のポイントのおさらいです。",
       "audioFile": "voices/voice_37.wav",
       "expression": "normal",
-      "startFrame": 9629,
+      "startFrame": 9273,
       "durationInFrames": 102
     },
     {
@@ -339,7 +339,7 @@
       "text": "useEffectは、レンダーフェーズでコールバック関数の登録を行います。",
       "audioFile": "voices/voice_38.wav",
       "expression": "normal",
-      "startFrame": 9731,
+      "startFrame": 9375,
       "durationInFrames": 430
     },
     {
@@ -348,7 +348,7 @@
       "text": "再レンダリング以降は依存配列の差分チェックを行い、その結果に応じて登録の可否を決めます。",
       "audioFile": "voices/voice_39.wav",
       "expression": "normal",
-      "startFrame": 10161,
+      "startFrame": 9805,
       "durationInFrames": 430
     },
     {
@@ -357,7 +357,7 @@
       "text": "実際に処理を行うのは、Commitフェーズが完了し、画面が更新された後になります。",
       "audioFile": "voices/voice_40.wav",
       "expression": "normal",
-      "startFrame": 10591,
+      "startFrame": 10235,
       "durationInFrames": 247
     },
     {
@@ -366,7 +366,7 @@
       "text": "そして、クリーンアップ関数は、次回のEffectが走る直前や、コンポーネントのアンマウント時に『前回の後始末』として実行されます。",
       "audioFile": "voices/voice_41.wav",
       "expression": "normal",
-      "startFrame": 10838,
+      "startFrame": 10482,
       "durationInFrames": 382
     },
     {
@@ -375,7 +375,7 @@
       "text": "これが大まかなuseEffectとレンダリングの関わりの流れになります。",
       "audioFile": "voices/voice_42.wav",
       "expression": "normal",
-      "startFrame": 11220,
+      "startFrame": 10864,
       "durationInFrames": 182
     },
     {
@@ -384,10 +384,10 @@
       "text": "最後までご視聴ありがとうございました！",
       "audioFile": "voices/voice_43.wav",
       "expression": "happy",
-      "startFrame": 11402,
+      "startFrame": 11046,
       "durationInFrames": 123
     }
   ],
   "telops": [],
-  "totalDurationInFrames": 11675
+  "totalDurationInFrames": 11319
 }

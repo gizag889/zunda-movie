@@ -170,13 +170,26 @@ export const comp = (
   };
 };
 
-/** 画像を配置する */
-export const image = (src: string, options?: MediaHelperOptions): MediaElement => {
-  const style = buildPositionedStyle(options);
+/** 画像を配置する（デフォルトで objectFit: 'contain'） */
+export const image = (
+  src: string,
+  options?: MediaHelperOptions & {
+    scale?: number;
+    objectPosition?: string;
+    objectFit?: React.CSSProperties['objectFit'];
+  }
+): MediaElement => {
+  const posStyle = buildPositionedStyle(options);
   const anim = buildAnimation(options);
   return {
     src,
-    ...(style ? { style } : {}),
+    style: {
+      flex: 1,
+      objectFit: options?.objectFit ?? 'contain',
+      ...(options?.scale !== undefined ? { transform: `scale(${options.scale})` } : {}),
+      ...(options?.objectPosition !== undefined ? { objectPosition: options.objectPosition } : {}),
+      ...posStyle,
+    },
     ...(anim ? { animation: anim } : {}),
   };
 };

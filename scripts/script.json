@@ -2,33 +2,28 @@
   {
     "id": 1,
     "character": "zundamon",
-    "text": "今回は、useEffectを例に、Reactの副作用の裏側について解説します。",
+    "text": "今回は、useEffectの裏側について解説します。",
     "expression": "normal",
-    "audioText": "今回は、ユーズエフェクトを例に、リアクトの副作用の裏側について解説します。"
+    "audioText": "今回は、ユーズエフェクトのうらがわについて解説します。"
   },
   {
     "id": 2,
     "character": "zundamon",
-    "text": "スクロールに応じたアニメーション発火などでよく使うIntersection Observerを実践的な例として、その仕組みを紐解いて理解を深めていきましょう！",
+    "text": "こちらは、画面をスクロールして作品カードが視界に入ると、ふわっと表示されるギャラリーのコンポーネントです。",
     "expression": "normal",
-    "audioText": "スクロールに応じたアニメーション発火などでよく使うインターセクションオブザーバーを実践的な例として、その仕組みを紐解いて理解を深めていきましょう！"
+    "audioText": "こちらは、画面をスクロールして作品カードが視界に入ると、ふわっと表示されるギャラリーのコンポーネントです。"
   },
   {
     "id": 3,
     "character": "zundamon",
-    "text": "こちらは、画面をスクロールして作品カードが視界に入ると、ふわっと表示されるギャラリーのコンポーネントです。",
+    "text": "今回はこのコードを例に、useEffectの仕組みをみていきます。",
     "expression": "normal"
   },
-  {
-    "id": 4,
-    "character": "zundamon",
-    "text": "では、この裏側では一体どのような処理が行われているのでしょうか？",
-    "expression": "normal"
-  },
+  
   {
     "id": 5,
     "character": "zundamon",
-    "text": "まずReactのレンダリングプロセスの流れをざっと説明します。",
+    "text": "Reactのレンダリングプロセスの流れをざっとおさらいします。",
     "expression": "normal",
     "audioText": "リアクトのレンダリングプロセスの流れをざっと説明します。"
   },
@@ -74,10 +69,16 @@
     "expression": "normal",
     "audioText": "リアクトのレンダリングプロセスは「レンダー」「コミット」の二段階あると覚えておいてください。"
   },
+    {
+    "id": 12,
+    "character": "zundamon",
+    "text": "それではuseEffectの中身についてみていきます。",
+    "expression": "normal"
+  },
   {
     "id": 12,
     "character": "zundamon",
-    "text": "まずは「初回レンダリング」、つまり画面を初めて開く際の動きから見ていきましょう。[cite: 1]",
+    "text": "まずは「初回レンダリング」、つまり画面を初めて開く際の動きから見ていきましょう。",
     "expression": "normal"
   },
   {

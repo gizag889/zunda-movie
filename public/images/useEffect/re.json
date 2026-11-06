@@ -26,12 +26,12 @@
       "expression": "normal",
       "media": [
         {
-          "src": "images/useEffect/mock2.mp4",
+          "src": "images/useEffect/mock.mp4",
           "style": {
             "flex": 1,
             "objectFit": "contain",
             "transform": "scale(1.1)",
-            "objectPosition": "50% 30%"
+            "objectPosition": "50% 50%"
           }
         }
       ],

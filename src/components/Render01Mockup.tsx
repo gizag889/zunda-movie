@@ -1,15 +1,19 @@
 import React from 'react';
-import { useCurrentFrame, interpolate } from 'remotion';
+import { useCurrentFrame, useVideoConfig, interpolate } from 'remotion';
 
 export const Render01Mockup: React.FC<{ style?: React.CSSProperties, segment?: any }> = ({ style, segment }) => {
   const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
 
-  const opacity = segment?.id === 5
-    ? interpolate(frame, [0, 30], [0, 1], {
+  const segmentStartFrame = (segment?.startFrame ?? 0) + fps * 5;
+  const localFrame = frame - segmentStartFrame;
+
+  const opacity = segment?.id === 8
+    ? interpolate(localFrame, [0, 30], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
       })
-    : (segment?.id ?? 0) > 5
+    : (segment?.id ?? 0) > 8
       ? 1
       : 0;
 

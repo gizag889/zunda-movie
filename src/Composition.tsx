@@ -1,4 +1,4 @@
-import { Composition, Sequence, Audio, AbsoluteFill, useVideoConfig, staticFile, Img, Loop, useCurrentFrame, interpolate } from 'remotion';
+import { Composition, Sequence, Audio, AbsoluteFill, useVideoConfig, staticFile } from 'remotion';
 import { IntroSequence } from './IntroSequence';
 import { CharacterArea } from './CharacterArea';
 import { TextArea } from './TextArea';
@@ -108,18 +108,15 @@ const MainComposition: React.FC = () => {
 
   return (
     <AbsoluteFill
-  style={{
-    backgroundColor: 'black'
-  }}
-  from={1730}>
+style={{
+  backgroundColor: 'black'
+}}
+ >
       {/* 背景画像 */}
       <Background segments={processedSegments} />
 
-      {/* BGM: リピートさせるためにLoopコンポーネントを使用 */}
-      {/* durationInFramesには音源の正確なフレーム数（秒数 × fps）を指定してください。以下は仮で120秒(2分)としています */}
-      <Loop durationInFrames={fps * 215}>
-        <Audio src={staticFile("Woozy 1.mp3")} volume={0.005} />
-      </Loop>
+      {/* BGM: loopプロパティで音源の正確な長さに合わせて自動ループ再生 */}
+      <Audio src={staticFile("Woozy 1.mp3")} loop volume={0.1} />
 
       {/* イントロ (最初の5秒) */}
       <Sequence from={0} durationInFrames={fps * 5}>
