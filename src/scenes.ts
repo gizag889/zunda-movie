@@ -31,36 +31,90 @@ export const scenes: Record<number, SceneConfig> = {
     texts: null,
     media: [
       video('images/useEffect/mock.mp4'),
-      image('images/useEffect/carbon.png'),
     ],
   },
 
-  // id: 5 「Reactのレンダリングプロセスの流れをざっとおさらいします。」
-  5: {
+  // id: 3 「今回はこのコードを例に、useEffectの仕組みをみていきます。」
+  3: {
+    media: [
+      image('images/useEffect/carbon.png',{
+        top: -100,
+        width: 1350,
+      }),
+      comp('HighlightBorder', {
+        top: '250px',
+        left: '410px',
+        width: '770px',
+        height: '100px',
+        borderRadius: '16px',
+        zIndex: 10,
+        style: { border: '8px solid #FF5722' },
+      }),
+    ],
+  },
+  4: {
+    media: [
+      image('images/useEffect/carbon.png',{
+        top: -100,
+        width: 1350,
+      }),
+      comp('HighlightBorder', {
+        top: '430px',
+        left: '430px',
+        width: '1100px',
+        height: '200px',
+        borderRadius: '16px',
+        zIndex: 10,
+        style: { border: '8px solid #FF5722' },
+      }),
+    ]
+  },
+
+ 
+  6: {
+    media: [
+      image('images/useEffect/carbon.png',{
+        top: -100,
+        width: 1350,
+      }),
+      comp('HighlightBorder', {
+        top: '630px',
+        left: '410px',
+        width: '1150px',
+        height: '200px',
+        borderRadius: '16px',
+        zIndex: 10,
+        style: { border: '8px solid #FF5722' },
+      }),]
+  },
+   8: {
     texts: [
       centerText('React : CSR', { top: 70, fontSize: 90 }),
     ],
-  },
 
-  // id: 7 「1つ目は「Renderフェーズ」。これはページを構成する設計図を作るフェーズです。」
-  7: {
-    media: [comp('RenderPhaseScene', { fadeInStart: 30, fadeIn: 15 })],
+    
   },
-
-  // id: 10 「次に「Commitフェーズ」に移ります。ここでは出来上がった設計図をもとに、実際のDOMを画面に描画する作業を担います。」
   10: {
-    media: [comp('RenderCommitPhaseScene')],
+     media: [comp('RenderPhaseScene', { fadeInStart: 30, fadeIn: 15 })],
+
   },
 
-  // id: 12 「まずは「初回レンダリング」、つまり画面を初めて開く際の動きから見ていきましょう。」
-  12: {
-    texts: null,
-    background: { src: 'images/useEffect/firstrender.png' },
-    media: [image('images/useEffect/first.png', { top: 120, width: '1400px', height: 'auto' })],
+    13: {
+        media: [comp('RenderCommitPhaseScene')],
+
   },
 
-  // id: 13 「初回レンダリング時のRenderフェーズでは、仮想DOMの生成とともに、あとで実行するコールバック関数の登録を行います。」
-  13: {
+  // id: 15 「続いてCommitフェーズです。新しい画面をユーザーに表示し終わると、」
+  15: {
+    media : []
+    // media: [comp('RenderCommitPhaseScene')],
+  },
+  16: {
+     texts: [
+      centerText('useEffect 初回レンダリング', { top: 70, fontSize: 75 }),
+    ],
+  },
+  17: {
     media: [
       comp('Render02Mockup', {
         top: '150px',
@@ -68,25 +122,12 @@ export const scenes: Record<number, SceneConfig> = {
         width: '600px',
         height: '600px',
         borderRadius: 0,
-        fadeInStart: 30,
-        fadeIn: 15,
       }),
     ],
   },
 
-  // id: 15 「続いてCommitフェーズです。新しい画面をユーザーに表示し終わると、」
-  15: {
-    media: [comp('RenderCommitPhaseScene')],
-  },
-
-  // id: 16 「先ほどメモしておいたコールバック関数が実行されます。」
-  16: {
-    media: [comp('CallbackPhaseScene')],
-  },
-
   // id: 18 「次に、Stateが更新されたときの「再レンダリング」時の動きを見ていきましょう。」
   18: {
-    background: { src: 'images/useEffect/rerender.png' },
     media: [comp('ReRenderPhaseScene')],
   },
 

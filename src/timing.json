@@ -16,378 +16,414 @@
       "audioFile": "voices/voice_2.wav",
       "expression": "normal",
       "startFrame": 165,
-      "durationInFrames": 290
+      "durationInFrames": 286
     },
     {
       "id": 3,
       "character": "zundamon",
-      "text": "今回はこのコードを例に、useEffectの仕組みをみていきます。",
+      "text": "コードの中身を簡単に見てみましょう。各カードを表すPatternCardコンポーネントでは、表示状態を管理するisVisibleステートと、実際のDOM要素を参照するためのcardRefを定義しています。",
       "audioFile": "voices/voice_3.wav",
       "expression": "normal",
-      "startFrame": 455,
-      "durationInFrames": 186
+      "startFrame": 451,
+      "durationInFrames": 487
+    },
+    {
+      "id": 4,
+      "character": "zundamon",
+      "text": "そしてuseEffectの第1引数に渡しているのが「コールバック関数」です。この中でobserveElement関数を呼び出し、カードのDOM要素の監視を開始しています。",
+      "audioFile": "voices/voice_4.wav",
+      "expression": "normal",
+      "startFrame": 938,
+      "durationInFrames": 436
     },
     {
       "id": 5,
       "character": "zundamon",
-      "text": "Reactのレンダリングプロセスの流れをざっとおさらいします。",
+      "text": "要素が画面に8割入ったタイミングでisVisibleステートが更新され、アニメーションが発火する仕組みです。",
       "audioFile": "voices/voice_5.wav",
       "expression": "normal",
-      "startFrame": 641,
-      "durationInFrames": 158
+      "startFrame": 1374,
+      "durationInFrames": 272
     },
     {
       "id": 6,
       "character": "zundamon",
-      "text": "Reactのレンダリングは大きく二つのフェーズに分かれています。",
+      "text": "また、コールバック関数の最後でreturnしている関数は「クリーンアップ関数」と呼ばれ、ここではdisconnectで監視を解除しています。そして第2引数の依存配列には、発火の割合を決めるthresholdを指定しています。",
       "audioFile": "voices/voice_6.wav",
       "expression": "normal",
-      "startFrame": 799,
-      "durationInFrames": 165
+      "startFrame": 1646,
+      "durationInFrames": 557
     },
     {
       "id": 7,
       "character": "zundamon",
-      "text": "1つ目は「Renderフェーズ」。これはページを構成する設計図を作るフェーズです。",
+      "text": "今回はこのコードを例に、useEffectの仕組みをみていきます。",
       "audioFile": "voices/voice_7.wav",
       "expression": "normal",
-      "startFrame": 964,
-      "durationInFrames": 225
+      "startFrame": 2203,
+      "durationInFrames": 185
     },
     {
       "id": 8,
       "character": "zundamon",
-      "text": "ここではメモリ上に「仮想DOM」を生成します。これがページを構成する設計図になります。",
+      "text": "Reactのレンダリングプロセスの流れをざっとおさらいします。",
       "audioFile": "voices/voice_8.wav",
       "expression": "normal",
-      "startFrame": 1189,
-      "durationInFrames": 265
+      "startFrame": 2388,
+      "durationInFrames": 158
     },
     {
       "id": 9,
       "character": "zundamon",
-      "text": "Reactではレンダリングするたびに、必ずこの「仮想DOM」を生成します。",
+      "text": "Reactのレンダリングは大きく二つのフェーズに分かれています。",
       "audioFile": "voices/voice_9.wav",
       "expression": "normal",
-      "startFrame": 1454,
-      "durationInFrames": 225
+      "startFrame": 2546,
+      "durationInFrames": 165
     },
     {
       "id": 10,
       "character": "zundamon",
-      "text": "次に「Commitフェーズ」に移ります。ここでは出来上がった設計図をもとに、実際のDOMを画面に描画する作業を担います。",
+      "text": "1つ目は「Renderフェーズ」。これはページを構成する設計図を作るフェーズです。",
       "audioFile": "voices/voice_10.wav",
       "expression": "normal",
-      "startFrame": 1679,
-      "durationInFrames": 339
+      "startFrame": 2711,
+      "durationInFrames": 225
     },
     {
       "id": 11,
       "character": "zundamon",
-      "text": "Reactのレンダリングプロセスは「Render」「Commit」の二段階あると覚えておいてください。",
+      "text": "ここではメモリ上に「仮想DOM」を生成します。これがページを構成する設計図になります。",
       "audioFile": "voices/voice_11.wav",
       "expression": "normal",
-      "startFrame": 2018,
-      "durationInFrames": 252
+      "startFrame": 2936,
+      "durationInFrames": 265
     },
     {
       "id": 12,
       "character": "zundamon",
-      "text": "それではuseEffectの中身についてみていきます。",
+      "text": "Reactではレンダリングするたびに、必ずこの「仮想DOM」を生成します。",
       "audioFile": "voices/voice_12.wav",
       "expression": "normal",
-      "startFrame": 2270,
-      "durationInFrames": 141
-    },
-    {
-      "id": 12,
-      "character": "zundamon",
-      "text": "まずは「初回レンダリング」、つまり画面を初めて開く際の動きから見ていきましょう。",
-      "audioFile": "voices/voice_12.wav",
-      "expression": "normal",
-      "startFrame": 2411,
-      "durationInFrames": 234
+      "startFrame": 3201,
+      "durationInFrames": 225
     },
     {
       "id": 13,
       "character": "zundamon",
-      "text": "初回レンダリング時のRenderフェーズでは、仮想DOMの生成とともに、あとで実行するコールバック関数の登録を行います。",
+      "text": "次に「Commitフェーズ」に移ります。ここでは出来上がった設計図をもとに、実際のDOMを画面に描画する作業を担います。",
       "audioFile": "voices/voice_13.wav",
       "expression": "normal",
-      "startFrame": 2645,
-      "durationInFrames": 321
+      "startFrame": 3426,
+      "durationInFrames": 339
     },
     {
       "id": 14,
       "character": "zundamon",
-      "text": "この時点ではまだ画面に要素が存在しないため、関数をメモしておくだけで実行はされません。",
+      "text": "Reactのレンダリングプロセスは「Render」「Commit」の二段階あると覚えておいてください。",
       "audioFile": "voices/voice_14.wav",
       "expression": "normal",
-      "startFrame": 2966,
-      "durationInFrames": 248
+      "startFrame": 3765,
+      "durationInFrames": 252
     },
     {
       "id": 15,
       "character": "zundamon",
-      "text": "続いてCommitフェーズです。新しい画面をユーザーに表示し終わると、",
+      "text": "それでは先ほどのコードでuseEffectの中身についてみていきます。",
       "audioFile": "voices/voice_15.wav",
       "expression": "normal",
-      "startFrame": 3214,
-      "durationInFrames": 228
+      "startFrame": 4017,
+      "durationInFrames": 177
     },
     {
       "id": 16,
       "character": "zundamon",
-      "text": "先ほどメモしておいたコールバック関数が実行されます。",
+      "text": "まずは「初回レンダリング」、つまり画面を初めて開く際の動きから見ていきましょう。",
       "audioFile": "voices/voice_16.wav",
       "expression": "normal",
-      "startFrame": 3442,
-      "durationInFrames": 158
+      "startFrame": 4194,
+      "durationInFrames": 234
     },
     {
       "id": 17,
       "character": "zundamon",
-      "text": "画面への描画が完了してから実行されるため、useEffectの中では確実に実際のDOM要素を取得して、スクロールの監視を開始できる仕組みです。",
+      "text": "初回レンダリング時のRenderフェーズでは、仮想DOMの生成とともに、あとで実行するコールバック関数の登録を行います。",
       "audioFile": "voices/voice_17.wav",
       "expression": "normal",
-      "startFrame": 3600,
-      "durationInFrames": 380
+      "startFrame": 4428,
+      "durationInFrames": 321
     },
     {
       "id": 18,
       "character": "zundamon",
-      "text": "次に、Stateが更新されたときの「再レンダリング」時の動きを見ていきましょう。",
+      "text": "この時点ではまだ画面に要素が存在しないため、関数をメモしておくだけで実行はされません。",
       "audioFile": "voices/voice_18.wav",
       "expression": "normal",
-      "startFrame": 3980,
-      "durationInFrames": 240
+      "startFrame": 4749,
+      "durationInFrames": 248
     },
     {
       "id": 19,
       "character": "zundamon",
-      "text": "ボタンが押されてStateが変わると、再びコンポーネントが実行され、Renderフェーズが走ります。",
+      "text": "続いてCommitフェーズです。新しい画面をユーザーに表示し終わると、",
       "audioFile": "voices/voice_19.wav",
       "expression": "normal",
-      "startFrame": 4220,
-      "durationInFrames": 262
+      "startFrame": 4997,
+      "durationInFrames": 194
     },
     {
       "id": 20,
       "character": "zundamon",
-      "text": "ここでもう一度useEffectが呼ばれますが、重要になるのが第2引数の「依存配列」です。",
+      "text": "先ほどメモしておいたコールバック関数が実行されます。",
       "audioFile": "voices/voice_20.wav",
       "expression": "normal",
-      "startFrame": 4482,
-      "durationInFrames": 276
+      "startFrame": 5191,
+      "durationInFrames": 158
     },
     {
       "id": 21,
       "character": "zundamon",
-      "text": "ReactはRenderフェーズの最中に、前回の配列と今回の配列を見比べます。",
+      "text": "画面への描画が完了してから実行されるため、useEffectの中で確実にDOM要素を取得して、スクロールの監視を開始できる仕組みです。",
       "audioFile": "voices/voice_21.wav",
       "expression": "normal",
-      "startFrame": 4758,
-      "durationInFrames": 235
+      "startFrame": 5349,
+      "durationInFrames": 356
     },
     {
       "id": 22,
       "character": "zundamon",
-      "text": "もし値が異なっていれば、前回のRenderフェーズと同じように関数を登録します。",
+      "text": "次に、Stateが更新されたときの「再レンダリング」時の動きを見ていきましょう。",
       "audioFile": "voices/voice_22.wav",
       "expression": "normal",
-      "startFrame": 4993,
-      "durationInFrames": 224
+      "startFrame": 5705,
+      "durationInFrames": 240
     },
     {
       "id": 23,
       "character": "zundamon",
-      "text": "逆に、関係ないStateが更新された場合は、依存配列に変化がないため、関数のメモはスキップされます。",
+      "text": "ボタンが押されてStateが変わると、再びコンポーネントが実行され、Renderフェーズが走ります。",
       "audioFile": "voices/voice_23.wav",
       "expression": "normal",
-      "startFrame": 5217,
-      "durationInFrames": 308
+      "startFrame": 5945,
+      "durationInFrames": 262
     },
     {
       "id": 24,
       "character": "zundamon",
-      "text": "次にCommitフェーズです。",
+      "text": "ここでもう一度useEffectが呼ばれますが、重要になるのが第2引数の「依存配列」です。",
       "audioFile": "voices/voice_24.wav",
       "expression": "normal",
-      "startFrame": 5525,
-      "durationInFrames": 247
+      "startFrame": 6207,
+      "durationInFrames": 276
     },
     {
       "id": 25,
       "character": "zundamon",
-      "text": "先ほどの反復ですが、useEffectは、このCommitフェーズでは実際の処理を行いません。",
+      "text": "ReactはRenderフェーズの最中に、前回の配列と今回の配列を見比べます。",
       "audioFile": "voices/voice_25.wav",
       "expression": "normal",
-      "startFrame": 5772,
-      "durationInFrames": 183
+      "startFrame": 6483,
+      "durationInFrames": 235
     },
     {
       "id": 26,
       "character": "zundamon",
-      "text": "実際に処理を行うのは「画面の更新（Commitフェーズ）がすべて終わった後」です。",
+      "text": "もし値が異なっていれば、前回のRenderフェーズと同じように関数を登録します。",
       "audioFile": "voices/voice_26.wav",
       "expression": "normal",
-      "startFrame": 5955,
-      "durationInFrames": 262
+      "startFrame": 6718,
+      "durationInFrames": 224
     },
     {
       "id": 27,
       "character": "zundamon",
-      "text": "ここでさらに重要なのが、次回の実行前に行う「お片付け」、クリーンアップ関数です。",
+      "text": "逆に、関係ないStateが更新された場合は、依存配列に変化がないため、関数のメモはスキップされます。",
       "audioFile": "voices/voice_27.wav",
       "expression": "normal",
-      "startFrame": 6217,
-      "durationInFrames": 255
+      "startFrame": 6942,
+      "durationInFrames": 308
     },
     {
       "id": 28,
       "character": "zundamon",
-      "text": "useEffectの中でreturnを使って関数を返すと、それはクリーンアップ関数として扱われます。",
+      "text": "次にCommitフェーズです。",
       "audioFile": "voices/voice_28.wav",
       "expression": "normal",
-      "startFrame": 6472,
-      "durationInFrames": 259
+      "startFrame": 7250,
+      "durationInFrames": 89
     },
     {
       "id": 29,
       "character": "zundamon",
-      "text": "Intersection Observerの監視解除やイベントリスナーの削除など、前回のコールバック関数の実行内容のお片付けをするための機能です。",
+      "text": "先ほどの反復ですが、useEffectは、このCommitフェーズでは実際の処理を行いません。",
       "audioFile": "voices/voice_29.wav",
       "expression": "normal",
-      "startFrame": 6731,
-      "durationInFrames": 355
+      "startFrame": 7339,
+      "durationInFrames": 250
     },
     {
       "id": 30,
       "character": "zundamon",
-      "text": "依存配列に変化があって新しいEffectが走る場合、その処理の直前に、必ず前回のクリーンアップ関数が実行されます。",
+      "text": "実際に処理を行うのは「画面の更新（Commitフェーズ）がすべて終わった後」です。",
       "audioFile": "voices/voice_30.wav",
       "expression": "normal",
-      "startFrame": 7086,
-      "durationInFrames": 345
+      "startFrame": 7589,
+      "durationInFrames": 244
     },
     {
       "id": 31,
       "character": "zundamon",
-      "text": "Reactは常に「前回の後始末をしてから、今回の処理を始める」という丁寧な動きをすることで、バグやメモリの無駄遣いを防いでいるのです。",
+      "text": "ここでさらに重要なのが、次回の実行前に行う「お片付け」、クリーンアップ関数です。",
       "audioFile": "voices/voice_31.wav",
       "expression": "normal",
-      "startFrame": 7431,
-      "durationInFrames": 394
+      "startFrame": 7833,
+      "durationInFrames": 255
     },
     {
       "id": 32,
       "character": "zundamon",
-      "text": "また、このクリーンアップ関数は画面が遷移する際など、コンポーネントが消える時、つまり「アンマウント時」にも必ず実行され、最後のお片付けをしてくれます。",
+      "text": "useEffectの中でreturnを使って関数を返すと、それはクリーンアップ関数として扱われます。",
       "audioFile": "voices/voice_32.wav",
       "expression": "normal",
-      "startFrame": 7825,
-      "durationInFrames": 439
+      "startFrame": 8088,
+      "durationInFrames": 259
     },
     {
       "id": 33,
       "character": "zundamon",
-      "text": "もう一度、実際のアプリの画面を見てみましょう。",
+      "text": "Intersection Observerの監視解除やイベントリスナーの削除など、前回のコールバック関数の実行内容のお片付けをするための機能です。",
       "audioFile": "voices/voice_33.wav",
       "expression": "normal",
-      "startFrame": 8264,
-      "durationInFrames": 148
+      "startFrame": 8347,
+      "durationInFrames": 355
     },
     {
       "id": 34,
       "character": "zundamon",
-      "text": "上のボタンを押してアニメーションの発火タイミングを切り替えると、thresholdの値が更新され、再レンダリングが走ります。",
+      "text": "依存配列に変化があって新しいEffectが走る場合、その処理の直前に、必ず前回のクリーンアップ関数が実行されます。",
       "audioFile": "voices/voice_34.wav",
       "expression": "normal",
-      "startFrame": 8412,
-      "durationInFrames": 308
+      "startFrame": 8702,
+      "durationInFrames": 345
     },
     {
       "id": 35,
       "character": "zundamon",
-      "text": "そのたびに、クリーンアップ関数が呼ばれます。",
+      "text": "Reactは常に「前回の後始末をしてから、今回の処理を始める」という丁寧な動きをすることで、バグやメモリの無駄遣いを防いでいるのです。",
       "audioFile": "voices/voice_35.wav",
       "expression": "normal",
-      "startFrame": 8720,
-      "durationInFrames": 199
+      "startFrame": 9047,
+      "durationInFrames": 394
     },
     {
       "id": 36,
       "character": "zundamon",
-      "text": "これにより、古い設定の監視インスタンスが確実に破棄され、監視が二重に重なってメモリリークが起きてしまうのを防ぐことができるんです。",
+      "text": "また、このクリーンアップ関数は画面が遷移する際など、コンポーネントが消える時、つまり「アンマウント時」にも必ず実行され、最後のお片付けをしてくれます。",
       "audioFile": "voices/voice_36.wav",
       "expression": "normal",
-      "startFrame": 8919,
-      "durationInFrames": 354
+      "startFrame": 9441,
+      "durationInFrames": 439
     },
     {
       "id": 37,
       "character": "zundamon",
-      "text": "今回のポイントのおさらいです。",
+      "text": "もう一度、実際のアプリの画面を見てみましょう。",
       "audioFile": "voices/voice_37.wav",
       "expression": "normal",
-      "startFrame": 9273,
-      "durationInFrames": 102
+      "startFrame": 9880,
+      "durationInFrames": 148
     },
     {
       "id": 38,
       "character": "zundamon",
-      "text": "useEffectは、レンダーフェーズでコールバック関数の登録を行います。",
+      "text": "上のボタンを押してアニメーションの発火タイミングを切り替えると、thresholdの値が更新され、再レンダリングが走ります。",
       "audioFile": "voices/voice_38.wav",
       "expression": "normal",
-      "startFrame": 9375,
-      "durationInFrames": 430
+      "startFrame": 10028,
+      "durationInFrames": 308
     },
     {
       "id": 39,
       "character": "zundamon",
-      "text": "再レンダリング以降は依存配列の差分チェックを行い、その結果に応じて登録の可否を決めます。",
+      "text": "そのたびに、クリーンアップ関数が呼ばれます。",
       "audioFile": "voices/voice_39.wav",
       "expression": "normal",
-      "startFrame": 9805,
-      "durationInFrames": 430
+      "startFrame": 10336,
+      "durationInFrames": 199
     },
     {
       "id": 40,
       "character": "zundamon",
-      "text": "実際に処理を行うのは、Commitフェーズが完了し、画面が更新された後になります。",
+      "text": "これにより、古い設定の監視インスタンスが確実に破棄され、監視が二重に重なってメモリリークが起きてしまうのを防ぐことができるんです。",
       "audioFile": "voices/voice_40.wav",
       "expression": "normal",
-      "startFrame": 10235,
-      "durationInFrames": 247
+      "startFrame": 10535,
+      "durationInFrames": 354
     },
     {
       "id": 41,
       "character": "zundamon",
-      "text": "そして、クリーンアップ関数は、次回のEffectが走る直前や、コンポーネントのアンマウント時に『前回の後始末』として実行されます。",
+      "text": "今回のポイントのおさらいです。",
       "audioFile": "voices/voice_41.wav",
       "expression": "normal",
-      "startFrame": 10482,
-      "durationInFrames": 382
+      "startFrame": 10889,
+      "durationInFrames": 102
     },
     {
       "id": 42,
       "character": "zundamon",
-      "text": "これが大まかなuseEffectとレンダリングの関わりの流れになります。",
+      "text": "useEffectは、レンダーフェーズでコールバック関数の登録を行います。",
       "audioFile": "voices/voice_42.wav",
       "expression": "normal",
-      "startFrame": 10864,
-      "durationInFrames": 182
+      "startFrame": 10991,
+      "durationInFrames": 430
     },
     {
       "id": 43,
       "character": "zundamon",
-      "text": "最後までご視聴ありがとうございました！",
+      "text": "再レンダリング以降は依存配列の差分チェックを行い、その結果に応じて登録の可否を決めます。",
       "audioFile": "voices/voice_43.wav",
+      "expression": "normal",
+      "startFrame": 11421,
+      "durationInFrames": 430
+    },
+    {
+      "id": 44,
+      "character": "zundamon",
+      "text": "実際に処理を行うのは、Commitフェーズが完了し、画面が更新された後になります。",
+      "audioFile": "voices/voice_44.wav",
+      "expression": "normal",
+      "startFrame": 11851,
+      "durationInFrames": 247
+    },
+    {
+      "id": 45,
+      "character": "zundamon",
+      "text": "そして、クリーンアップ関数は、次回のEffectが走る直前や、コンポーネントのアンマウント時に『前回の後始末』として実行されます。",
+      "audioFile": "voices/voice_45.wav",
+      "expression": "normal",
+      "startFrame": 12098,
+      "durationInFrames": 382
+    },
+    {
+      "id": 46,
+      "character": "zundamon",
+      "text": "これが大まかなuseEffectとレンダリングの関わりの流れになります。",
+      "audioFile": "voices/voice_46.wav",
+      "expression": "normal",
+      "startFrame": 12480,
+      "durationInFrames": 182
+    },
+    {
+      "id": 47,
+      "character": "zundamon",
+      "text": "最後までご視聴ありがとうございました！",
+      "audioFile": "voices/voice_47.wav",
       "expression": "happy",
-      "startFrame": 11046,
+      "startFrame": 12662,
       "durationInFrames": 123
     }
   ],
   "telops": [],
-  "totalDurationInFrames": 11319
+  "totalDurationInFrames": 12935
 }
