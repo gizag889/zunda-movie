@@ -104,11 +104,7 @@ export const scenes: Record<number, SceneConfig> = {
 
   },
 
-  // id: 15 「続いてCommitフェーズです。新しい画面をユーザーに表示し終わると、」
-  15: {
-    media : []
-    // media: [comp('RenderCommitPhaseScene')],
-  },
+  
   16: {
      texts: [
       centerText('useEffect 初回レンダリング', { top: 70, fontSize: 75 }),
@@ -125,11 +121,22 @@ export const scenes: Record<number, SceneConfig> = {
       }),
     ],
   },
-
-  // id: 18 「次に、Stateが更新されたときの「再レンダリング」時の動きを見ていきましょう。」
-  18: {
-    media: [comp('ReRenderPhaseScene')],
+  19: {
+    media: [comp('RenderCommitPhaseScene')]
   },
+
+  // id: 20 「続いてCommitフェーズです。新しい画面をユーザーに表示し終わると、」
+  20: {
+    media: [comp('CallbackPhaseScene')],
+  },
+  22: {
+    media: [],
+    texts: [
+      centerText('useEffect 再レンダリング', { top: 70, fontSize: 75 }),
+    ],
+  },
+
+ 
 
   // id: 24 「次にCommitフェーズです。」
   24: {

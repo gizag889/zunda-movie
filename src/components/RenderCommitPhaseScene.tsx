@@ -13,10 +13,10 @@ export const RenderCommitPhaseScene: React.FC<{ style?: React.CSSProperties, seg
   const localFrame = frame - startFrame;
 
   // id: 10（初回登場時）や id: 15, 24 の登場セグメントのみフェードイン。id: 11 などの引き継ぎセグメントでは最初から完全表示（1）
-  const isIntroSegment = segment?.id === 10 || segment?.id === 15 || segment?.id === 24;
+  const isIntroSegment = segment?.id === 10 || segment?.id === 19 || segment?.id === 24;
 
   const fadeInOpacity = isIntroSegment
-    ? interpolate(localFrame, [0, 15], [0, 1], {
+    ? interpolate(localFrame, [0, 19], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
       })

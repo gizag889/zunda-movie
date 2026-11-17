@@ -38,7 +38,7 @@ export const Commit01Mockup: React.FC<{ style?: React.CSSProperties, segment?: a
       <h2 style={{ fontSize: 80, lineHeight: 0 }}>Commit</h2>
       <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
         <div style={{ fontSize: 60, fontWeight: 'bold' }}>実際の画面へ反映</div>
-        <div style={{ fontSize: 60, fontWeight: 'bold' }}>(変更分だけ)</div>
+        {/* <div style={{ fontSize: 60, fontWeight: 'bold' }}>(変更分だけ)</div> */}
       </div>
     </div>
   );
